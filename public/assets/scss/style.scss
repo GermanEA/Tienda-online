@@ -1,6 +1,3 @@
-/* ------ CSS RESET ------ */
-@import "../css/reset.css";
-
 /* ------ VARIABLES ------ */
 $primary-color: #272727;
 $secondary-color: #747474;
@@ -40,8 +37,15 @@ body {
     font-family: $primary-font-family;
 }
 
-.body-container {
+.container-fluid {
 
+    margin: 0;
+    padding: 0;
+
+
+    /* 
+        HEADER
+    */
     .header-wrapper {
     
         .offer {
@@ -52,18 +56,17 @@ body {
             font-size: 0.8rem;
             padding: 10px;
         }
-    
-        .nav-wrapper {
-            @include flex( 100%, row, space-evenly, center);
-            background-color: $black-color;
-    
+
+        .navbar {
+
             &.fixed {
                 position: fixed;
+                width: 100%;
                 top: 0;
-                z-index: 99;
+                z-index:1020;
             }
-    
-            .logo {
+
+            .navbar-brand {
                 width: 150px;
                 box-sizing: border-box;
                 padding: 10px;
@@ -72,25 +75,7 @@ body {
                     @include img-responsive();
                 }
             }
-    
-            .nav {
-                
-                .principal-nav {
-                    @include flex( 100%, row, center, center);
-                    flex-wrap: wrap;
-    
-                    .items {
-                        padding: 0 2rem;
-                        font-size: 1rem;
-    
-                        a {
-                            color: $white-color;
-                            text-decoration: none;
-                        }
-                    }
-                }            
-            }
-    
+
             .search {
                 box-sizing: border-box;
     
@@ -109,7 +94,7 @@ body {
                     color: $red-color;
                 }
             }
-    
+
             .login-cart {
                 @include flex( 100px, row, space-around, center);
                 color: $white-color;
@@ -123,13 +108,16 @@ body {
                 .fas:last-child{
                     font-size: 1.8rem;
                 }
-    
+
+                .fas-logged {
+                    color: $red-color;
+                }    
                 
                 .modal-logging {
                     display: none;
                     position: absolute;
                     top: 50px;
-                    right: 29px;
+                    right: 49px;
                     z-index: 99;
                     background-color: $white-color;
                     padding: 8px 10px;
@@ -144,7 +132,7 @@ body {
                     :after {
                         content: "";
                         position: absolute;
-                        left: 335px;
+                        left: 389px;
                         top: -16px;
                         border: 8px solid transparent;
                         border-bottom: 8px solid white;
@@ -154,7 +142,7 @@ body {
                     .left, .right {
                         @include flex( auto, column, flex-start, center);
                         padding: 10px;
-                        border-right: 1px solid $grey-light;
+                        width: 200px;
                     }
     
                     .left {
@@ -164,6 +152,10 @@ body {
                     form {
                         @include flex( auto, column, center, center);
                         padding: 10px 0;
+
+                        .form-group {
+                            @include flex( auto, column, flex-start, initial);
+                        }
                     }
     
                     strong {
@@ -174,6 +166,22 @@ body {
                     .input-form {
                         padding: 5px;
                         margin-bottom: 5px;
+
+                        &.checked {
+                            border-bottom: 3px solid $green-color;
+                        }
+
+                        &.unchecked {
+                            border-bottom: 3px solid red;
+                        }
+
+                        &.wrong-pass {
+                            border: 2px solid red;
+                        }
+                    }
+
+                    .input-form:focus {
+                        border: 1px solid $secondary-color;
                     }
     
                     #pass, #phone-reg {
@@ -182,6 +190,9 @@ body {
     
                     .label-form {
                         font-size: 0.8rem;
+                    }
+
+                    #error-loggin {                        
                         margin-bottom: 10px;
                     }
     
@@ -190,109 +201,150 @@ body {
                         color: $red-color;
                         font-size: 0.7rem;
                     }
+
+                    .btn-original:disabled{
+                        background-color: $secondary-color;
+                    }
+                }
+
+                .modal-logging-open{
+                    display: flex;
+                }
+
+                .modal-logged {
+                    display: none;
+                    position: absolute;
+                    width: 200px;
+                    top: 50px;
+                    right: 49px;
+                    z-index: 99;
+                    background-color: $white-color;
+                    padding: 8px 10px;
+                    // display: flex;
+                    border: 1px solid $grey-light;
+                    border-radius: 4px;
+                    box-shadow: 0 0 8px rgba(0,0,0,0.4);
+                    color: $primary-color;
+                    text-transform: none;
+                    font-size: 0.8rem;
+    
+                    :after {
+                        content: "";
+                        position: absolute;
+                        left: 167px;
+                        top: -16px;
+                        border: 8px solid transparent;
+                        border-bottom: 8px solid white;
+                        bottom: auto;      
+                    }
+
+                    .name-nav-log {
+                        color: $secondary-color;
+                        border-color: $grey-light;
+                    }                    
+
+                    .nav-item {
+                        color: $primary-color;
+                        transition: all 0.2s;
+                    }
+
+                    .nav-item:hover {                        
+                        background-color: $red-color;
+                        opacity: 0.5;
+                    }
+
+                    .nav-link {
+                        color: $primary-color;
+                        transition: all 0.2s;
+                    }
+
+                    .nav-link:hover {
+                        color: $white-color;
+                    }
+
+                    .modal-close {
+                        @include flex(100%, column, center, center);
+                        font-size: 1rem;
+                    }
+                }
+            }
+
+            .navbar-collapse{
+
+                .navbar-nav {
+                    width: 100%;
                 }
             }
         }    
     }
     
-    .main-container {    
-    
-        .slider {
-    
-            &__item {
-    
-                img {
-                    @include img-responsive();
-                }
-                
-                .logo-banner {
-                    @include img-responsive();
-                    margin-bottom: 25px;
-        
-                    img {
-                        @include img-responsive();
+    /* 
+        CONTENT SINGLE PAGE
+    */
+    #carouselBanner {
+
+        .carousel-inner{
+
+            .carousel-item {
+
+                .carousel-caption{
+                    top: 0;                
+                    
+                    .banner-text{
+                        @include flex( 100%, column, flex-start, flex-start);
+                        line-height: 1;
+
+                        .banner-logo{
+                            width: 50%;
+                            margin-bottom: 25px;
+                        }
+
+                        .banner-subheader {
+                            color: $red-color;
+                            font-size: 2rem;
+                        }
+            
+                        .banner-header {
+                            color: $white-color;
+                            font-size: 3rem;
+                            margin-bottom: 15px;
+                        }
+            
+                        .banner-btn {
+                            font-size: 2rem;
+                            text-decoration: none;
+                            padding: 10px 30px;
+                            box-sizing: border-box;
+                            background-color: $red-color;
+                            color: $white-color;
+                            margin-left: 420px;
+                        }
                     }
                 }
-        
-                .banner-text {
-                    @include flex( 49%, column, flex-start, flex-end);
-                    font-family: $primary-font-family;
-                    position: absolute;
-                    z-index: 50;
-                    top: 100px;
-                    left: 100px;
-        
-                    .banner-subheader {
-                        color: $red-color;
-                        font-size: 2rem;
-                        position: relative;
-                        right: 360px;
-                    }
-        
-                    .banner-header {
-                        color: $white-color;
-                        font-size: 3rem;
-                        margin-bottom: 0.5rem;
-                    }
-    
-                    .banner-btn {
-                        font-size: 1rem;
-                        text-decoration: none;
-                        padding: 10px 30px;
-                        box-sizing: border-box;
-                        background-color: $red-color;
-                        color: $white-color;
-                    }
-                }
-        
             }
         }
-    
-        // .features {
-    
-        //     .list-features {
-        //         display: flex;
-        //         justify-content: center;
-        //         align-content: center;
-        //         background-color: $secondary-color;
-    
-        //         .items {
-        //             width: 33.33%;              
-        //             height: auto;
-        //             box-sizing: border-box;
-        //             // padding: 0 100px;
-    
-        //             img {
-        //                 width: 100%;
-        //                 position: absolute;
-        //                 left: 0;
-        //                 transition: opacity 0.5s ease-in-out;
-        //             }
-    
-        //             img.feature-top:hover {
-        //                 opacity: 0;
-        //             }
-        //         }
-    
-        //         .items:nth-child(2) {
-                    
-        //             img {
-        //                 left: 33.33%;
-        //             }
-    
-        //         }
-    
-        //         .items:last-child {
-    
-        //             img {
-        //                 left: 66.66%;
-        //             }
-        //         }
-        //     }
-        // }
+
     }
-    
-    
+
+    /* 
+        CONTENT SHIRT PAGE
+    */
+    @media (min-width: 576px){        
+        .card-deck {
+            margin: 0;
+        }
+    }
+
+    .card-footer {
+        @include flex( 100%, row, space-between, center);
+    }
+    .card-deck {
+
+        .card {
+
+            
+        }
+    }
 }
 
 .btn-original {

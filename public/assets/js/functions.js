@@ -1,7 +1,6 @@
 /* STICKY NAVIGATION */
-
-var navbar = document.getElementById("navbar");
-var fixed = navbar.offsetTop;
+let navbar = document.getElementById("navbar");
+let fixed = navbar.offsetTop;
 
 function fixedNav() {
   if (window.pageYOffset > fixed) {
@@ -15,33 +14,7 @@ function fixedNav() {
 
 window.addEventListener('scroll', fixedNav);
 
-/* LOGIN MODAL */
 
-var user_modal = document.getElementById("user-modal");
-var modal = document.getElementById("modal-logging");
-var modal_close = document.querySelectorAll(".modal-close");
-
-user_modal.addEventListener('mouseenter', function() {
-  modal.style.display = "flex";
-});
-
-document.body.addEventListener('click', function(e) {
-  var check;
-
-  modal_close.forEach(element => {
-    if ( e.target == element){
-      check = true;
-    }
-  });
-
-  if ( !check ) {    
-    modal.style.display = "none";
-  }
-  
-});
-// modal.addEventListener('mouseleave', function(){
-//   modal.style.display = "none";
-// });
 
 
 
