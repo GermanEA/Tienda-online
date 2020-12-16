@@ -19,7 +19,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <li class="nav-item <?= (!$this->uri->segment(2))?'active':''?>">
                     <a class="nav-link" href="<?php echo base_url()?>">INICIO<span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item <?= ($this->uri->segment(2)==='product_packs')?'active':''?>">
+                <li class="nav-item <?= ($this->uri->segment(2)==='product_pack')?'active':''?>">
                     <a class="nav-link" href="<?php echo base_url()?>products/product_pack/index">PACKS</a>
                 </li>                
                 <li class="nav-item <?= ($this->uri->segment(2)==='product_discs')?'active':''?>">
@@ -125,13 +125,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <div class="name-nav-log border-bottom pb-1 mb-1 w-100 text-center">¡Bienvenido, <?php echo $this->session->nombre ?>!</div>
                             <ul class="nav flex-column nav-pills nav-fill w-100">
                                 <li class="nav-item mb-1">
-                                    <a class="nav-link" href="<?php echo base_url()?>user/user_data/index">Mis datos</a>
+                                    <a class="nav-link" href="<?php echo base_url()?>user/user_data/index">
+                                        <i class="fas fa-portrait mr-2"></i>
+                                        </span>Mis datos<span>
+                                    </a>
                                 </li>
                                 <li class="nav-item mb-1">
-                                    <a class="nav-link" href="<?php echo base_url()?>user/user_orders/index"">Mis pedidos</a>
+                                    <a class="nav-link" href="<?php echo base_url()?>user/user_orders/index"">
+                                        <i class="fas fa-dolly mr-2"></i>
+                                        </span>Mis pedidos<span>
+                                    </a>
                                 </li>
                             </ul>
-                            <button type="submit" class="submit-button modal-close btn-original">SALIR</button>
+                            <button type="submit" class="submit-button modal-close">
+                                <i class="fas fa-door-open mr-2"></i>
+                                <span>Cerrar sesión</span>
+                            </button>
                         </form>
                     </div>
                 </div>

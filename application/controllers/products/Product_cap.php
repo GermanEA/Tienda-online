@@ -11,7 +11,10 @@ class Product_cap extends CI_Controller {
 
 	public function loadViewsInit() {
 		$page_data['page_content'] = 'products/v_product_cap';
-		$page_data['cap'] = $this->M_product->getProduct('GORRA');
+		$page_data['page_sidebar_left'] = 'layouts/sidebar_left';
+		$page_data['product_list'] = $this->M_product->getProductListFilter();
+		$page_data['cap'] = $this->M_product->getProduct(5);
+		
         $this->load->view('/layouts/main', $page_data);
 	}
 }

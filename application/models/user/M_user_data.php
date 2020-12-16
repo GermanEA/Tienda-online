@@ -2,9 +2,7 @@
     class M_user_data extends CI_Model {
 
         public function getUsers($campo) {
-            $result = $this->db->select('*')->from('usuario')->where("email", $_POST[$campo]);
-
-            $query = $this->db->get();
+            $query = $this->db->select('*')->from('usuario')->where("email", $_POST[$campo])->get();
 
             if ( $query->num_rows() > 0 ) {
                 return $query->result();                
@@ -14,13 +12,13 @@
         }
 
         public function insertUser() {
-            $name    = $_POST['name-reg'];
-			$fname   = $_POST['lastname-reg'];
-			$email   = $_POST['email-reg'];
-			$pass    = $_POST['pass-reg'];
-			$address = $_POST['address-reg'];
-			$postal  = $_POST['postal-reg'];
-            $phone   = $_POST['phone-reg'];
+            // $name    = $_POST['name-reg'];
+			// $fname   = $_POST['lastname-reg'];
+			// $email   = $_POST['email-reg'];
+			// $pass    = $_POST['pass-reg'];
+			// $address = $_POST['address-reg'];
+			// $postal  = $_POST['postal-reg'];
+            // $phone   = $_POST['phone-reg'];
 
             $data = array(
                 'nombre'       => $_POST['name-reg'],
@@ -34,6 +32,10 @@
             );
             
             $this->db->insert('usuario', $data);
+        }
+
+        public function changeName() {
+            
         }
     }
     

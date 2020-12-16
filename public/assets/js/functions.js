@@ -2,7 +2,7 @@
 let navbar = document.getElementById("navbar");
 let fixed = navbar.offsetTop;
 
-function fixedNav() {
+let fixedNav = () => {
   if (window.pageYOffset > fixed) {
     document.body.style.paddingTop = navbar.offsetHeight + 'px';
     navbar.classList.add("fixed");
@@ -14,6 +14,19 @@ function fixedNav() {
 
 window.addEventListener('scroll', fixedNav);
 
+/* CAPITALIZE FILTER */
+// let filterLabel = document.querySelectorAll('.form-check-label');
+
+// window.onload = function() {
+
+//   filterLabel.forEach(element => {
+//     element.innerText = capitalizeFirstLetter(element.innerText);
+//   });
+// }  
+
+// function capitalizeFirstLetter(string) {
+//   return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+// }
 
 
 

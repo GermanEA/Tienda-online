@@ -131,7 +131,7 @@ passCheck.addEventListener('keyup', checkPassEquals, false);
 
 // Comprobar que la dirección es correcta
 let checkAddress = () => {
-  let pattern = /^[a-zA-Z0-9!"#$%&'()*+,-.\/:;<=>?\\@[\]^_`{|}~]{1,50}$/;
+  let pattern = /^[a-zA-Z0-9!"#$%&'()*+,-.\/:;<=>?\\@[\]^_`{|}~ºª\s]{1,50}$/;
 
   if( address.value.match(pattern) ){
     checked(address);

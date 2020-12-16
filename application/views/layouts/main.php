@@ -57,9 +57,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <?php $this->load->view('/layouts/header'); ?>
     <!--/ END HEADER -->
 
-    <!-- START @PAGE CONTENT -->
-    <?php $this->load->view($page_content); ?>
-    <!--/ END PAGE CONTENT -->
+    <div class="container-fluid">
+
+        <!-- START @SIDEBAR-LEFT -->
+        <?php if( isset($page_sidebar_left) ) { ?>
+
+            <div class="container d-flex flex-row">
+
+        <?php $this->load->view($page_sidebar_left); } ?>
+        <!--/ END SIDEBAR-LEFT -->
+
+        <!-- START @PAGE CONTENT -->
+        <?php $this->load->view($page_content); ?>
+        <!--/ END PAGE CONTENT -->
+
+    </div>
 
     <!-- START @FOOTER CONTENT -->
     <?php $this->load->view('/layouts/footer'); ?>

@@ -1,19 +1,20 @@
-<h1>DISCOS</h1>
-<div class="card-deck">
+<div class="container container-product">
+        <div class="card-deck">
 
-<?php foreach($discs as $row): ?>
-    <div class="col-sm-2"">
-        <div class="card">
-            <img class="card-img-top" src="<?php echo base_url() . "/" . $row->imagen; ?>"   alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title"><?php echo $row->descripcion; ?></h5>
+        <?php foreach($discs as $row): ?>
+            <div class="card-wrapper col-4">
+                <div class="card-item">
+                    <div class="price-corner text-center align-middle"><?php echo $row->precio; ?>€</div>
+                    <img class="w-100" src="<?php echo base_url() . "/" . $row->imagen; ?>"   alt="<?php echo $row->descripcion; ?>">
+                    <div class="card-title">
+                        <span><?php echo $row->descripcion; ?></span>
+                        <hr>
+                    </div>
+                    <button type="button" class="btn btn-card">COMPRAR</button>
+                </div>
             </div>
-            <div class="card-footer">
-                <small class="text-muted">PRECIO: <?php echo $row->precio; ?>€</small>
-                <button type="button" class="btn btn-warning">AÑADIR AL CARRITO</button>
-            </div>
+        <?php endforeach; ?>
+            
         </div>
     </div>
-<?php endforeach; ?>
-    
 </div>

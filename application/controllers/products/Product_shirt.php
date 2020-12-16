@@ -11,7 +11,11 @@ class Product_shirt extends CI_Controller {
 
 	public function loadViewsInit() {
 		$page_data['page_content'] = 'products/v_product_shirt';
-		$page_data['shirt'] = $this->M_product->getProduct('CAMISETA');
+		$page_data['page_sidebar_left'] = 'layouts/sidebar_left';
+		$page_data['product_list'] = $this->M_product->getProductListFilter();
+		$page_data['shirt'] = $this->M_product->getProduct(3);
+		$page_data['size'] = $this->M_product->getProductSize(3);
+
         $this->load->view('/layouts/main', $page_data);
 	}
 }
