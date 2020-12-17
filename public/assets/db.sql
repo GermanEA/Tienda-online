@@ -65,12 +65,12 @@ INSERT INTO usuario VALUES(0, 'Selu', 'Rodríguez', '1234', '', '', 0, 'ADMIN@AD
     (0, 'Proveedor', 'Proveedor', '', 'Dirección Proveedor', '11406', 856157489, 'proveedor@proveedor.com', 2),
     (0, 'Germán', 'Estrade', '1234', 'Diego Fernandez Herrera', '11401', 658851367, 'nox_ger@hotmail.com', 1);
 
-INSERT INTO tipo_producto VALUES ('', 'PACKS');
-INSERT INTO tipo_producto VALUES ('', 'DISCOS');
-INSERT INTO tipo_producto VALUES ('', 'CAMISETAS');
-INSERT INTO tipo_producto VALUES ('', 'SUDADERAS');
-INSERT INTO tipo_producto VALUES ('', 'GORRAS');
-INSERT INTO tipo_producto VALUES ('', 'OTROS');
+INSERT INTO tipo_producto VALUES ('', 'Packs');
+INSERT INTO tipo_producto VALUES ('', 'Discos');
+INSERT INTO tipo_producto VALUES ('', 'Camisetas');
+INSERT INTO tipo_producto VALUES ('', 'Sudaderas');
+INSERT INTO tipo_producto VALUES ('', 'Gorras');
+INSERT INTO tipo_producto VALUES ('', 'Otros');
 
 INSERT INTO talla VALUES (1, 'S');
 INSERT INTO talla VALUES (2, 'M');

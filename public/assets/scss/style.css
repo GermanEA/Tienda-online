@@ -622,7 +622,7 @@ body {
 
 .b-contain:hover input ~ .b-input,
 .b-contain input:focus ~ .b-input {
-  background: #dfdfdf;
+  background: #fff;
 }
 
 .b-contain input:focus ~ .b-input {

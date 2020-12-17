@@ -1,4 +1,4 @@
-<div class="container container-product">
+<div id="search" class="container container-product">
         <div class="card-deck">
 
         <?php foreach($sweatshirt as $row): ?>
@@ -14,7 +14,6 @@
 
                             <?php foreach($size as $row_size): 
                                 if($row->codigo_producto == $row_size->codigo_producto) { ?>
-                                    
                                     
                                     <label class="b-contain">
                                         <span><?php echo $row_size->codigo_talla; ?></span>

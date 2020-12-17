@@ -41,6 +41,53 @@
                 return NULL;
             }
         }
+
+        public function getProductAjax($listFilters) {
+            $this->db->select('producto.precio, producto.descripcion, producto.imagen, producto.codigo_producto, tipo_producto.tipo_producto, tipo_producto.id_tipo_producto');
+            $this->db->from('producto');
+            $this->db->join('talla', 'producto.id_talla = talla.id_talla', 'left');
+            $this->db->join('tipo_producto', 'producto.id_tipo_producto = tipo_producto.id_tipo_producto', 'inner');
+            
+            $filtersTrue = array();
+            $names = array('Frank', 'Todd', 'James');
+
+            foreach( $listFilters as $filter => $value) {
+                
+                if( $value === "true" ){
+                    array_push( $filtersTrue, $filter);                    
+                }
+            }
+
+            if( !empty($filtersTrue) ) {
+                $this->db->where_in('tipo_producto', $filtersTrue);
+            }
+
+            $this->db->group_by('codigo_producto');
+            $this->db->order_by('id_tipo_producto');
+            $query = $this->db->get();
+
+            if ( $query->num_rows() > 0 ) {
+                return $query->result();                
+            } else {
+                return NULL;
+            }
+
+        }
+
+        public function getProductAjaxWords($words) {
+            $query = $this->db->select('producto.precio, producto.descripcion, producto.imagen, producto.codigo_producto')
+                     ->from('producto')
+                     ->like('descripcion', $words['words'])
+                     ->group_by('codigo_producto')
+                     ->order_by('id_tipo_producto')
+                     ->get();
+
+            if ( $query->num_rows() > 0 ) {
+                return $query->result();                
+            } else {
+                return NULL;
+            }
+        }
     }
     
 ?>

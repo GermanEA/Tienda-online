@@ -1,4 +1,4 @@
-<div class="container container-product">
+<div id="search" class="container container-product">
         <div class="card-deck">
 
         <?php foreach($discs as $row): ?>

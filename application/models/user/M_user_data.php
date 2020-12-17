@@ -12,13 +12,6 @@
         }
 
         public function insertUser() {
-            // $name    = $_POST['name-reg'];
-			// $fname   = $_POST['lastname-reg'];
-			// $email   = $_POST['email-reg'];
-			// $pass    = $_POST['pass-reg'];
-			// $address = $_POST['address-reg'];
-			// $postal  = $_POST['postal-reg'];
-            // $phone   = $_POST['phone-reg'];
 
             $data = array(
                 'nombre'       => $_POST['name-reg'],
