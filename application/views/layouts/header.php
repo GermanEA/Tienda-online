@@ -44,8 +44,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
 
         <div class="search">
-            <input type="text" name="search" id="search-bar">
+            <input type="text" name="search" id="search-bar" autocomplete="off">
             <i class="fas fa-search"></i>
+            <!-- STAR @MODAL SEARCH -->
+            <div id="modal-search" class="modal-search modal-close" tabindex="-1">
+            </div>
+            <!--/ END MODAL SEARCH -->
         </div>
 
         <?php if( !isset($_SESSION['logged']) || $_SESSION['logged'] == false ) { ?>

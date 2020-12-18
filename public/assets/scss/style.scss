@@ -6,7 +6,7 @@ $red-color-hover: #ff875c;
 $yellow-color: #FFE400;
 $green-color: #14A76C;
 $white-color: #fff;
-$grey-light: #dfdfdf;
+$grey-light: #ececec;
 $black-color: #121212;
 
 $primary-font-family: 'Roboto', sans-serif;
@@ -81,8 +81,9 @@ body {
                 box-sizing: border-box;
     
                 #search-bar {
-                    border: 2px solid $red-color;
-                    border-radius: 10px;
+                    width: 300px;
+                    border: 1px solid $red-color;
+                    border-radius: 5px;
                     padding-top: 5px;
                     padding-right: 25px;
                     padding-bottom: 5px;
@@ -93,6 +94,45 @@ body {
                     position: relative;
                     left: -25px;
                     color: $red-color;
+                }
+
+                /*
+                    MODAL SEARCH
+                */
+                
+                .modal-search {
+                    display: none;
+                    position: absolute;
+                    width: 300px;
+                    height: auto;
+                    z-index: 999;
+                    background-color: $white-color;
+                    border-radius: 0 0 5px 5px;
+                    padding: 5px;
+
+                    .modal-wrapper {
+
+                        .modal-content-wrapper {
+                            @include flex( 100%, column, center, flex-start);
+
+                            .modal-link {
+                                @include flex( 100%, row, flex-start, center);
+                                margin: 5px 0;
+                                text-decoration: none;
+                                color: $primary-color;
+
+                                img {
+                                    width: 30px;
+                                    height: auto;
+                                    margin-right: 10px;
+                                }
+                            }
+
+                            .modal-link:hover {
+                                background-color: $grey-light;
+                            }
+                        }
+                    }
                 }
             }
 
@@ -300,7 +340,7 @@ body {
             }
         }    
     }
-    
+
     /* 
         CONTENT SINGLE PAGE
     */
@@ -477,6 +517,18 @@ body {
                         }
                     }
                 }
+            }
+        }
+    }
+
+    .container-orders {
+
+        .row {
+
+            .card {
+                -webkit-box-shadow: 0px 15px 28px -22px $black-color;
+                -moz-box-shadow: 0px 15px 28px -22px $black-color;
+                box-shadow: 0px 15px 28px -22px $black-color;
             }
         }
     }

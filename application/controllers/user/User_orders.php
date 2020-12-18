@@ -3,8 +3,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class User_orders extends CI_Controller {
 
-	public function index()	{
+	
+	public function __construct() {
+		parent::__construct();
+		
 		$this->load->model('user/M_user_orders');
+	}
+	
+
+	public function index()	{
 		$this->loadViewsInit();		
 	}
 
@@ -16,7 +23,6 @@ class User_orders extends CI_Controller {
 	}
 
 	public function orderDetails() {
-		$this->load->model('user/M_user_orders');
 		$id_venta = $_POST['id_venta'];
 		$page_data['order_details'] = $this->M_user_orders->getOrderDetails($id_venta);
 		$page_data['page_content'] = 'user/v_user_order_detail';

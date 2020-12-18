@@ -80,6 +80,7 @@
                      ->like('descripcion', $words['words'])
                      ->group_by('codigo_producto')
                      ->order_by('id_tipo_producto')
+                     ->limit(10)
                      ->get();
 
             if ( $query->num_rows() > 0 ) {

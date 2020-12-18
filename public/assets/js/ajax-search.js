@@ -1,9 +1,19 @@
 // Peticiones Ajax del buscador 
-let principalContainer = document.getElementById('principal-container');
 let searchHeader = document.getElementById('search-bar');
+let searchModal = document.getElementById('modal-search');
 
 // searchHeader.addEventListener('click', redirectPage, false);
 searchHeader.addEventListener('keyup', searchPostAjax, false);
+searchHeader.addEventListener('keyup', showModal, false);
+
+function showModal() {
+    if( searchHeader.value === "" ){
+        searchModal.style.display = "none";
+    } else {
+        searchModal.style.display = "block";
+    }
+    
+}
 
 function searchPostAjax() {   
 
@@ -25,48 +35,11 @@ function searchPostAjax() {
 function searchResponseAjax(peticionAjax) {
     if( peticionAjax.status == 200 ) {
         let response = peticionAjax.responseText;
-            principalContainer.innerHTML = response;
+        
+        searchModal.innerHTML = response;
     }
 }
 
-// function filterPostAjax() {
-    
-//     let params = {
-//         "Packs": checkboxPacks.checked,
-//         "Discos": checkboxDiscs.checked,
-//         "Camisetas": checkboxShirt.checked,
-//         "Sudaderas": checkboxSweetshirt.checked,
-//         "Gorras": checkboxCap.checked,
-//         "Otros": checkboxOthers.checked,
-//     };
 
-//     let string = "";
 
-//     for (const key in params) {
-//         if( key == "packs") {
-//             string += key + "=" + params[key];
-//         } else {
-//             string += "&" + key + "=" + params[key];
-//         }
-//     }
 
-//     let peticionAjax = new XMLHttpRequest();
-//     peticionAjax.open("POST", baseURL + "products/product_search/index",true);
-//     peticionAjax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-//     peticionAjax.onreadystatechange = function() {
-
-//         if(peticionAjax.readyState == 4) {
-//             filterResponseAjax(peticionAjax);
-//         }
-//     }   
-
-//     peticionAjax.send(string);
-// }
-
-// function filterResponseAjax(peticionAjax) {
-//     if( peticionAjax.status == 200 ) {
-//         let response = peticionAjax.responseText;
-//             searchHtml.innerHTML = response;
-//     }
-// }

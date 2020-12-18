@@ -1,4 +1,4 @@
-<div class="container text-center">
+<div class="container-orders text-center">
     <h1 class="mt-2 mb-4">TUS DATOS PERSONALES</h1>
 
     <div class="row justify-content-md-center">

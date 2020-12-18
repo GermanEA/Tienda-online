@@ -2,10 +2,21 @@
 let user_modal = document.getElementById("user-modal");
 let modal = document.getElementById("modal-logging");
 let modal_close = document.querySelectorAll(".modal-close");
+// let time;
 
 user_modal.addEventListener('mouseenter', function() {
   modal.style.display = "flex";
 });
+
+// modal.addEventListener('mouseleave', function() {
+//   time = setTimeout( () => {
+//     modal.style.display = "none";
+//   }, 500);
+// });
+
+// modal.addEventListener('mouseenter', function() {
+//   clearTimeout(time);
+// });
 
 document.body.addEventListener('click', function(e) {
   let check;
@@ -20,6 +31,7 @@ document.body.addEventListener('click', function(e) {
 
   if ( !check ) {    
     modal.style.display = "none";
+    searchModal.style.display = "none";
   }
   
 });
