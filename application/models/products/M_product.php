@@ -2,7 +2,7 @@
     class M_product extends CI_Model {
 
         public function getProduct($id_tipo_producto) {
-            $query = $this->db->select('producto.precio, producto.descripcion, producto.imagen, producto.codigo_producto')
+            $query = $this->db->select('producto.precio, producto.descripcion, producto.imagen, producto.codigo_producto, producto.id_tipo_producto')
                      ->from('producto')
                      ->where('id_tipo_producto', $id_tipo_producto)
                      ->group_by('codigo_producto')
@@ -13,6 +13,20 @@
             } else {
                 return NULL;
             }            
+        }
+
+        public function getProductSingle($codigo_producto) {
+            $query = $this->db->select('*')
+                     ->from('producto')
+                     ->where('codigo_producto', $codigo_producto)
+                    //  ->group_by('codigo_producto')
+                     ->get();
+
+            if ( $query->num_rows() > 0 ) {
+                return $query->result();                
+            } else {
+                return NULL;
+            } 
         }
 
         public function getProductSize($id_tipo_producto) {

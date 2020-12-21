@@ -28,6 +28,11 @@ window.addEventListener('scroll', fixedNav);
 //   return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 // }
 
+/* TOOLTIPS JQUERY */
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+
 
 
 

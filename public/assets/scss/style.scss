@@ -458,13 +458,24 @@ body {
                             }
                         }
 
-                        .radio-button-wrapper {
+                        .size-group {
                             @include flex( 100%, row, flex-start, center);
                             margin-bottom: 30px;
+                            padding: 0;
 
-                            .b-contain {
-                                margin-right: 10px;
+                            .size-group-item {
+                                list-style-type: none;
+                                padding: 5px 10px;
+                                width: 50px;
+                                margin-right: 3px;
+                                height: auto;
+                                border: 1px solid $black-color;
+                                text-align: center;
+                                font-size: 13px;
+                                color: $black-color;
                             }
+
+                            
                         }
                     }
                     
@@ -499,6 +510,16 @@ body {
         }
     }
 
+    /*
+        SINGLE PRODUCT PAGE
+    */
+    .container-product-single {
+        @include flex( 100%, row, flex-start, flex-start);
+    }
+
+    /*
+        ORDER PRODUCT DETAIL PAGE
+    */
     .container-order-details {
 
         .table {

@@ -12,8 +12,7 @@ class Product_shirt extends CI_Controller {
 	
 
 	public function index()	{
-		$this->loadViewsInit();
-		
+		$this->loadViewsInit();		
 	}
 
 	public function loadViewsInit() {

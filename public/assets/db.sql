@@ -143,3 +143,7 @@ UPDATE venta SET total = 30 WHERE codigo_venta = 'AB345';
 UPDATE venta SET total = 30 WHERE codigo_venta = 'AB346';
 UPDATE venta SET total = 30 WHERE codigo_venta = 'AB347';
 UPDATE venta SET total = 30 WHERE codigo_venta = 'AB348';
+
+ALTER TABLE producto ADD material VARCHAR(50) AFTER descripcion;
+
+UPDATE producto SET material = '100% Algodón' WHERE id_tipo_producto IN (3, 4, 5);

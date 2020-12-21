@@ -18,6 +18,12 @@ body {
   /*
         SIDEBAR LEFT
     */
+  /*
+        SINGLE PRODUCT PAGE
+    */
+  /*
+        ORDER PRODUCT DETAIL PAGE
+    */
 }
 
 .container-fluid .header-wrapper .offer {
@@ -523,7 +529,7 @@ body {
   margin-bottom: 10px;
 }
 
-.container-fluid .container-product .card-deck .card-wrapper .card-item .card-title .radio-button-wrapper {
+.container-fluid .container-product .card-deck .card-wrapper .card-item .card-title .size-group {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -539,10 +545,19 @@ body {
           align-items: center;
   width: 100%;
   margin-bottom: 30px;
+  padding: 0;
 }
 
-.container-fluid .container-product .card-deck .card-wrapper .card-item .card-title .radio-button-wrapper .b-contain {
-  margin-right: 10px;
+.container-fluid .container-product .card-deck .card-wrapper .card-item .card-title .size-group .size-group-item {
+  list-style-type: none;
+  padding: 5px 10px;
+  width: 50px;
+  margin-right: 3px;
+  height: auto;
+  border: 1px solid #121212;
+  text-align: center;
+  font-size: 13px;
+  color: #121212;
 }
 
 .container-fluid .container-product .card-deck .card-wrapper .card-item .btn-card {
@@ -568,6 +583,23 @@ body {
 .container-fluid .container-product .card-deck .card-wrapper .card-item .btn-card:focus {
   -webkit-box-shadow: none;
           box-shadow: none;
+}
+
+.container-fluid .container-product-single {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  width: 100%;
 }
 
 .container-fluid .container-order-details .table tbody tr td {

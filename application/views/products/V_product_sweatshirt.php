@@ -4,29 +4,28 @@
         <?php foreach($sweatshirt as $row): ?>
             <div class="card-wrapper col-4">
                 <div class="card-item">
-                    <div class="price-corner text-center align-middle"><?php echo $row->precio; ?>€</div>
+                    <div class="price-corner text-center align-middle"><?= number_format($row->precio, 0); ?>€</div>
                     <img class="w-100" src="<?php echo base_url() . "/" . $row->imagen; ?>"   alt="<?php echo $row->descripcion; ?>">
                     <div class="card-title">
                         <span><?php echo $row->descripcion; ?></span>
                         <hr class="hr-size">
 
-                        <div class="radio-button-wrapper">
+                        <span>Tallas disponibles:</span>
+                        <ul class="size-group">
+                        <?php foreach($size as $row_size): 
+                            if($row->codigo_producto == $row_size->codigo_producto) { ?>
 
-                            <?php foreach($size as $row_size): 
-                                if($row->codigo_producto == $row_size->codigo_producto) { ?>
-                                    
-                                    <label class="b-contain">
-                                        <span><?php echo $row_size->codigo_talla; ?></span>
-                                        <input type="radio" id="<?php echo $row_size->codigo_talla; ?>" name="<?= $row_size->codigo_producto ?>" value="<?php echo $row_size->codigo_talla; ?>">
-                                        <div class="b-input"></div>
-                                    </label>
-    
-                            <?php } endforeach; ?>
+                                <li class="size-group-item"><?php echo $row_size->codigo_talla; ?></li> 
 
-                        </div>
+                        <?php } endforeach; ?>
+                        </ul>
 
                     </div>
-                    <button type="button" class="btn btn-card">COMPRAR</button>
+                    <form method="post" action="<?= base_url('products/product_single'); ?>">
+                        <input type="hidden" name="codigo" value="<?= $row->codigo_producto?>">
+                        <input type="hidden" name="tipo" value="<?= $row->id_tipo_producto?>">
+                        <button type="submit" class="btn btn-card">COMPRAR</button>
+                    </form>
                 </div>
             </div>
         <?php endforeach; ?>
