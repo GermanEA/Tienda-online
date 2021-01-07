@@ -1,8 +1,7 @@
-// Peticiones Ajax del buscador 
+/* AJAX SEARCH */
 let searchHeader = document.getElementById('search-bar');
 let searchModal = document.getElementById('modal-search');
 
-// searchHeader.addEventListener('click', redirectPage, false);
 searchHeader.addEventListener('keyup', searchPostAjax, false);
 searchHeader.addEventListener('keyup', showModal, false);
 
@@ -11,8 +10,7 @@ function showModal() {
         searchModal.style.display = "none";
     } else {
         searchModal.style.display = "block";
-    }
-    
+    }    
 }
 
 function searchPostAjax() {   

@@ -89,7 +89,7 @@
         }
 
         public function getProductAjaxWords($words) {
-            $query = $this->db->select('producto.precio, producto.descripcion, producto.imagen, producto.codigo_producto')
+            $query = $this->db->select('producto.precio, producto.descripcion, producto.imagen, producto.codigo_producto, producto.id_tipo_producto')
                      ->from('producto')
                      ->like('descripcion', $words['words'])
                      ->group_by('codigo_producto')

@@ -1,4 +1,4 @@
-// Peticiones Ajax de los filtros   
+/* FILTER AJAX SIDEBAR */
 let searchHtml = document.getElementById('search');
 
 let checkboxPacks = document.getElementById('Packs');

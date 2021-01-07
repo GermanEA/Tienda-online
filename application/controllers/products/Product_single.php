@@ -16,11 +16,12 @@ class Product_single extends CI_Controller {
 	}
 
 	public function loadViewsInit() {
-        $data = $this->input->post();
+		$data = $this->input->post();
 
 		$page_data['page_content'] = 'products/v_product_single';
+		$page_data['custom_js'] = array('/public/assets/js/single-product.js');
 		$page_data['product'] = $this->M_product->getProductSingle($data['codigo']);
-        $page_data['size'] = $this->M_product->getProductSize($data['tipo']);
+		$page_data['size'] = $this->M_product->getProductSize($data['tipo']);
 
         $this->load->view('/layouts/main', $page_data);
 	}

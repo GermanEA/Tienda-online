@@ -4,10 +4,10 @@
         <?php foreach($pack as $row): ?>
             <div class="card-wrapper col-4">
                 <div class="card-item">
-                    <div class="price-corner text-center align-middle"><?= number_format($row->precio, 0); ?>€</div>
                     <img class="w-100" src="<?php echo base_url() . "/" . $row->imagen; ?>"   alt="<?php echo $row->descripcion; ?>">
                     <div class="card-title">
                         <span><?php echo $row->descripcion; ?></span>
+                        <div class="price-corner text-center align-middle"><?= number_format($row->precio, 0); ?>€</div>
                         <hr>
                     </div>
                     <form method="post" action="<?= base_url('products/product_single'); ?>">
