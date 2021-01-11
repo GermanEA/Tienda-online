@@ -1,5 +1,9 @@
-<div class="container-orders text-center">
-    <h1 class="mt-2 mb-4">TUS DATOS PERSONALES</h1>
+<?php if( $this->session->logged == false) {
+    redirect(base_url(), 'location', 301);
+} ?>
+
+<div class="container container-orders text-center">
+    <h2 class="mb-4">TUS DATOS PERSONALES</h2>
 
     <div class="row justify-content-md-center">
         <div class="card">

@@ -1,5 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+
+if(isset($_COOKIE['email']) && isset($_COOKIE['pass'])) {
+    $email_cookie = get_cookie('email');
+    $pass_cookie = get_cookie('pass');
+    $this->session->logged = true;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -64,34 +70,34 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <!-- START BODY -->
 <body>
 <!-- START @WRAPPER -->
-    <div class="container-fluid">
+    <main class="main-wrapper container-fluid">
 
-    <!-- START @HEADER -->
-    <?php $this->load->view('/layouts/header'); ?>
-    <!--/ END HEADER -->
+        <!-- START @HEADER -->
+        <?php $this->load->view('/layouts/header'); ?>
+        <!--/ END HEADER -->
 
-    <div id="principal-container" class="container-fluid">
+        <div id="principal-container" class="content-wrapper container-fluid">
 
-        <!-- START @SIDEBAR-LEFT -->
-        <?php if( isset($page_sidebar_left) ) { ?>
+            <!-- START @SIDEBAR-LEFT -->
+            <?php if( isset($page_sidebar_left) ) { ?>
 
-            <div class="container d-flex flex-row">
+                <div class="container d-flex flex-row">
 
-        <?php $this->load->view($page_sidebar_left); } ?>
-        <!--/ END SIDEBAR-LEFT -->
+            <?php $this->load->view($page_sidebar_left); } ?>
+            <!--/ END SIDEBAR-LEFT -->
 
-        <!-- START @PAGE CONTENT -->
-        <?php $this->load->view($page_content); ?>
-        <!--/ END PAGE CONTENT -->
+            <!-- START @PAGE CONTENT -->
+            <?php $this->load->view($page_content); ?>
+            <!--/ END PAGE CONTENT -->
 
-    </div>
+        </div>
 
-    <!-- START @FOOTER CONTENT -->
-    <?php $this->load->view('/layouts/footer'); ?>
-    <!--/ END FOOTER CONTENT -->
+        <!-- START @FOOTER CONTENT -->
+        <?php $this->load->view('/layouts/footer'); ?>
+        <!--/ END FOOTER CONTENT -->
 
 <!--/ END WRAPPER -->
-    </div>
+    </main>
 </body>
 <!-- / END BODY -->
 </html>

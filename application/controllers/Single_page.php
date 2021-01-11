@@ -19,7 +19,8 @@ class Single_page extends CI_Controller {
 		$this->load->view('/layouts/main', $page_data);
 	}	
 	
-	public function login() {	
+	public function login() {
+		$email = $_POST['email'];	
 		$passForm = $_POST['pass'];
 
         if( isset($_POST['btn-log']) ){
@@ -40,6 +41,11 @@ class Single_page extends CI_Controller {
 
 					foreach( $user[0] as $key => $value ) {
 						$this->session->$key = $value;
+					}
+
+					if(isset($_POST['connect']) && $_POST['connect'] == 'connect') {
+						set_cookie('email', $email, 259200);
+						set_cookie('pass', $passForm, 259200);
 					}
 
 					$this->loadViewsInit();
@@ -89,8 +95,10 @@ class Single_page extends CI_Controller {
 	}
 	
 	public function logOut() {
+		$this->session->sess_destroy();
+		delete_cookie('email');
+		delete_cookie('pass');		
 		$this->session->logged = false;
-		$this->session->sess_destroy();		
-		$this->loadViewsInit();
+		redirect(base_url(), 'location', 301);
 	}
 }

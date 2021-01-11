@@ -33,7 +33,8 @@ class Cart extends CI_Controller {
 
         $this->cart->insert($data_cart);
 
-        echo $this->cart->total_items();
+        echo '<?xml version="1.0" encoding="utf-8"?>';
+        echo '<response>'.$this->cart->total_items().'</response>';
     }
 
     public function removeProduct() {

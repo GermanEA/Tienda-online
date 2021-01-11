@@ -1,5 +1,9 @@
-<div class="container text-center">
-    <h1 class="mt-2 mb-4">LISTADO DE PEDIDOS</h1>
+<?php if( $this->session->logged == false) {
+    redirect(base_url(), 'location', 301);
+} ?>
+
+<div class="container container-orders text-center">
+    <h2 class="mb-4">LISTADO DE PEDIDOS</h2>
 
     <?php if(isset($list_orders)) { ?>
 

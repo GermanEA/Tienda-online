@@ -101,7 +101,7 @@ function addCartPost() {
     let string = "";
 
     for (const key in params) {
-        if( key == "packs") {
+        if( key == "id") {
             string += key + "=" + params[key];
         } else {
             string += "&" + key + "=" + params[key];

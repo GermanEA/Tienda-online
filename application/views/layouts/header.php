@@ -107,7 +107,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         </a>
                                     </li>
                                     <li class="nav-item mb-1">
-                                        <a class="nav-link" href="<?php echo base_url()?>user/user_orders/index"">
+                                        <a class="nav-link" href="<?php echo base_url()?>user/user_orders/index">
                                             <i class="fas fa-dolly mr-2"></i>
                                             </span>Mis pedidos<span>
                                         </a>
