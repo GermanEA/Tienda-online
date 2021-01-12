@@ -1,4 +1,5 @@
 <div class="container container-cart">
+    <h2 class="mb-4">TU CARRITO DE LA COMPRA</h2>
     <div class="cart-wrapper">
         <div class="cart-title">Cesta</div>
 

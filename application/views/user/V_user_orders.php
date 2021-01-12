@@ -28,7 +28,7 @@
                     <td><?= $value->enviado ?></td>
                     <td>
                         <form name="form" action="<?php echo base_url()?>user/user_orders/orderDetails" method="post">
-                            <button type="submit" class="btn btn-warning" name="id_venta" value="<?= $value->id_venta ?>">Ver detalles</button>
+                            <button type="submit" class="btn btn-original" name="id_venta" value="<?= $value->id_venta ?>">Ver detalles</button>
                         </form>
                     </td>
                 </tr>
@@ -40,7 +40,7 @@
         
         <h2>No has realizado ningún pedido.</h2>
 
-        <button type="button" class="btn btn-warning" onclick="javascript:window.history.go(-1);">Regresar</button>
+        <button type="button" class="btn btn-original" onclick="javascript:window.history.go(-1);">Regresar</button>
 
     <?php }; ?>
 </div>

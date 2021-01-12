@@ -12,11 +12,7 @@ class User_orders extends CI_Controller {
 	
 
 	public function index()	{
-		if( $this->session->logged == false) {
-			redirect(base_url(), 'location', 301);
-		} else {
-			$this->loadViewsInit();	
-		}		
+		$this->loadViewsInit();	
 	}
 
 	public function loadViewsInit() {

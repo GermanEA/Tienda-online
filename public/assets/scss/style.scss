@@ -618,6 +618,7 @@ body {
         .container-product {
             box-sizing: border-box;
             margin-top: 25px;
+            margin-bottom: 25px;
             
             .card-deck {
                 box-sizing: border-box;
@@ -722,7 +723,7 @@ body {
         */
         .container-product-single {
             @include flex( 100%, row, flex-start, flex-start);
-            margin-top: 25px;
+            padding-top: 25px;
     
             .image-wrapper {
                 margin-right: 25px;
@@ -885,6 +886,7 @@ body {
                 border-radius: 5px;
                 animation-name: notificationsUp;
                 animation-duration: 0.2s;
+                z-index: 99999;
             }
     
         }
@@ -912,7 +914,11 @@ body {
                                 width: 60px;
                                 height: auto;
                                 border-radius: 5px;
-                            }
+                            }                            
+                        }
+
+                        .bg-total {
+                            background-color: $secondary-color;
                         }
                     }
                 }
@@ -928,12 +934,30 @@ body {
         .container-orders {            
             padding: 10px;
             box-sizing: border-box;
+
             .row {
-    
+                margin-bottom: 20px;
+
                 .card {
                     -webkit-box-shadow: 0px 15px 28px -22px $black-color;
                     -moz-box-shadow: 0px 15px 28px -22px $black-color;
                     box-shadow: 0px 15px 28px -22px $black-color;
+
+                    .card-wrapper {
+                        @include flex( 100%, row, center, flex-start);
+
+                        .card-left, .card-right {
+                            @include flex( auto, column, center, flex-start);
+                        }
+
+                        .card-body {
+                            height: 75px;
+                        }
+                    }
+
+                    .btn-change-wrapper {
+                        @include flex( auto, row, space-between, center);
+                    }
                 }
             }
         }
@@ -946,7 +970,12 @@ body {
             CART DETAIL PAGE
         */
         .container-cart {
-    
+            padding: 10px;
+            
+            h2 {
+                text-align: center;
+            }
+            
             .cart-wrapper{
                 background-color: white;
                 padding: 15px;
@@ -1115,7 +1144,7 @@ body {
                             transition: all 0.2s ease;
                         }
 
-                        a:hover, {
+                        a:hover {
                             color: $white-color;
 
                             i, span {

@@ -30,12 +30,12 @@
                 <td><?= number_format($value->total, 2, ',', '.') . '€' ?></td>
             </tr>
     <?php endforeach; ?>
-            <tr class="bg-success table-dark" scope="row">
-                <td class="bg-success" colspan="3"></td>
-                <td class="bg-success" colspan="2">TOTAL PEDIDO</td>
-                <td class="bg-success"><?= number_format($order_details[0]->total_venta, 2, ',', '.') . '€' ?></td>
+            <tr class="bg-total table-dark" scope="row">
+                <td class="bg-total" colspan="3"></td>
+                <td class="bg-total" colspan="2">TOTAL PEDIDO</td>
+                <td class="bg-total"><?= number_format($order_details[0]->total_venta, 2, ',', '.') . '€' ?></td>
             </tr>
         </tbody>
     </table>
-    <button type="button" class="btn btn-warning" onclick="javascript:window.history.go(-1);">Regresar</button>
+    <button type="button" class="btn btn-original" onclick="javascript:window.history.go(-1);">Regresar</button>
 </div>

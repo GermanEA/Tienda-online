@@ -68,44 +68,9 @@ class Single_page extends CI_Controller {
 		if( isset($_POST['btn-reg'])) {
 			//COMPROBAR QUE NO EXISTE EL USUARIO EN LA BD
 			$user = $this->M_user_data->getUsers('email-reg');
-			$data = $this->input->post();
 			
 			if( !empty($user) ){
 				$page_data['error_reg'] = "Lo sentimos ya existe un usuario asociado a ese correo.";
-				$page_data['modal_open'] = true;
-				$this->loadViewsInitError($page_data);
-
-			//COMPROBACIONES ANTES DE INSERTAR EN LA BASE DE DATOS
-			} else if( preg_match('/^[A-z]{2,25}$/', $data['name-reg']) !=1 ) {
-				$page_data['error_reg'] = "El nombre es demasiado largo.";
-				$page_data['modal_open'] = true;
-				$this->loadViewsInitError($page_data);
-			} else if( preg_match('/^[A-z]{2,25}$/', $data['lastname-reg']) !=1 ) {
-				$page_data['error_reg'] = "El apellido es demasiado largo.";
-				$page_data['modal_open'] = true;
-				$this->loadViewsInitError($page_data);
-			} else if( preg_match('/\S+@\S+\.\S+/', $data['email-reg']) !=1 ) {
-				$page_data['error_reg'] = "El correo no es válido.";
-				$page_data['modal_open'] = true;
-				$this->loadViewsInitError($page_data);
-			} else if( strlen($data['pass-reg']) < 4 || strlen($data['pass-reg']) > 8) {
-				$page_data['error_reg'] = "La contraseña no es válida.";
-				$page_data['modal_open'] = true;
-				$this->loadViewsInitError($page_data);
-			} else if( $data['pass-reg'] =! $data['pass-reg-r'] ) {
-				$page_data['error_reg'] = "Las contraseñas no coinciden.";
-				$page_data['modal_open'] = true;
-				$this->loadViewsInitError($page_data);
-			} else if( strlen($data['address-reg']) > 50 ) {
-				$page_data['error_reg'] = "La dirección es demasiado larga.";
-				$page_data['modal_open'] = true;
-				$this->loadViewsInitError($page_data);
-			} else if( preg_match('/^[0-9]{5}$/', $data['postal-reg']) !=1 ) {
-				$page_data['error_reg'] = "El código postal no es válido.";
-				$page_data['modal_open'] = true;
-				$this->loadViewsInitError($page_data);
-			} else if( preg_match('/^[0-9]{9}$/', $data['phone-reg']) !=1 ) {
-				$page_data['error_reg'] = "El código postal no es válido.";
 				$page_data['modal_open'] = true;
 				$this->loadViewsInitError($page_data);
 			} else {

@@ -7,27 +7,51 @@
 
     <div class="row justify-content-md-center">
         <div class="card">
-            <div class="card-body border-bottom border-light">
-                <div class="card-text">Nombre: <?php echo $this->session->nombre ?></div>
+            <div class="card-wrapper">
+                <div class="card-left">
+                    <div class="card-body border-bottom border-light">
+                        <span>Nombre:</span>
+                    </div>
+                    <div class="card-body border-bottom border-light">
+                        <span>Apellidos:</span>
+                    </div>
+                    <div class="card-body border-bottom border-light">
+                        <span>Correo:</span>
+                    </div>
+                    <div class="card-body border-bottom border-light">
+                        <span>Dirección:</span>
+                    </div>
+                    <div class="card-body border-bottom border-light">
+                        <span>Código postal:</span>
+                    </div>
+                    <div class="card-body border-bottom border-light">
+                        <span>Teléfono:</span>
+                    </div>
+                </div>
+                <div class="card-right">
+                    <div class="card-body border-bottom border-light">
+                        <div class="card-text"><?php echo $this->session->nombre ?></div>
+                    </div>
+                    <div class="card-body border-bottom border-light">
+                        <div class="card-text"><?php echo $this->session->apellido ?></div>
+                    </div>
+                    <div class="card-body border-bottom border-light">
+                        <div class="card-text"><?php echo $this->session->email ?></div>
+                    </div>
+                    <div class="card-body border-bottom border-light">
+                        <div class="card-text"><?php echo $this->session->direccion ?></div>
+                    </div>
+                    <div class="card-body border-bottom border-light">
+                        <div class="card-text"><?php echo $this->session->codigo_postal ?></div>
+                    </div>
+                    <div class="card-body border-bottom border-light">
+                        <div class="card-text"><?php echo $this->session->telefono ?></div>
+                    </div>
+                </div>
             </div>
-            <div class="card-body border-bottom border-light">
-                <div class="card-text">Apellidos: <?php echo $this->session->apellido ?></div>
-            </div>
-            <div class="card-body border-bottom border-light">
-                <div class="card-text">Correo: <?php echo $this->session->email ?></div>
-            </div>
-            <div class="card-body border-bottom border-light">
-                <div class="card-text">Dirección: <?php echo $this->session->direccion ?></div>
-            </div>
-            <div class="card-body border-bottom border-light">
-                <div class="card-text">Código postal: <?php echo $this->session->codigo_postal ?></div>
-            </div>
-            <div class="card-body border-bottom border-light">
-                <div class="card-text">Teléfono: <?php echo $this->session->telefono ?></div>
-            </div>
-            <div class="card-body">
-                <form name="form" action="<?php echo base_url()?>user/user_data/changeData" method="post">
-                        <button type="submit" class="btn btn-warning">Cambiar tus datos</button>
+            <div class="btn-data-wrapper card-body">
+                <form name="form" action="<?php echo base_url()?>user/user_data/changeView" method="post">
+                    <button type="submit" class="btn btn-original">Cambiar tus datos</button>
                 </form>
             </div>
         </div>
