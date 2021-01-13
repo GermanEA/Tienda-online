@@ -33,7 +33,7 @@
     <!-- START @GLOBAL JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous" defer></script>
-    <!-- <script src="<?php echo base_url('/public/assets/js/functions.js');?>" defer></script> -->
+    <script> const baseURL = '<?= base_url();?>'; </script>
     <!-- / END GLOBAL JS -->
 
     <!-- START @PAGE LEVEL JS -->
@@ -89,24 +89,24 @@
                         <i class="fas fa-euro-sign"></i>
                         </span>
                     </li>
-                    <li class="sub-item  is-active">
-                        <a href="">
+                    <li class="sub-item <?= ($this->uri->segment(3)=='')?'is-active':''?>">
+                        <a href="<?= base_url('/administrator/dashboard'); ?>">
                             <span class="icon">
                                 <i class="fas fa-pencil-alt"></i>
                             </span>
-                            <span class="text">Todos los pedidos</span>
+                            <span class="text">Listado de pedidos</span>
                         </a>
                     </li>
-                    <li class="sub-item">
-                        <a href="">
+                    <li class="sub-item <?= ($this->uri->segment(3)==='showPending')?'is-active':''?>">
+                        <a href="<?= base_url('/administrator/dashboard/showPending'); ?>">
                             <span class="icon">
                                 <i class="fas fa-pencil-alt"></i>
                             </span>
                             <span class="text">Pedidos pendientes</span>
                         </a>
                     </li>
-                    <li class="sub-item">
-                        <a href="">
+                    <li class="sub-item <?= ($this->uri->segment(3)==='showDelivered')?'is-active':''?>">
+                        <a href="<?= base_url('/administrator/dashboard/showDelivered'); ?>">
                             <span class="icon">
                                 <i class="fas fa-pencil-alt"></i>
                             </span>

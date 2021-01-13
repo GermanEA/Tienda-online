@@ -13,7 +13,8 @@ $red-color-hover: #df3e3e;
 $yellow-color: #FFE400;
 $green-color: #14A76C;
 $white-color: #fff;
-$grey-light: #ececec;
+$grey-light-category: #ddd;
+$grey-text-category: #999;
 $black-color: #121212;
 
 $primary-font-family: 'Roboto', sans-serif;
@@ -43,7 +44,7 @@ $secondary-font-family: 'Arimo', sans-serif;
 
 body {
     font-family: $primary-font-family;    
-    background-color: $grey-light;
+    background-color: $grey-light-category;
     margin: 0;
     padding: 0;
     height: 100%;
@@ -51,15 +52,18 @@ body {
 
 /* ------ BACKOFFICE ------ */
 .admin-body {
-    background-color: $grey-light;
+    background-color: $grey-light-category
 }
 
 .main-wrapper{
     @include flex(100%, column, flex-start, flex-start);
 
+    /*
+        HEADER
+    */
     .header {
         @include flex (100%, row, flex-end, center);
-        height: 45px;
+        height: 52px;
         background-color: $black-color;
         color: $white-color;
 
@@ -68,15 +72,22 @@ body {
             margin: 0 40px;
         }
     }
+    /*
+        END OF HEADER
+    */
+
     .contain-wrapper {
 
+        /*
+            SIDEBAR-MENU
+        */
         .sidebar-content {
             width: 220px;
             background-color: $item-bg-color;        
-            height: calc(100vh - 45px);
+            height: calc(100vh - 52px);
             position: fixed;
             left: 0;
-            top: 45px;
+            top: 52px;
             overflow: scroll;
             overflow-x: hidden;
     
@@ -147,14 +158,32 @@ body {
                     display: block;
                     position: relative;
                     width: 100%;
+                    transition: all 0.2s ease;
     
                     &.is-active {
                         background-color: $active-bg-color;
-    
-                        .icon {
-    
-                            i{                            
-                                background-color: $red-color;
+                        
+                        a {
+
+                            span{
+                                color: $white-color;
+                            }
+
+                            .icon {
+        
+                                i{                            
+                                    background-color: $red-color;
+                                }
+                            }
+                        }
+                    }
+
+                    &:hover {
+
+                        a{
+
+                            span{
+                                color: $white-color;
                             }
                         }
                     }
@@ -208,14 +237,87 @@ body {
                 bottom: -1px;
             }
         }
-
+        /*
+            END OF SIDEBAR-MENU
+        */
+        
+        /*
+            CONTENT PAGES
+        */
         .content-wrapper {
-            width: calc(100% - 220px);
+            width: calc(100vw - 220px);
             margin-left: 220px;
+
+            .title-content {
+                background-color: white;
+                padding: 10px 15px;
+
+                h2 {
+                    padding: 0;
+                    margin: 0;
+                    font-size: 1.4rem;
+
+                    i {
+                        margin-right: 7px;
+                        border-right: 1px dotted $grey-light-category;
+                        padding-right: 10px;
+                    }
+
+                    span{
+                        font-size: 0.9rem;
+                        font-style: italic;
+                        color: $grey-text-category;
+                    }
+                }
+            }
+
+            .content-info {
+                margin: 30px;
+
+                .content-header {
+                    background-color: $red-color;
+                    text-align: center;
+                    padding: 10px 0;
+                    font-size: 1.2rem;
+                    color: $white-color;
+                    font-weight: 600;
+                    border-bottom: 1px solid $white-color;
+                }
+
+                .search-wrapper {
+                    @include flex( 100%, row, flex-end, center);
+                    background-color: $white-color;
+                    padding: 20px 20px 0 0;
+
+                    span {
+                        margin-right: 10px;
+                    }
+
+                    .form-control {
+                        width: 200px;
+
+                    }
+                }
+
+                .content-table {
+                    background-color: $white-color;
+                    padding: 20px;
+
+                    .table {
+                        border-bottom: 1px solid #dee2e6;
+                    }
+                }
+            }
         }
+        /*
+            END OF CONTENT PAGES
+        */
     }    
 }
 
+/* 
+    KEYFRAMES ONLINE
+*/
 @keyframes online {    
     0% {
         transform: scale(0.5);
@@ -224,6 +326,9 @@ body {
         transform: scale(1.2);
     }
 }
+/*
+    END OF KEYFRAMES
+*/
 
 /* 
     GLOBAL CUSTOMS CSS 
@@ -249,3 +354,6 @@ body {
 .btn-original:focus {
     box-shadow: none;
 }
+/* 
+    END OF GLOBAL CUSTOMS CSS 
+*/

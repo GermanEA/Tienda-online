@@ -3,7 +3,7 @@
 /* ------ CUSTOM ------ */
 body {
   font-family: "Roboto", sans-serif;
-  background-color: #ececec;
+  background-color: #ddd;
   margin: 0;
   padding: 0;
   height: 100%;
@@ -11,7 +11,7 @@ body {
 
 /* ------ BACKOFFICE ------ */
 .admin-body {
-  background-color: #ececec;
+  background-color: #ddd;
 }
 
 .main-wrapper {
@@ -29,6 +29,12 @@ body {
       -ms-flex-align: start;
           align-items: flex-start;
   width: 100%;
+  /*
+        HEADER
+    */
+  /*
+        END OF HEADER
+    */
 }
 
 .main-wrapper .header {
@@ -46,7 +52,7 @@ body {
       -ms-flex-align: center;
           align-items: center;
   width: 100%;
-  height: 45px;
+  height: 52px;
   background-color: #121212;
   color: #fff;
 }
@@ -56,13 +62,28 @@ body {
   margin: 0 40px;
 }
 
+.main-wrapper .contain-wrapper {
+  /*
+            SIDEBAR-MENU
+        */
+  /*
+            END OF SIDEBAR-MENU
+        */
+  /*
+            CONTENT PAGES
+        */
+  /*
+            END OF CONTENT PAGES
+        */
+}
+
 .main-wrapper .contain-wrapper .sidebar-content {
   width: 220px;
   background-color: #2A2A2A;
-  height: calc(100vh - 45px);
+  height: calc(100vh - 52px);
   position: fixed;
   left: 0;
-  top: 45px;
+  top: 52px;
   overflow: scroll;
   overflow-x: hidden;
 }
@@ -187,14 +208,24 @@ body {
   display: block;
   position: relative;
   width: 100%;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .main-wrapper .contain-wrapper .sidebar-content .sidebar-menu .sub-item.is-active {
   background-color: #3c3c3c;
 }
 
-.main-wrapper .contain-wrapper .sidebar-content .sidebar-menu .sub-item.is-active .icon i {
+.main-wrapper .contain-wrapper .sidebar-content .sidebar-menu .sub-item.is-active a span {
+  color: #fff;
+}
+
+.main-wrapper .contain-wrapper .sidebar-content .sidebar-menu .sub-item.is-active a .icon i {
   background-color: #b10909;
+}
+
+.main-wrapper .contain-wrapper .sidebar-content .sidebar-menu .sub-item:hover a span {
+  color: #fff;
 }
 
 .main-wrapper .contain-wrapper .sidebar-content .sidebar-menu .sub-item a {
@@ -247,10 +278,86 @@ body {
 }
 
 .main-wrapper .contain-wrapper .content-wrapper {
-  width: calc(100% - 220px);
+  width: calc(100vw - 220px);
   margin-left: 220px;
 }
 
+.main-wrapper .contain-wrapper .content-wrapper .title-content {
+  background-color: white;
+  padding: 10px 15px;
+}
+
+.main-wrapper .contain-wrapper .content-wrapper .title-content h2 {
+  padding: 0;
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.main-wrapper .contain-wrapper .content-wrapper .title-content h2 i {
+  margin-right: 7px;
+  border-right: 1px dotted #ddd;
+  padding-right: 10px;
+}
+
+.main-wrapper .contain-wrapper .content-wrapper .title-content h2 span {
+  font-size: 0.9rem;
+  font-style: italic;
+  color: #999;
+}
+
+.main-wrapper .contain-wrapper .content-wrapper .content-info {
+  margin: 30px;
+}
+
+.main-wrapper .contain-wrapper .content-wrapper .content-info .content-header {
+  background-color: #b10909;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 1.2rem;
+  color: #fff;
+  font-weight: 600;
+  border-bottom: 1px solid #fff;
+}
+
+.main-wrapper .contain-wrapper .content-wrapper .content-info .search-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  background-color: #fff;
+  padding: 20px 20px 0 0;
+}
+
+.main-wrapper .contain-wrapper .content-wrapper .content-info .search-wrapper span {
+  margin-right: 10px;
+}
+
+.main-wrapper .contain-wrapper .content-wrapper .content-info .search-wrapper .form-control {
+  width: 200px;
+}
+
+.main-wrapper .contain-wrapper .content-wrapper .content-info .content-table {
+  background-color: #fff;
+  padding: 20px;
+}
+
+.main-wrapper .contain-wrapper .content-wrapper .content-info .content-table .table {
+  border-bottom: 1px solid #dee2e6;
+}
+
+/* 
+    KEYFRAMES ONLINE
+*/
 @-webkit-keyframes online {
   0% {
     -webkit-transform: scale(0.5);
@@ -261,7 +368,6 @@ body {
             transform: scale(1.2);
   }
 }
-
 @keyframes online {
   0% {
     -webkit-transform: scale(0.5);
@@ -273,6 +379,9 @@ body {
   }
 }
 
+/*
+    END OF KEYFRAMES
+*/
 /* 
     GLOBAL CUSTOMS CSS 
 */
@@ -300,4 +409,8 @@ body {
   -webkit-box-shadow: none;
           box-shadow: none;
 }
+
+/* 
+    END OF GLOBAL CUSTOMS CSS 
+*/
 /*# sourceMappingURL=style-dashboard.css.map */
