@@ -2,9 +2,15 @@
     class M_user_data extends CI_Model {
 
         public function getUsers($campo) {
+            if( isset($_POST[$campo]) ) {
+                $email = $_POST[$campo];
+            } else {
+                $email = $campo;
+            }
+
             $query = $this->db->select('*')
                      ->from('usuario')
-                     ->where("email", $_POST[$campo])
+                     ->where("email", $email)
                      ->get();
 
             if ( $query->num_rows() > 0 ) {

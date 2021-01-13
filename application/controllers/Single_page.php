@@ -5,6 +5,10 @@ class Single_page extends CI_Controller {
 
 	public function index()	{
 		$this->load->helper('email');
+
+		if(isset($_COOKIE['email']) && isset($_COOKIE['pass'])) {
+			$this->loginCookie();
+		}
 		
 		$this->loadViewsInit();						
 	}
@@ -33,21 +37,20 @@ class Single_page extends CI_Controller {
 				$page_data['modal_open'] = true;
 				$this->loadViewsInitError($page_data);
 			} else {
-				if( $user[0]->tipo == 0) {
-					echo "administrador"; 
-					$this->load->view('/administrator/dashboard');
+				$this->session->logged = true;
+
+				foreach( $user[0] as $key => $value ) {
+					$this->session->$key = $value;
+				}
+
+				if(isset($_POST['connect']) && $_POST['connect'] == 'connect') {
+					set_cookie('email', $email, 259200);
+					set_cookie('pass', $passForm, 259200);
+				}
+
+				if( $user[0]->tipo == 0) {				
+					redirect(base_url('/administrator/dashboard'), 'location', 301);
 				} else {
-					$this->session->logged = true;
-
-					foreach( $user[0] as $key => $value ) {
-						$this->session->$key = $value;
-					}
-
-					if(isset($_POST['connect']) && $_POST['connect'] == 'connect') {
-						set_cookie('email', $email, 259200);
-						set_cookie('pass', $passForm, 259200);
-					}
-
 					$this->loadViewsInit();
 				}
 			}
@@ -128,6 +131,37 @@ class Single_page extends CI_Controller {
 		$this->session->logged = true;
 		$this->loadViewsInit();
 	}
+
+	public function loginCookie() {
+		$email_cookie = get_cookie('email');
+    	$pass_cookie = get_cookie('pass');
+		$user = $this->M_user_data->getUsers($email_cookie);
+		
+		if( isset($user) ) {
+			
+			if( $user[0]->pass == $pass_cookie) {
+				$this->session->logged = true;
+	
+				foreach( $user[0] as $key => $value ) {
+					$this->session->$key = $value;
+				}
+				
+				if( $this->session->tipo == 0) {			
+					redirect(base_url('/administrator/dashboard'), 'location', 301);
+				} else {
+					$this->loadViewsInit();
+				}
+			} else {
+				delete_cookie('email');
+				delete_cookie('pass');
+				$this->loadViewsInit();
+			}
+		} else {
+			delete_cookie('email');
+			delete_cookie('pass');
+			$this->loadViewsInit();
+		}
+	}	
 	
 	public function logOut() {
 		$this->session->sess_destroy();

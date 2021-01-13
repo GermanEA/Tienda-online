@@ -1,10 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-if(isset($_COOKIE['email']) && isset($_COOKIE['pass'])) {
-    $email_cookie = get_cookie('email');
-    $pass_cookie = get_cookie('pass');
-    $this->session->logged = true;
+if( isset($this->session->tipo) && $this->session->tipo == 0 ) {
+    redirect(base_url('/administrator/dashboard'), 'refresh');
 }
 ?>
 <!DOCTYPE html>
@@ -32,7 +30,6 @@ if(isset($_COOKIE['email']) && isset($_COOKIE['pass'])) {
 
     <!-- START @PAGE STYLES -->
     <link rel="stylesheet" href="<?php echo base_url('/public/assets/scss/style.css');?>">
-    <!-- <link rel="stylesheet" href="<?php echo base_url('/public/assets/css/reset.css');?>"> -->
     <!-- / END PAGE STYLES -->
         
     <!-- START @GLOBAL JS -->
@@ -96,8 +93,8 @@ if(isset($_COOKIE['email']) && isset($_COOKIE['pass'])) {
         <?php $this->load->view('/layouts/footer'); ?>
         <!--/ END FOOTER CONTENT -->
 
-<!--/ END WRAPPER -->
     </main>
+<!--/ END WRAPPER -->
 </body>
 <!-- / END BODY -->
 </html>

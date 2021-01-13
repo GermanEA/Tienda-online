@@ -1,0 +1,251 @@
+/* ------ VARIABLES ------ */
+$primary-color: #272727;
+$secondary-color: #373737;
+$category-text-color: #7f7f7f;
+$category-bg-color: #323232;
+$item-bg-color: #2A2A2A;
+$icon-bg-color: #222222;
+$active-bg-color: #3c3c3c;
+$text-primary-color: #bdbdbd;
+$text-secondary-color: #777;
+$red-color: #b10909;
+$red-color-hover: #df3e3e;
+$yellow-color: #FFE400;
+$green-color: #14A76C;
+$white-color: #fff;
+$grey-light: #ececec;
+$black-color: #121212;
+
+$primary-font-family: 'Roboto', sans-serif;
+$secondary-font-family: 'Arimo', sans-serif;
+
+/* ------ MIXINS ------ */
+@mixin flex( $width, $direction, $justify, $align) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+    width: $width;
+}
+
+@mixin img-responsive() {
+    width: 100%;
+    height: auto;
+}
+
+@mixin absolute ($top, $left) {
+    position: absolute;
+    top: $top;
+    left: $left;
+}
+
+/* ------ CUSTOM ------ */
+
+body {
+    font-family: $primary-font-family;    
+    background-color: $grey-light;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+/* ------ BACKOFFICE ------ */
+.admin-body {
+    background-color: $grey-light;
+}
+
+.main-wrapper{
+    @include flex(100%, column, flex-start, flex-start);
+
+    .header {
+        @include flex (100%, row, flex-end, center);
+        height: 45px;
+        background-color: $black-color;
+        color: $white-color;
+
+        .submit-button {
+            padding: 5px 15px;
+            margin: 0 40px;
+        }
+    }
+    .contain-wrapper {
+
+        .sidebar-content {
+            width: 220px;
+            background-color: $item-bg-color;        
+            height: calc(100vh - 45px);
+            position: fixed;
+            left: 0;
+            top: 45px;
+            overflow: scroll;
+            overflow-x: hidden;
+    
+            .sidebar-title {
+                @include flex( 100%, row, space-between, flex-start);
+                border-bottom: 1px solid $secondary-color;
+                color: $text-primary-color;
+                padding: 15px 10px;
+                box-sizing: border-box;
+                font-size: 1.1rem;
+                position:relative;
+    
+                img {
+                    width: 35%;
+                    height: auto;
+                }
+    
+                .online {
+                    position: absolute;
+                    left: 17px;
+                    top: 17px;
+                    width: 12px;
+                    height: 12px;
+                    border-radius: 100%;
+                    background-color: #8CC152;
+                    animation: online 0.6s infinite;
+                    -webkit-animation: online 0.6s infinite;
+                    border: 2px solid $item-bg-color;
+                }
+    
+                .alias-wrapper {
+                    padding-top: 13px;
+    
+                    .name-wrapper {
+                        @include flex( auto, row, flex-start, flex-start);
+                        font-weight: 100;
+    
+                        .name {
+                            color: $text-secondary-color;
+                            margin-right: 5px;
+                        }
+                    }
+    
+                    .alias {
+                        color: $text-secondary-color;
+                        font-size: 0.8rem;
+                    }
+    
+                }
+            }
+    
+            .sidebar-menu {
+                @include flex( 100%, column, center, flex-start);
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                
+                .sidebar-category {
+                    @include flex( 100%, row, space-between, center);
+                    background-color: $category-bg-color;
+                    text-transform: uppercase;
+                    font-size: 0.8rem;
+                    padding: 10px;
+                    color: $category-text-color;
+                }
+    
+                .sub-item {
+                    display: block;
+                    position: relative;
+                    width: 100%;
+    
+                    &.is-active {
+                        background-color: $active-bg-color;
+    
+                        .icon {
+    
+                            i{                            
+                                background-color: $red-color;
+                            }
+                        }
+                    }
+    
+                    a {
+                        display: block;
+                        padding: 6px 15px;
+                        text-decoration: none;
+                        outline: none;   
+                        color: $text-primary-color;
+        
+                        .icon {
+                            margin-right: 10px;
+    
+                            i {
+                                border-radius: 50%;
+                                border: 2px solid $secondary-color;
+                                background-color: $item-bg-color;
+                                text-align: center;
+                                line-height: 25px;
+                                width: 29px;
+                                font-size: 12px;
+                                color: $text-primary-color;
+                            }
+    
+                            &::after {
+                                content: "";
+                                border: 1px solid $secondary-color;
+                                position: absolute;
+                                top: 0px;
+                                bottom: 0px;
+                                left: 29px;
+                                z-index: -1;
+                            }
+                        }
+    
+                        .text {
+                            font-size: 0.9rem;
+                            color: $text-primary-color;
+                        }
+                    }
+                }
+            }
+            .sidebar-menu>li::after {
+                border-left: 2px solid #373737;
+            }
+            .sidebar-menu li::after {
+                position: absolute;
+                content: "";
+                left: 55px;
+                bottom: -1px;
+            }
+        }
+
+        .content-wrapper {
+            width: calc(100% - 220px);
+            margin-left: 220px;
+        }
+    }    
+}
+
+@keyframes online {    
+    0% {
+        transform: scale(0.5);
+    }
+    100% {
+        transform: scale(1.2);
+    }
+}
+
+/* 
+    GLOBAL CUSTOMS CSS 
+*/
+.btn-original {
+    font-size: 0.8rem;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 30px;
+    box-sizing: border-box;
+    background-color: $red-color;
+    color: $white-color;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+}
+
+.btn-original:hover {
+    background-color: $red-color-hover;
+    color: $white-color;
+}
+
+.btn-original:focus {
+    box-shadow: none;
+}
