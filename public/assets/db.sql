@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS venta(
     fecha_pedido DATE,
     fecha_confirmacion DATE,
     fecha_entrega DATE,
-    enviado VARCHAR(2) CHECK(enviado IN('SI', 'NO')),
+    enviado VARCHAR(7) CHECK(enviado IN('SI', 'NO', 'ANULADO')),
     CONSTRAINT fk_id_usuario_v FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario) ON DELETE NO ACTION ON UPDATE CASCADE
 );
 

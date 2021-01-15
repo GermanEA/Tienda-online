@@ -17,10 +17,15 @@ class Dashboard extends CI_Controller {
 		$page_data['page_content'] = '/administrator/v_orders_template';
 		$page_data['title_page'] = 'Listado de pedidos';
 		$page_data['title_category'] = 'Gestión de pedidos';
+		$page_data['modify'] = 'Modificar';
+		$page_data['cancel'] = 'Anular';
+		$page_data['details'] = 'Detalles';
 		$page_data['search'] = true;
 		$page_data['custom_js'] = array('/public/assets/js/ajax-orders.js');
 		$page_data['orders'] = $this->M_dashboard_order->getOrderAll();
-		$page_data['order_header'] = $this->getL2Keys($page_data['orders']);
+		if($page_data['orders'] != NULL ) {
+			$page_data['order_header'] = $this->getL2Keys($page_data['orders']);
+		}
 
 		$this->load->view('/administrator/v_dashboard', $page_data);
 	}
@@ -29,6 +34,9 @@ class Dashboard extends CI_Controller {
 		$postData = $this->input->post();
 
 		$page_data['orders'] = $this->M_dashboard_order->getOrderAjaxWords($postData);
+		$page_data['modify'] = 'Modificar';
+		$page_data['cancel'] = 'Anular';
+		$page_data['details'] = 'Detalles';
 
 		if($page_data['orders'] != NULL ) {
 			$page_data['order_header'] = $this->getL2Keys($page_data['orders']);
@@ -41,20 +49,119 @@ class Dashboard extends CI_Controller {
 		$page_data['page_content'] = '/administrator/v_orders_template';
 		$page_data['title_page'] = 'Pedidos pendientes';
 		$page_data['title_category'] = 'Gestión de pedidos';
+		$page_data['confirm'] = 'Entregado';
+		$page_data['details'] = 'Detalles';
 		$page_data['orders'] = $this->M_dashboard_order->getPendingOrder();
-		$page_data['order_header'] = $this->getL2Keys($page_data['orders']);
+		if($page_data['orders'] != NULL ) {
+			$page_data['order_header'] = $this->getL2Keys($page_data['orders']);
+		}
 
 		$this->load->view('/administrator/v_dashboard', $page_data);
 	}
+
+	public function chooseBtn() {
+		$data = $this->input->post();
+
+		if( isset($data['send-id']) ) {
+			$this->sendPending($data['send-id']);
+		}
+
+		if( isset($data['modify-id']) ) {
+			$this->modifyOrder($data['modify-id']);
+		}
+
+		if( isset($data['cancel-id']) ) {
+			$this->cancelOrder($data['cancel-id']);
+		}
+
+		if( isset($data['details-id']) ) {
+			$this->detailsOrder($data['details-id']);
+		}
+	}
+
+	public function sendPending($id) {
+		$this->M_dashboard_order->changeSendPending($id);
+
+		redirect(base_url('administrator/dashboard/showPending'));
+	}
+
+	public function modifyOrder($id) {
+		$page_data['page_content'] = '/administrator/v_order_modify';
+		$page_data['title_page'] = 'Modificar pedido';
+		$page_data['title_category'] = 'Gestión de pedidos';
+		$page_data['order'] = $this->M_dashboard_order->getOrderSingle($id);
+
+		$this->load->view('/administrator/v_dashboard', $page_data);
+	}
+
+	public function cancelOrder($id) {
+		$this->M_dashboard_order->cancelOrder($id);
+
+		redirect(base_url('administrator/dashboard'));
+	}
+
+	public function detailsOrder($id) {
+		$page_data['page_content'] = '/administrator/v_order_details';
+		$page_data['title_page'] = 'Detalles del pedido';
+		$page_data['title_category'] = 'Gestión de pedidos';
+		$page_data['order_details'] = $this->M_dashboard_order->getOrderDetails($id);
+
+		var_dump($page_data['order_details']);
+
+		$this->load->view('/administrator/v_dashboard', $page_data);
+	}
+
+	public function modifyOrderConfirm() {
+		$data = $this->input->post();
+
+		$this->M_dashboard_order->modifyOrder($data);
+
+		redirect(base_url('administrator/dashboard'));
+	}	
 
 	public function showDelivered() {
 		$page_data['page_content'] = '/administrator/v_orders_template';
 		$page_data['title_page'] = 'Pedidos entregados';
 		$page_data['title_category'] = 'Gestión de pedidos';
+		$page_data['details'] = 'Detalles';
 		$page_data['orders'] = $this->M_dashboard_order->getDeliverOrder();
-		$page_data['order_header'] = $this->getL2Keys($page_data['orders']);
+		if($page_data['orders'] != NULL ) {
+			$page_data['order_header'] = $this->getL2Keys($page_data['orders']);
+		}
 
 		$this->load->view('/administrator/v_dashboard', $page_data);
+	}
+
+	public function showByDate() {
+		$page_data['page_content'] = '/administrator/v_orders_template';
+		$page_data['title_page'] = 'Búsqueda por fecha de pedido';
+		$page_data['title_category'] = 'Gestión de pedidos';
+		$page_data['modify'] = 'Modificar';
+		$page_data['cancel'] = 'Anular';
+		$page_data['details'] = 'Detalles';
+		$page_data['search_date'] = true;
+		$page_data['custom_js'] = array('/public/assets/js/ajax-orders-date.js');
+		$page_data['orders'] = $this->M_dashboard_order->getOrderAll();
+		if($page_data['orders'] != NULL ) {
+			$page_data['order_header'] = $this->getL2Keys($page_data['orders']);
+		}	
+
+		$this->load->view('/administrator/v_dashboard', $page_data);
+	}
+
+	public function searchAjaxDate() {
+		$postData = $this->input->post();
+
+		$page_data['orders'] = $this->M_dashboard_order->getOrderAjaxDate($postData);
+		$page_data['modify'] = 'Modificar';
+		$page_data['cancel'] = 'Anular';
+		$page_data['details'] = 'Detalles';
+
+		if($page_data['orders'] != NULL ) {
+			$page_data['order_header'] = $this->getL2Keys($page_data['orders']);
+		}
+		
+		$this->load->view('/administrator/v_orders_ajax', $page_data);
 	}
 	
 	public function getL2Keys($array) {

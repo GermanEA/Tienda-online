@@ -307,6 +307,12 @@ body {
 
 .main-wrapper .contain-wrapper .content-wrapper .content-info {
   margin: 30px;
+  /*
+                    ORDER PRODUCT DETAIL PAGE
+                */
+  /*
+                    END OF ORDER PRODUCT DETAIL PAGE
+                */
 }
 
 .main-wrapper .contain-wrapper .content-wrapper .content-info .content-header {
@@ -335,15 +341,17 @@ body {
           align-items: center;
   width: 100%;
   background-color: #fff;
-  padding: 20px 20px 0 0;
+  padding-top: 20px;
 }
 
-.main-wrapper .contain-wrapper .content-wrapper .content-info .search-wrapper span {
+.main-wrapper .contain-wrapper .content-wrapper .content-info .search-wrapper label {
+  margin-bottom: 0;
   margin-right: 10px;
 }
 
-.main-wrapper .contain-wrapper .content-wrapper .content-info .search-wrapper .form-control {
+.main-wrapper .contain-wrapper .content-wrapper .content-info .search-wrapper .form-search {
   width: 200px;
+  margin-right: 20px;
 }
 
 .main-wrapper .contain-wrapper .content-wrapper .content-info .content-table {
@@ -353,6 +361,39 @@ body {
 
 .main-wrapper .contain-wrapper .content-wrapper .content-info .content-table .table {
   border-bottom: 1px solid #dee2e6;
+}
+
+.main-wrapper .contain-wrapper .content-wrapper .content-info .content-table .table tbody td .form-date {
+  width: 175px;
+}
+
+.main-wrapper .contain-wrapper .content-wrapper .content-info .content-table .table tbody td .form-select {
+  width: 80px;
+}
+
+.main-wrapper .contain-wrapper .content-wrapper .content-info .content-table .table tbody td .form-number {
+  width: 90px;
+}
+
+.main-wrapper .contain-wrapper .content-wrapper .content-info .container-order-details {
+  padding: 10px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background-color: #fff;
+}
+
+.main-wrapper .contain-wrapper .content-wrapper .content-info .container-order-details .table tbody tr td {
+  width: 100px;
+}
+
+.main-wrapper .contain-wrapper .content-wrapper .content-info .container-order-details .table tbody tr td .order-img {
+  width: 60px;
+  height: auto;
+  border-radius: 5px;
+}
+
+.main-wrapper .contain-wrapper .content-wrapper .content-info .container-order-details .table tbody tr .bg-total {
+  background-color: #373737;
 }
 
 /* 

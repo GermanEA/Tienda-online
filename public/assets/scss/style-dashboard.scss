@@ -287,16 +287,17 @@ body {
                 .search-wrapper {
                     @include flex( 100%, row, flex-end, center);
                     background-color: $white-color;
-                    padding: 20px 20px 0 0;
+                    padding-top: 20px;
 
-                    span {
+                    label {
+                        margin-bottom: 0;
                         margin-right: 10px;
                     }
 
-                    .form-control {
+                    .form-search {
                         width: 200px;
-
-                    }
+                        margin-right: 20px;
+                    }    
                 }
 
                 .content-table {
@@ -305,8 +306,61 @@ body {
 
                     .table {
                         border-bottom: 1px solid #dee2e6;
+
+                        tbody {
+
+                            td {
+
+                                .form-date {
+                                    width: 175px;
+                                }
+            
+                                .form-select {
+                                    width: 80px;
+                                }
+            
+                                .form-number {
+                                    width: 90px;
+                                }
+                            }
+                        }
                     }
                 }
+
+                /*
+                    ORDER PRODUCT DETAIL PAGE
+                */
+                .container-order-details {
+                    padding: 10px;
+                    box-sizing: border-box;
+                    background-color: $white-color;
+            
+                    .table {
+            
+                        tbody {
+            
+                            tr{
+            
+                                td {
+                                    width: 100px;
+            
+                                    .order-img {
+                                        width: 60px;
+                                        height: auto;
+                                        border-radius: 5px;
+                                    }                            
+                                }
+
+                                .bg-total {
+                                    background-color: $secondary-color;
+                                }
+                            }
+                        }
+                    }
+                }
+                /*
+                    END OF ORDER PRODUCT DETAIL PAGE
+                */
             }
         }
         /*

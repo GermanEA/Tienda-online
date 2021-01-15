@@ -113,28 +113,12 @@
                             <span class="text">Pedidos entregados</span>
                         </a>
                     </li>
-                    <li class="sub-item">
-                        <a href="">
+                    <li class="sub-item <?= ($this->uri->segment(3)==='showByDate')?'is-active':''?>">
+                        <a href="<?= base_url('/administrator/dashboard/showByDate'); ?>">
                             <span class="icon">
                                 <i class="fas fa-pencil-alt"></i>
                             </span>
-                            <span class="text">Buscar pedido</span>
-                        </a>
-                    </li>
-                    <li class="sub-item">
-                        <a href="">
-                            <span class="icon">
-                                <i class="fas fa-pencil-alt"></i>
-                            </span>
-                            <span class="text">Modificar pedido</span>
-                        </a>
-                    </li>
-                    <li class="sub-item">
-                        <a href="">
-                            <span class="icon">
-                                <i class="fas fa-pencil-alt"></i>
-                            </span>
-                            <span class="text">Anular pedido</span>
+                            <span class="text">Búsqueda por fecha</span>
                         </a>
                     </li>
                     <li class="sidebar-category">
@@ -148,7 +132,7 @@
                             <span class="icon">
                                 <i class="fas fa-pencil-alt"></i>
                             </span>
-                            <span class="text">Todos los productos</span>
+                            <span class="text">Listado de productos</span>
                         </a>
                     </li>
                     <li class="sub-item">
@@ -202,6 +186,14 @@
                             <span class="icon">
                                 <i class="fas fa-pencil-alt"></i>
                             </span>
+                            <span class="text">Listado de categorías</span>
+                        </a>
+                    </li>
+                    <li class="sub-item">
+                        <a href="">
+                            <span class="icon">
+                                <i class="fas fa-pencil-alt"></i>
+                            </span>
                             <span class="text">Añadir categoría</span>
                         </a>
                     </li>
@@ -232,7 +224,7 @@
                             <span class="icon">
                                 <i class="fas fa-pencil-alt"></i>
                             </span>
-                            <span class="text">Todos los usuarios</span>
+                            <span class="text">Listado de usuarios</span>
                         </a>
                     </li>
                     <li class="sub-item">

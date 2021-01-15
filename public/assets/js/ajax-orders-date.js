@@ -1,12 +1,14 @@
-let searchTable = document.getElementById('search-bar');
+let searchDateStart = document.getElementById('search-date-start');
+let searchDateEnd = document.getElementById('search-date-end');
 let tableBody = document.getElementById('table-body');
 
-searchTable.addEventListener('keyup', searchPostAjax, false);
+searchDateStart.addEventListener('change', searchPostAjaxDate, false);
+searchDateEnd.addEventListener('change', searchPostAjaxDate, false);
 
-function searchPostAjax() {   
+function searchPostAjaxDate() {   
 
     let peticionAjax = new XMLHttpRequest();
-    peticionAjax.open('POST', baseURL + 'administrator/dashboard/searchAjax', true);
+    peticionAjax.open('POST', baseURL + 'administrator/dashboard/searchAjaxDate', true);
     peticionAjax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
     peticionAjax.onreadystatechange = function() {
@@ -16,13 +18,14 @@ function searchPostAjax() {
         }
     }   
 
-    peticionAjax.send("words=" + searchTable.value);
+    peticionAjax.send("dateStart=" + searchDateStart.value + "&dateEnd=" + searchDateEnd.value);
 }
 
 function searchResponseAjax(peticionAjax) {
     if( peticionAjax.status == 200 ) {
         let response = peticionAjax.responseText;
         
+        console.log(response);
         tableBody.innerHTML = response;
     }
 }
