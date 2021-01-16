@@ -1,18 +1,10 @@
-<div class="title-content">
-    <h2>
-        <i class="fas fa-headphones"></i>
-        <?= $title_page; ?>
-        <span><?= $title_category; ?></span>    
-    </h2>
-</div>
-
 <div class="content-info">
     <div class="content-header">
         <span><?= $title_page; ?></span>
     </div>
 
     <div class="container-order-details">
-        <table class="table table-striped">
+        <table class="table table-details table-striped text-center">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">Imagen</th>
@@ -28,20 +20,20 @@
             <tbody>
         <?php foreach($order_details as $key => $value): ?>
                 <tr>
-                    <td scope="row">
+                    <td class="align-middle" scope="row">
                         <img class="img-fluid order-img" src="<?= base_url()  . "/" . $value->imagen; ?>" alt="<?= $value->imagen ?>">
                     </td>
-                    <td><?= $value->descripcion ?></td>
-                    <td><?= $value->codigo_talla ?></td>
-                    <td><?= $value->cantidad ?></td>
-                    <td><?= number_format($value->precio, 2, ',', '.') . '€' ?></td>
-                    <td><?= number_format($value->total, 2, ',', '.') . '€' ?></td>
+                    <td class="align-middle"><?= $value->descripcion ?></td>
+                    <td class="align-middle"><?= $value->codigo_talla ?></td>
+                    <td class="align-middle"><?= $value->cantidad ?></td>
+                    <td class="align-middle"><?= number_format($value->precio, 2, ',', '.') . '€' ?></td>
+                    <td class="align-middle"><?= number_format($value->total, 2, ',', '.') . '€' ?></td>
                 </tr>
         <?php endforeach; ?>
                 <tr class="bg-total table-dark" scope="row">
-                    <td class="bg-total" colspan="3"></td>
-                    <td class="bg-total" colspan="2">TOTAL PEDIDO</td>
-                    <td class="bg-total"><?= number_format($order_details[0]->total_venta, 2, ',', '.') . '€' ?></td>
+                    <td class="bg-total align-middle" colspan="3"></td>
+                    <td class="bg-total align-middle" colspan="2">TOTAL PEDIDO</td>
+                    <td class="bg-total align-middle"><?= number_format($order_details[0]->total_venta, 2, ',', '.') . '€' ?></td>
                 </tr>
             </tbody>
         </table>

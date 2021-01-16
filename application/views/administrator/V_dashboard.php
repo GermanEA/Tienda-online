@@ -33,6 +33,7 @@
     <!-- START @GLOBAL JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous" defer></script>
+    <script src="<?php echo base_url('/public/assets/js/dashboard.js');?>" defer></script>
     <script> const baseURL = '<?= base_url();?>'; </script>
     <!-- / END GLOBAL JS -->
 
@@ -82,7 +83,7 @@
                         <div class="alias">Administrador</div>
                     </div>
                 </div>
-                <ul class="sidebar-menu">
+                <ul id="sidebar-menu" class="sidebar-menu">
                     <li class="sidebar-category">
                         <span>Pedidos</span>
                         <span class="pull-right">
@@ -113,6 +114,14 @@
                             <span class="text">Pedidos entregados</span>
                         </a>
                     </li>
+                    <li class="sub-item <?= ($this->uri->segment(3)==='showCancel')?'is-active':''?>">
+                        <a href="<?= base_url('/administrator/dashboard/showCancel'); ?>">
+                            <span class="icon">
+                                <i class="fas fa-pencil-alt"></i>
+                            </span>
+                            <span class="text">Pedidos anulados</span>
+                        </a>
+                    </li>
                     <li class="sub-item <?= ($this->uri->segment(3)==='showByDate')?'is-active':''?>">
                         <a href="<?= base_url('/administrator/dashboard/showByDate'); ?>">
                             <span class="icon">
@@ -127,8 +136,8 @@
                         <i class="fas fa-box-open"></i>
                         </span>
                     </li>
-                    <li class="sub-item">
-                        <a href="">
+                    <li class="sub-item <?= ($this->uri->segment(3)==='showAllProduct')?'is-active':''?>">
+                        <a href="<?= base_url('/administrator/product/showAllProduct'); ?>">
                             <span class="icon">
                                 <i class="fas fa-pencil-alt"></i>
                             </span>
@@ -141,22 +150,6 @@
                                 <i class="fas fa-pencil-alt"></i>
                             </span>
                             <span class="text">Añadir producto</span>
-                        </a>
-                    </li>
-                    <li class="sub-item">
-                        <a href="">
-                            <span class="icon">
-                                <i class="fas fa-pencil-alt"></i>
-                            </span>
-                            <span class="text">Eliminar producto</span>
-                        </a>
-                    </li>
-                    <li class="sub-item">
-                        <a href="">
-                            <span class="icon">
-                                <i class="fas fa-pencil-alt"></i>
-                            </span>
-                            <span class="text">Modificar producto</span>
                         </a>
                     </li>
                     <li class="sub-item">
@@ -211,6 +204,44 @@
                                 <i class="fas fa-pencil-alt"></i>
                             </span>
                             <span class="text">Modificar categoría</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-category">
+                        <span>Tallas</span>
+                        <span class="pull-right">
+                            <i class="fas fa-tshirt"></i>
+                        </span>
+                    </li>
+                    <li class="sub-item">
+                        <a href="">
+                            <span class="icon">
+                                <i class="fas fa-pencil-alt"></i>
+                            </span>
+                            <span class="text">Listado de tallas</span>
+                        </a>
+                    </li>
+                    <li class="sub-item">
+                        <a href="">
+                            <span class="icon">
+                                <i class="fas fa-pencil-alt"></i>
+                            </span>
+                            <span class="text">Añadir talla</span>
+                        </a>
+                    </li>
+                    <li class="sub-item">
+                        <a href="">
+                            <span class="icon">
+                                <i class="fas fa-pencil-alt"></i>
+                            </span>
+                            <span class="text">Eliminar talla</span>
+                        </a>
+                    </li>
+                    <li class="sub-item">
+                        <a href="">
+                            <span class="icon">
+                                <i class="fas fa-pencil-alt"></i>
+                            </span>
+                            <span class="text">Modificar talla</span>
                         </a>
                     </li>
                     <li class="sidebar-category">

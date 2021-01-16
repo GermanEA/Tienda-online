@@ -1,4 +1,3 @@
-/* AJAX SEARCH */
 let searchHeader = document.getElementById('search-bar');
 let searchModal = document.getElementById('modal-search');
 

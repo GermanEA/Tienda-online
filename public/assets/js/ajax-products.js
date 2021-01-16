@@ -6,7 +6,7 @@ searchTable.addEventListener('keyup', searchPostAjax, false);
 function searchPostAjax() {   
 
     let peticionAjax = new XMLHttpRequest();
-    peticionAjax.open('POST', baseURL + 'administrator/dashboard/searchAjax', true);
+    peticionAjax.open('POST', baseURL + 'administrator/product/searchAjax', true);
     peticionAjax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
     peticionAjax.onreadystatechange = function() {
@@ -24,6 +24,5 @@ function searchResponseAjax(peticionAjax) {
         let response = peticionAjax.responseText;
         
         tableBody.innerHTML = response;
-        loadButton();
     }
 }

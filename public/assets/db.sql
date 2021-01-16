@@ -77,51 +77,51 @@ INSERT INTO talla VALUES (2, 'M');
 INSERT INTO talla VALUES (3, 'L');
 INSERT INTO talla VALUES (4, 'XL');
 INSERT INTO talla VALUES (5, 'XXL');
-INSERT INTO talla VALUES (6, 'XXL');
+INSERT INTO talla VALUES (6, 'XXXL');
 
 
-INSERT INTO producto VALUES (1, 'DI-EP-DD', 'EP - Dónde dije digo...', NULL, 5, NULL, 0, 'public/assets/img/camiseta/DI-EP-DD.jpg', 2);
-INSERT INTO producto VALUES (2, 'DI-EP-VD', 'EP - Vayáis, dónde vayáis...', NULL, 5, NULL, 5, 'public/assets/img/camiseta/DI-EP-VD.jpg', 2);
-INSERT INTO producto VALUES (3, 'DI-LP-VD', 'LP - Se nos fue de las manos', NULL, 8, NULL, 5, 'public/assets/img/camiseta/DI-LP-SE.jpg', 2);
+INSERT INTO producto VALUES (1, 'DI-EP-DD', 'EP - Dónde dije digo...', NULL, 5, NULL, 0, 'public/assets/img/productos/DI-EP-DD.jpg', 2);
+INSERT INTO producto VALUES (2, 'DI-EP-VD', 'EP - Vayáis, dónde vayáis...', NULL, 5, NULL, 5, 'public/assets/img/productos/DI-EP-VD.jpg', 2);
+INSERT INTO producto VALUES (3, 'DI-LP-VD', 'LP - Se nos fue de las manos', NULL, 8, NULL, 5, 'public/assets/img/productos/DI-LP-SE.jpg', 2);
 
-INSERT INTO producto VALUES (4, 'GO-BL-EN', 'Gorra blanca Enseco', 3, 10.00, 'Azul', 5, 'public/assets/img/camiseta/GO-BL-EN.jpg', 5);
-INSERT INTO producto VALUES (5, 'GO-BL-HE', 'Gorra blanca Héroes', 3, 10.00, 'Azul', 5, 'public/assets/img/camiseta/GO-BL-HE.jpg', 5);
-INSERT INTO producto VALUES (6, 'GO-NE-BO', 'Gorra negra Bocaseca', 3, 10.00, 'Azul', 5, 'public/assets/img/camiseta/GO-NE-BO.jpg', 5);
-INSERT INTO producto VALUES (7, 'GO-NE-EN', 'Gorra negra Enseco', 3, 10.00, 'Azul', 5, 'public/assets/img/camiseta/GO-NE-EN.jpg', 5);
-INSERT INTO producto VALUES (8, 'GO-NE-HE', 'Gorra negra Héroes', 3, 10.00, 'Azul', 5, 'public/assets/img/camiseta/GO-NE-HE.jpg', 5);
+INSERT INTO producto VALUES (4, 'GO-BL-EN', 'Gorra blanca Enseco', 3, 10.00, 'Azul', 5, 'public/assets/img/productos/GO-BL-EN.jpg', 5);
+INSERT INTO producto VALUES (5, 'GO-BL-HE', 'Gorra blanca Héroes', 3, 10.00, 'Azul', 5, 'public/assets/img/productos/GO-BL-HE.jpg', 5);
+INSERT INTO producto VALUES (6, 'GO-NE-BO', 'Gorra negra Bocaseca', 3, 10.00, 'Azul', 5, 'public/assets/img/productos/GO-NE-BO.jpg', 5);
+INSERT INTO producto VALUES (7, 'GO-NE-EN', 'Gorra negra Enseco', 3, 10.00, 'Azul', 5, 'public/assets/img/productos/GO-NE-EN.jpg', 5);
+INSERT INTO producto VALUES (8, 'GO-NE-HE', 'Gorra negra Héroes', 3, 10.00, 'Azul', 5, 'public/assets/img/productos/GO-NE-HE.jpg', 5);
 
-INSERT INTO producto VALUES (9, 'CA-AZ-HE', 'Camiseta azul Héroes', 3, 10.00, 'Azul', 5, 'public/assets/img/camiseta/CA-AZ-HE.jpg', 3);
-INSERT INTO producto VALUES (10, 'CA-GR-HE', 'Camiseta gris Héroes', 3, 10.00, 'Gris', 5, 'public/assets/img/camiseta/CA-GR-HE.jpg', 3);
-INSERT INTO producto VALUES (11, 'CA-MO-EN', 'Camiseta morada Enseco', 3, 10.00, 'Morado', 5, 'public/assets/img/camiseta/CA-MO-EN.jpg', 3);
-INSERT INTO producto VALUES (12, 'CA-NE-EN', 'Camiseta negra Enseco', 3, 10.00, 'Negro', 5, 'public/assets/img/camiseta/CA-NE-EN.jpg', 3);
-INSERT INTO producto VALUES (13, 'CA-VE-BO', 'Camiseta verde Bocaseca', 3, 10.00, 'Verde', 5, 'public/assets/img/camiseta/CA-VE-BO.jpg', 3);
+INSERT INTO producto VALUES (9, 'CA-AZ-HE', 'Camiseta azul Héroes', 3, 10.00, 'Azul', 5, 'public/assets/img/productos/CA-AZ-HE.jpg', 3);
+INSERT INTO producto VALUES (10, 'CA-GR-HE', 'Camiseta gris Héroes', 3, 10.00, 'Gris', 5, 'public/assets/img/productos/CA-GR-HE.jpg', 3);
+INSERT INTO producto VALUES (11, 'CA-MO-EN', 'Camiseta morada Enseco', 3, 10.00, 'Morado', 5, 'public/assets/img/productos/CA-MO-EN.jpg', 3);
+INSERT INTO producto VALUES (12, 'CA-NE-EN', 'Camiseta negra Enseco', 3, 10.00, 'Negro', 5, 'public/assets/img/productos/CA-NE-EN.jpg', 3);
+INSERT INTO producto VALUES (13, 'CA-VE-BO', 'Camiseta verde Bocaseca', 3, 10.00, 'Verde', 5, 'public/assets/img/productos/CA-VE-BO.jpg', 3);
 
-INSERT INTO producto VALUES (14, 'SU-GR-HE', 'Sudadera gris Héroes', 3, 10.00, 'Gris', 5, 'public/assets/img/camiseta/SU-GR-HE.jpg', 4);
-INSERT INTO producto VALUES (15, 'SU-MO-EN', 'Sudadera morada Enseco', 3, 10.00, 'Morado', 5, 'public/assets/img/camiseta/SU-MO-EN.jpg', 4);
-INSERT INTO producto VALUES (16, 'SU-NE-EN', 'Sudadera negra Enseco', 3, 10.00, 'Negro', 5, 'public/assets/img/camiseta/SU-NE-EN.jpg', 4);
-INSERT INTO producto VALUES (17, 'SU-RO-HE', 'Sudadera roja Héroes', 3, 10.00, 'Rojo', 5, 'public/assets/img/camiseta/SU-RO-HE.jpg', 4);
+INSERT INTO producto VALUES (14, 'SU-GR-HE', 'Sudadera gris Héroes', 3, 10.00, 'Gris', 5, 'public/assets/img/productos/SU-GR-HE.jpg', 4);
+INSERT INTO producto VALUES (15, 'SU-MO-EN', 'Sudadera morada Enseco', 3, 10.00, 'Morado', 5, 'public/assets/img/productos/SU-MO-EN.jpg', 4);
+INSERT INTO producto VALUES (16, 'SU-NE-EN', 'Sudadera negra Enseco', 3, 10.00, 'Negro', 5, 'public/assets/img/productos/SU-NE-EN.jpg', 4);
+INSERT INTO producto VALUES (17, 'SU-RO-HE', 'Sudadera roja Héroes', 3, 10.00, 'Rojo', 5, 'public/assets/img/productos/SU-RO-HE.jpg', 4);
 
-INSERT INTO producto VALUES (18, 'PC-CA-DI', 'Pack camiseta + disco', NULL, 12.00, NULL, 5, 'public/assets/img/camiseta/PC-CA-DI.jpg', 1);
+INSERT INTO producto VALUES (18, 'PC-CA-DI', 'Pack camiseta + disco', NULL, 12.00, NULL, 5, 'public/assets/img/productos/PC-CA-DI.jpg', 1);
 
-INSERT INTO producto VALUES (19, 'CH-AZ-FR', 'Chapa logo Frívola', NULL, 1, NULL, 5.00, 'public/assets/img/camiseta/CH-AZ-FR.jpg', 6);
-INSERT INTO producto VALUES (20, 'CH-NE-HL', 'Chapa logo Héroe', NULL, 1, NULL, 5.00, 'public/assets/img/camiseta/CH-NE-HL.jpg', 6);
-INSERT INTO producto VALUES (21, 'CH-NE-PB', 'Chapa logo Paco in black', NULL, 1, NULL, 5.00, 'public/assets/img/camiseta/CH-NE-PB.jpg', 6);
-INSERT INTO producto VALUES (22, 'CH-RO-HE', 'Chapa logo antiguo Enseco', NULL, 1, NULL, 5.00, 'public/assets/img/camiseta/CH-RO-HE.jpg', 6);
-INSERT INTO producto VALUES (23, 'CH-VE-BO', 'Chapa logo Bocaseca', NULL, 1, NULL, 5.00, 'public/assets/img/camiseta/CH-VE-BO.jpg', 6);
-INSERT INTO producto VALUES (24, 'CH-RO-EA', 'Chapa logo Héroes', NULL, 1, NULL, 5.00, 'public/assets/img/camiseta/CH-RO-EA.jpg', 6);
+INSERT INTO producto VALUES (19, 'CH-AZ-FR', 'Chapa logo Frívola', NULL, 1, NULL, 5.00, 'public/assets/img/productos/CH-AZ-FR.jpg', 6);
+INSERT INTO producto VALUES (20, 'CH-NE-HL', 'Chapa logo Héroe', NULL, 1, NULL, 5.00, 'public/assets/img/productos/CH-NE-HL.jpg', 6);
+INSERT INTO producto VALUES (21, 'CH-NE-PB', 'Chapa logo Paco in black', NULL, 1, NULL, 5.00, 'public/assets/img/productos/CH-NE-PB.jpg', 6);
+INSERT INTO producto VALUES (22, 'CH-RO-HE', 'Chapa logo antiguo Enseco', NULL, 1, NULL, 5.00, 'public/assets/img/productos/CH-RO-HE.jpg', 6);
+INSERT INTO producto VALUES (23, 'CH-VE-BO', 'Chapa logo Bocaseca', NULL, 1, NULL, 5.00, 'public/assets/img/productos/CH-VE-BO.jpg', 6);
+INSERT INTO producto VALUES (24, 'CH-RO-EA', 'Chapa logo Héroes', NULL, 1, NULL, 5.00, 'public/assets/img/productos/CH-RO-EA.jpg', 6);
 
-INSERT INTO producto VALUES ('', 'CA-AZ-HE', 'Camiseta azul Héroes', 4, 10.00, 'Azul', 5, 'public/assets/img/camiseta/CA-AZ-HE.jpg', 3);
-INSERT INTO producto VALUES ('', 'CA-MO-EN', 'Camiseta morada Enseco', 4, 10.00, 'Morado', 5, 'public/assets/img/camiseta/CA-MO-EN.jpg', 3);
-INSERT INTO producto VALUES ('', 'CA-NE-EN', 'Camiseta negra Enseco', 4, 10.00, 'Negro', 5, 'public/assets/img/camiseta/CA-NE-EN.jpg', 3);
+INSERT INTO producto VALUES ('', 'CA-AZ-HE', 'Camiseta azul Héroes', 4, 10.00, 'Azul', 5, 'public/assets/img/productos/CA-AZ-HE.jpg', 3);
+INSERT INTO producto VALUES ('', 'CA-MO-EN', 'Camiseta morada Enseco', 4, 10.00, 'Morado', 5, 'public/assets/img/productos/CA-MO-EN.jpg', 3);
+INSERT INTO producto VALUES ('', 'CA-NE-EN', 'Camiseta negra Enseco', 4, 10.00, 'Negro', 5, 'public/assets/img/productos/CA-NE-EN.jpg', 3);
 
-INSERT INTO producto VALUES ('', 'CA-GR-HE', 'Camiseta gris Héroes', 2, 10.00, 'Gris', 5, 'public/assets/img/camiseta/CA-GR-HE.jpg', 3);
-INSERT INTO producto VALUES ('', 'CA-NE-EN', 'Camiseta negra Enseco', 2, 10.00, 'Negro', 5, 'public/assets/img/camiseta/CA-NE-EN.jpg', 3);
-INSERT INTO producto VALUES ('', 'CA-VE-BO', 'Camiseta verde Bocaseca', 2, 10.00, 'Verde', 5, 'public/assets/img/camiseta/CA-VE-BO.jpg', 3);
+INSERT INTO producto VALUES ('', 'CA-GR-HE', 'Camiseta gris Héroes', 2, 10.00, 'Gris', 5, 'public/assets/img/productos/CA-GR-HE.jpg', 3);
+INSERT INTO producto VALUES ('', 'CA-NE-EN', 'Camiseta negra Enseco', 2, 10.00, 'Negro', 5, 'public/assets/img/productos/CA-NE-EN.jpg', 3);
+INSERT INTO producto VALUES ('', 'CA-VE-BO', 'Camiseta verde Bocaseca', 2, 10.00, 'Verde', 5, 'public/assets/img/productos/CA-VE-BO.jpg', 3);
 
-INSERT INTO producto VALUES ('', 'SU-GR-HE', 'Sudadera gris Héroes', 2, 10.00, 'Gris', 5, 'public/assets/img/camiseta/SU-GR-HE.jpg', 4);
-INSERT INTO producto VALUES ('', 'SU-MO-EN', 'Sudadera morada Enseco', 1, 10.00, 'Morado', 5, 'public/assets/img/camiseta/SU-MO-EN.jpg', 4);
-INSERT INTO producto VALUES ('', 'SU-NE-EN', 'Sudadera negra Enseco', 5, 10.00, 'Negro', 5, 'public/assets/img/camiseta/SU-NE-EN.jpg', 4);
-INSERT INTO producto VALUES ('', 'SU-RO-HE', 'Sudadera roja Héroes', 4, 10.00, 'Rojo', 5, 'public/assets/img/camiseta/SU-RO-HE.jpg', 4);
+INSERT INTO producto VALUES ('', 'SU-GR-HE', 'Sudadera gris Héroes', 2, 10.00, 'Gris', 5, 'public/assets/img/productos/SU-GR-HE.jpg', 4);
+INSERT INTO producto VALUES ('', 'SU-MO-EN', 'Sudadera morada Enseco', 1, 10.00, 'Morado', 5, 'public/assets/img/productos/SU-MO-EN.jpg', 4);
+INSERT INTO producto VALUES ('', 'SU-NE-EN', 'Sudadera negra Enseco', 5, 10.00, 'Negro', 5, 'public/assets/img/productos/SU-NE-EN.jpg', 4);
+INSERT INTO producto VALUES ('', 'SU-RO-HE', 'Sudadera roja Héroes', 4, 10.00, 'Rojo', 5, 'public/assets/img/productos/SU-RO-HE.jpg', 4);
 
 INSERT INTO venta VALUES(1, 'AB345', 4, '2020-06-05', '2020-06-05', '', 'Si');
 INSERT INTO venta VALUES(2, 'AB346', 4, '2020-06-05', '2020-06-05', '2020-06-10', 'No');

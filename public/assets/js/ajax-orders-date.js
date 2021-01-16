@@ -25,7 +25,7 @@ function searchResponseAjax(peticionAjax) {
     if( peticionAjax.status == 200 ) {
         let response = peticionAjax.responseText;
         
-        console.log(response);
         tableBody.innerHTML = response;
+        loadButton();
     }
 }
