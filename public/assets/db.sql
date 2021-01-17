@@ -84,11 +84,11 @@ INSERT INTO producto VALUES (1, 'DI-EP-DD', 'EP - Dónde dije digo...', NULL, 5,
 INSERT INTO producto VALUES (2, 'DI-EP-VD', 'EP - Vayáis, dónde vayáis...', NULL, 5, NULL, 5, 'public/assets/img/productos/DI-EP-VD.jpg', 2);
 INSERT INTO producto VALUES (3, 'DI-LP-VD', 'LP - Se nos fue de las manos', NULL, 8, NULL, 5, 'public/assets/img/productos/DI-LP-SE.jpg', 2);
 
-INSERT INTO producto VALUES (4, 'GO-BL-EN', 'Gorra blanca Enseco', 3, 10.00, 'Azul', 5, 'public/assets/img/productos/GO-BL-EN.jpg', 5);
-INSERT INTO producto VALUES (5, 'GO-BL-HE', 'Gorra blanca Héroes', 3, 10.00, 'Azul', 5, 'public/assets/img/productos/GO-BL-HE.jpg', 5);
-INSERT INTO producto VALUES (6, 'GO-NE-BO', 'Gorra negra Bocaseca', 3, 10.00, 'Azul', 5, 'public/assets/img/productos/GO-NE-BO.jpg', 5);
-INSERT INTO producto VALUES (7, 'GO-NE-EN', 'Gorra negra Enseco', 3, 10.00, 'Azul', 5, 'public/assets/img/productos/GO-NE-EN.jpg', 5);
-INSERT INTO producto VALUES (8, 'GO-NE-HE', 'Gorra negra Héroes', 3, 10.00, 'Azul', 5, 'public/assets/img/productos/GO-NE-HE.jpg', 5);
+INSERT INTO producto VALUES (4, 'GO-BL-EN', 'Gorra blanca Enseco', 0, 10.00, 'Azul', 5, 'public/assets/img/productos/GO-BL-EN.jpg', 5);
+INSERT INTO producto VALUES (5, 'GO-BL-HE', 'Gorra blanca Héroes', 0, 10.00, 'Azul', 5, 'public/assets/img/productos/GO-BL-HE.jpg', 5);
+INSERT INTO producto VALUES (6, 'GO-NE-BO', 'Gorra negra Bocaseca', 0, 10.00, 'Azul', 5, 'public/assets/img/productos/GO-NE-BO.jpg', 5);
+INSERT INTO producto VALUES (7, 'GO-NE-EN', 'Gorra negra Enseco', 0, 10.00, 'Azul', 5, 'public/assets/img/productos/GO-NE-EN.jpg', 5);
+INSERT INTO producto VALUES (8, 'GO-NE-HE', 'Gorra negra Héroes', 0, 10.00, 'Azul', 5, 'public/assets/img/productos/GO-NE-HE.jpg', 5);
 
 INSERT INTO producto VALUES (9, 'CA-AZ-HE', 'Camiseta azul Héroes', 3, 10.00, 'Azul', 5, 'public/assets/img/productos/CA-AZ-HE.jpg', 3);
 INSERT INTO producto VALUES (10, 'CA-GR-HE', 'Camiseta gris Héroes', 3, 10.00, 'Gris', 5, 'public/assets/img/productos/CA-GR-HE.jpg', 3);
