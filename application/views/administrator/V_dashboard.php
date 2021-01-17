@@ -144,28 +144,12 @@
                             <span class="text">Listado de productos</span>
                         </a>
                     </li>
-                    <li class="sub-item">
-                        <a href="">
+                    <li class="sub-item <?= ($this->uri->segment(3)==='addProduct')?'is-active':''?>">
+                        <a href="<?= base_url('/administrator/product/addProduct'); ?>">
                             <span class="icon">
                                 <i class="fas fa-pencil-alt"></i>
                             </span>
                             <span class="text">Añadir producto</span>
-                        </a>
-                    </li>
-                    <li class="sub-item">
-                        <a href="">
-                            <span class="icon">
-                                <i class="fas fa-pencil-alt"></i>
-                            </span>
-                            <span class="text">Cambiar precio</span>
-                        </a>
-                    </li>
-                    <li class="sub-item">
-                        <a href="">
-                            <span class="icon">
-                                <i class="fas fa-pencil-alt"></i>
-                            </span>
-                            <span class="text">Stocks productos</span>
                         </a>
                     </li>
                     <li class="sidebar-category">
@@ -174,36 +158,20 @@
                             <i class="fas fa-paste"></i>
                         </span>
                     </li>
-                    <li class="sub-item">
-                        <a href="">
+                    <li class="sub-item <?= ($this->uri->segment(3)==='showAllCategory')?'is-active':''?>">
+                        <a href="<?= base_url('/administrator/category/showAllCategory'); ?>">
                             <span class="icon">
                                 <i class="fas fa-pencil-alt"></i>
                             </span>
                             <span class="text">Listado de categorías</span>
                         </a>
                     </li>
-                    <li class="sub-item">
-                        <a href="">
+                    <li class="sub-item <?= ($this->uri->segment(3)==='addCategory')?'is-active':''?>">
+                        <a href="<?= base_url('/administrator/category/addCategory'); ?>">
                             <span class="icon">
                                 <i class="fas fa-pencil-alt"></i>
                             </span>
                             <span class="text">Añadir categoría</span>
-                        </a>
-                    </li>
-                    <li class="sub-item">
-                        <a href="">
-                            <span class="icon">
-                                <i class="fas fa-pencil-alt"></i>
-                            </span>
-                            <span class="text">Eliminar categoría</span>
-                        </a>
-                    </li>
-                    <li class="sub-item">
-                        <a href="">
-                            <span class="icon">
-                                <i class="fas fa-pencil-alt"></i>
-                            </span>
-                            <span class="text">Modificar categoría</span>
                         </a>
                     </li>
                     <li class="sidebar-category">
@@ -212,36 +180,20 @@
                             <i class="fas fa-tshirt"></i>
                         </span>
                     </li>
-                    <li class="sub-item">
-                        <a href="">
+                    <li class="sub-item <?= ($this->uri->segment(3)==='showAllSizes')?'is-active':''?>">
+                        <a href="<?= base_url('/administrator/sizes/showAllSizes'); ?>">
                             <span class="icon">
                                 <i class="fas fa-pencil-alt"></i>
                             </span>
                             <span class="text">Listado de tallas</span>
                         </a>
                     </li>
-                    <li class="sub-item">
-                        <a href="">
+                    <li class="sub-item <?= ($this->uri->segment(3)==='addSize')?'is-active':''?>">
+                        <a href="<?= base_url('/administrator/sizes/addSize'); ?>">
                             <span class="icon">
                                 <i class="fas fa-pencil-alt"></i>
                             </span>
                             <span class="text">Añadir talla</span>
-                        </a>
-                    </li>
-                    <li class="sub-item">
-                        <a href="">
-                            <span class="icon">
-                                <i class="fas fa-pencil-alt"></i>
-                            </span>
-                            <span class="text">Eliminar talla</span>
-                        </a>
-                    </li>
-                    <li class="sub-item">
-                        <a href="">
-                            <span class="icon">
-                                <i class="fas fa-pencil-alt"></i>
-                            </span>
-                            <span class="text">Modificar talla</span>
                         </a>
                     </li>
                     <li class="sidebar-category">
@@ -250,36 +202,20 @@
                             <i class="fas fa-users"></i>
                         </span>
                     </li>
-                    <li class="sub-item">
-                        <a href="">
+                    <li class="sub-item <?= ($this->uri->segment(3)==='showAllUsers')?'is-active':''?>">
+                        <a href="<?= base_url('/administrator/users/showAllUsers'); ?>">
                             <span class="icon">
                                 <i class="fas fa-pencil-alt"></i>
                             </span>
                             <span class="text">Listado de usuarios</span>
                         </a>
                     </li>
-                    <li class="sub-item">
-                        <a href="">
+                    <li class="sub-item <?= ($this->uri->segment(3)==='addUser')?'is-active':''?>">
+                        <a href="<?= base_url('/administrator/users/addUser'); ?>">
                             <span class="icon">
                                 <i class="fas fa-pencil-alt"></i>
                             </span>
                             <span class="text">Añadir usuario</span>
-                        </a>
-                    </li>
-                    <li class="sub-item">
-                        <a href="">
-                            <span class="icon">
-                                <i class="fas fa-pencil-alt"></i>
-                            </span>
-                            <span class="text">Eliminar usuario</span>
-                        </a>
-                    </li>
-                    <li class="sub-item">
-                        <a href="">
-                            <span class="icon">
-                                <i class="fas fa-pencil-alt"></i>
-                            </span>
-                            <span class="text">Modificar usuario</span>
                         </a>
                     </li>
                     <li class="sidebar-category">

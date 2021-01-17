@@ -52,11 +52,14 @@ body {
 
 /* ------ BACKOFFICE ------ */
 .admin-body {
-    background-color: $grey-light-category
+    background-color: $grey-light-category;
+    height: 100vh;
 }
 
 .main-wrapper{
     @include flex(100%, column, flex-start, flex-start);
+    overflow-x: hidden;
+    height: 100%;
 
     /*
         HEADER
@@ -335,6 +338,14 @@ body {
                                     width: 90px;
                                 }
 
+                                .form-number-user {
+                                    width: 140px;
+                                }
+
+                                .form-text-user {
+                                    width: 300px;
+                                }
+
                                 img {
                                     width: 30px;
                                     border: 1px solid $red-color;
@@ -363,6 +374,10 @@ body {
 
                     .btn-wrapper {
                         margin-top: 20px;
+
+                        .btn-original:disabled{
+                            background-color: $secondary-color;
+                        }
                     }
 
                     .pagination {
@@ -429,6 +444,31 @@ body {
                 /*
                     END OF ORDER PRODUCT DETAIL PAGE
                 */
+
+                /*
+                  ERROR FILE PAGE
+                */
+                .content-file-wrapper {
+                    @include flex( 100%, column, center, center);
+
+                    .error-title {
+                        font-style: oblique;
+                        font-weight: 600;
+                        font-size: 1.2rem;
+                    }
+
+                    .file-properties {
+                        padding: 15px;
+                        background-color: $grey-light-category;
+                        margin: 15px 0;
+                        border: 1px solid $red-color;
+                        border-radius: 5px;
+                        font-size: 0.9rem;
+                    }
+                }
+                /*
+                    END OF ERROR FILE PAGE
+                */
             }
             /*
                 MODAL DETAILS
@@ -463,6 +503,19 @@ body {
                         color: $primary-color;
                         text-decoration: none;
                         cursor: pointer;
+                    }
+
+                    #modal-content-dynamic {
+
+                        .modal-message-content {
+                            padding: 25px 0;
+
+                            span:first-child {
+                                font-size: 2rem;
+                                color: $yellow-color;
+                                margin-right: 25px;
+                            }
+                        }
                     }
                 }    
             }

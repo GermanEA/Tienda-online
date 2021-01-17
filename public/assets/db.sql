@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS venta(
     fecha_confirmacion DATE,
     fecha_entrega DATE,
     enviado VARCHAR(7) CHECK(enviado IN('SI', 'NO', 'ANULADO')),
-    CONSTRAINT fk_id_usuario_v FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario) ON DELETE NO ACTION ON UPDATE CASCADE
+    CONSTRAINT fk_id_usuario_v FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS venta_detalle(
@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS venta_detalle(
     cantidad INT,
     precio DECIMAL,
     total DECIMAL,
-    CONSTRAINT fk_id_venta_v FOREIGN KEY (id_venta) REFERENCES venta(id_venta) ON DELETE NO ACTION ON UPDATE CASCADE,
+    CONSTRAINT fk_id_venta_v FOREIGN KEY (id_venta) REFERENCES venta(id_venta) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT fk_id_producto_v FOREIGN KEY (id_producto) REFERENCES producto(id_producto) ON DELETE NO ACTION ON UPDATE CASCADE
 );
 

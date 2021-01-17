@@ -13,7 +13,7 @@
 
     <div class="content-table">
 
-        <form action="<?= base_url('administrator/product/modifyProductConfirm'); ?>" method="post">
+        <form enctype="multipart/form-data" action="<?= base_url('administrator/product/modifyProductConfirm'); ?>" method="post">
             <table class="table table-striped text-center">
                 <thead class="table-dark">
                     <tr>
@@ -62,7 +62,7 @@
                         <?php } ?>
                         
                         <td class="aling-middle"><input type="number" value="<?= $product['Stock']; ?>" class="form-control form-number mx-auto" name="stock" min="0"></td>
-                        <td class="aling-middle"><input type="file" class="form-control form-file" id="formFile" name="imagen" value="<?= $product['Imagen']; ?>"></td>
+                        <td class="aling-middle"><input type="file" class="form-control form-file" id="formFile" name="imagen"></td>
                         <td class="aling-middle">
                             <select class="form-control mx-auto" name="tipo-producto" id="tipo-producto">
                                 <?php foreach($product_type as $row):
@@ -86,12 +86,5 @@
         </form>
     </div>
 </div>
-
-
-                         
-    <!-- <select class="form-control form-select mx-auto" name="enviado" id="send">
-        <option value="Si" <?php if( $product['Enviado'] === 'Si') { echo "selected"; } ?>>Si</option>
-        <option value="No" <?php if( $product['Enviado'] === 'No') { echo "selected"; } ?>>No</option>
-    </select>                             -->
 
     

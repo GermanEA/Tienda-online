@@ -4,10 +4,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Product extends CI_Controller {
 
 	public function __construct() {
-		parent::__construct();
-        
+        parent::__construct();
+    
 		$this->load->model('dashboard/M_dashboard_product');
         $this->load->library('pagination');
+        $this->load->helper('form');
 	}
 
 	public function index()	{
@@ -94,10 +95,53 @@ class Product extends CI_Controller {
     public function modifyProductConfirm() {
         $data = $this->input->post();
 
-		$this->M_dashboard_product->modifyProduct($data);
+        $this->uploadImage('imagen', $data, 'modifyProduct');
+    }
 
-		redirect(base_url('administrator/product/showAllProduct'));
-	}
+    public function addProduct() {
+        $page_data['page_content'] = '/administrator/v_product_add';
+		$page_data['title_page'] = 'Añadir producto';
+        $page_data['title_category'] = 'Gestión de productos';
+        $page_data['custom_js'] = array(
+			'/public/assets/js/modal_message.js'
+		);
+        $page_data['product'] = $this->M_dashboard_product->getProductLastOne();
+        $page_data['sizes'] = $this->M_dashboard_product->getSizes();
+        $page_data['product_type'] = $this->M_dashboard_product->getProductType();
+        
+        $this->load->view('/administrator/v_dashboard', $page_data);
+    }
+
+    public function addProductConfirm() {
+        $data = $this->input->post();
+
+        $this->uploadImage('imagen', $data, 'addProduct');
+    }
+
+    public function uploadImage($file, $data, $function) {
+        $result = $this->upload->do_upload($file);
+
+        if( $_FILES['imagen']['name'] != ''  ) {
+            if( !$result ) {
+                $page_data['error'] = $this->upload->display_errors();
+                $page_data['page_content'] = '/administrator/v_upload_errors';
+                $page_data['title_page'] = 'Modificar producto';
+                $page_data['title_category'] = 'Gestión de productos';
+    
+                $this->load->view('administrator/v_dashboard', $page_data);
+            } else {
+                $data['imagen'] = $this->upload->data('file_name');
+        
+                $this->M_dashboard_product->$function($data);    
+        
+                redirect(base_url('administrator/product/showAllProduct'));
+            }
+        } else {
+            $this->M_dashboard_product->$function($data);    
+        
+            redirect(base_url('administrator/product/showAllProduct'));
+        }
+    }
 
     public function cancelProduct($id) {
         /* 
@@ -107,7 +151,7 @@ class Product extends CI_Controller {
         $this->M_dashboard_product->cancelProduct($id);
 
         redirect(base_url('administrator/product/showAllProduct'));
-    }
+    }   
 
     public function getL2Keys($array) {
 		$result = array();

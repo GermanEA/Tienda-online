@@ -19,15 +19,15 @@
     <?php } ?>
 
     <div class="content-table">
-        <?php if(!isset($products) || $products === NULL ) { ?>
-            <div>No hay productos para mostrar.</div>
+        <?php if(!isset($users) || $users === NULL ) { ?>
+            <div>No hay pedidos para mostrar.</div>
         <?php } else { ?>
 
-        <form action="<?= base_url('administrator/product/chooseBtn'); ?>" method="post">
+        <form action="<?= base_url('administrator/users/chooseBtn'); ?>" method="post">
             <table class="table table-striped text-center">
                 <thead class="table-dark">
                     <tr>
-                    <?php foreach($product_header as $header): ?>
+                    <?php foreach($users_header as $header): ?>
                         <th><?= $header; ?></th>
                     <?php endforeach; ?>
                     <?php if( isset($modify) ) { ?>
@@ -40,7 +40,7 @@
                 </thead>                
                 
                 <tbody id="table-body">
-                    <?php foreach($products as $row): ?>
+                    <?php foreach($users as $row): ?>
                     <tr>
                     <?php foreach($row as $key => $value): ?>
                         <?php if( $key == "Imagen" ) { ?>

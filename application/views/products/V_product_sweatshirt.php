@@ -1,7 +1,8 @@
 <div id="search" class="container container-product">
         <div class="card-deck">
 
-        <?php foreach($sweatshirt as $row): ?>
+        <?php if(isset($sweatshirt)) {
+        foreach($sweatshirt as $row): ?>
             <div class="card-wrapper col-4">
                 <div class="card-item">
                     <img class="w-100" src="<?php echo base_url() . "/" . $row->imagen; ?>"   alt="<?php echo $row->descripcion; ?>">
@@ -28,7 +29,9 @@
                     </form>
                 </div>
             </div>
-        <?php endforeach; ?>
+        <?php endforeach; } else { ?>
+            <div>No hay productos en el almacén en estos momentos.</div>
+        <?php } ?>
             
         </div>
     </div>

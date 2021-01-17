@@ -11,23 +11,16 @@
         <span><?= $title_page; ?></span>
     </div>
 
-    <?php if( isset($search) ) { ?>
-        <div class="search-wrapper">
-            <label for="search">Buscar:</label>
-            <input id="search-bar" type="text" class="form-control form-search" name="search">
-        </div>
-    <?php } ?>
-
     <div class="content-table">
-        <?php if(!isset($products) || $products === NULL ) { ?>
-            <div>No hay productos para mostrar.</div>
+        <?php if(!isset($sizes) || $sizes === NULL ) { ?>
+            <div>No hay categorías para mostrar.</div>
         <?php } else { ?>
 
-        <form action="<?= base_url('administrator/product/chooseBtn'); ?>" method="post">
+        <form action="<?= base_url('administrator/sizes/chooseBtn'); ?>" method="post">
             <table class="table table-striped text-center">
                 <thead class="table-dark">
                     <tr>
-                    <?php foreach($product_header as $header): ?>
+                    <?php foreach($sizes_header as $header): ?>
                         <th><?= $header; ?></th>
                     <?php endforeach; ?>
                     <?php if( isset($modify) ) { ?>
@@ -40,16 +33,10 @@
                 </thead>                
                 
                 <tbody id="table-body">
-                    <?php foreach($products as $row): ?>
+                    <?php foreach($sizes as $row): ?>
                     <tr>
                     <?php foreach($row as $key => $value): ?>
-                        <?php if( $key == "Imagen" ) { ?>
-                            <td class="align-middle">
-                                <img src="<?= base_url($value); ?>">
-                            </td>
-                        <?php } else { ?>
-                            <td class="align-middle"><?= $value; ?></td>
-                        <?php } ?>
+                        <td class="align-middle"><?= $value; ?></td>
                     <?php endforeach; ?>
                     
                     <?php if( isset($modify) ) { ?>
@@ -68,9 +55,6 @@
             
             </table>
         </form>
-        <?php } ?>
-        <?php if( isset($links) ) { ?>
-            <?= $links; ?>
         <?php } ?>
     </div>
 </div>

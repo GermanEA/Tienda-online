@@ -5,6 +5,7 @@
             $query = $this->db->select('producto.precio, producto.descripcion, producto.imagen, producto.codigo_producto, producto.id_tipo_producto')
                      ->from('producto')
                      ->where('id_tipo_producto', $id_tipo_producto)
+                     ->where('stock >', 0)
                      ->group_by('codigo_producto')
                      ->get();
 
@@ -19,7 +20,7 @@
             $query = $this->db->select('*')
                      ->from('producto')
                      ->where('codigo_producto', $codigo_producto)
-                    //  ->group_by('codigo_producto')
+                     ->where('stock >', 0)
                      ->get();
 
             if ( $query->num_rows() > 0 ) {
@@ -34,6 +35,7 @@
                      ->from('producto')
                      ->join('talla', 'producto.id_talla = talla.id_talla', 'inner')
                      ->where('id_tipo_producto', $id_tipo_producto)
+                     ->where('stock >', 0)
                      ->get();
 
             if ( $query->num_rows() > 0 ) {
@@ -76,6 +78,7 @@
                 $this->db->where_in('tipo_producto', $filtersTrue);
             }
 
+            $this->db->where('stock >', 0);
             $this->db->group_by('codigo_producto');
             $this->db->order_by('id_tipo_producto');
             $query = $this->db->get();
@@ -92,6 +95,7 @@
             $query = $this->db->select('producto.precio, producto.descripcion, producto.imagen, producto.codigo_producto, producto.id_tipo_producto')
                      ->from('producto')
                      ->like('descripcion', $words['words'])
+                     ->where('stock >', 0)
                      ->group_by('codigo_producto')
                      ->order_by('id_tipo_producto')
                      ->limit(10)

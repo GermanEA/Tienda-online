@@ -12,6 +12,7 @@ body {
 /* ------ BACKOFFICE ------ */
 .admin-body {
   background-color: #ddd;
+  height: 100vh;
 }
 
 .main-wrapper {
@@ -29,6 +30,8 @@ body {
       -ms-flex-align: start;
           align-items: flex-start;
   width: 100%;
+  overflow-x: hidden;
+  height: 100%;
   /*
         HEADER
     */
@@ -324,6 +327,12 @@ body {
   /*
                     END OF ORDER PRODUCT DETAIL PAGE
                 */
+  /*
+                  ERROR FILE PAGE
+                */
+  /*
+                    END OF ERROR FILE PAGE
+                */
 }
 
 .main-wrapper .contain-wrapper .content-wrapper .content-info .content-header {
@@ -396,6 +405,14 @@ body {
   width: 90px;
 }
 
+.main-wrapper .contain-wrapper .content-wrapper .content-info .content-table .table tbody td .form-number-user {
+  width: 140px;
+}
+
+.main-wrapper .contain-wrapper .content-wrapper .content-info .content-table .table tbody td .form-text-user {
+  width: 300px;
+}
+
 .main-wrapper .contain-wrapper .content-wrapper .content-info .content-table .table tbody td img {
   width: 30px;
   border: 1px solid #b10909;
@@ -422,6 +439,10 @@ body {
 
 .main-wrapper .contain-wrapper .content-wrapper .content-info .content-table .btn-wrapper {
   margin-top: 20px;
+}
+
+.main-wrapper .contain-wrapper .content-wrapper .content-info .content-table .btn-wrapper .btn-original:disabled {
+  background-color: #373737;
 }
 
 .main-wrapper .contain-wrapper .content-wrapper .content-info .content-table .pagination {
@@ -489,6 +510,38 @@ body {
   background-color: #373737;
 }
 
+.main-wrapper .contain-wrapper .content-wrapper .content-info .content-file-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+}
+
+.main-wrapper .contain-wrapper .content-wrapper .content-info .content-file-wrapper .error-title {
+  font-style: oblique;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.main-wrapper .contain-wrapper .content-wrapper .content-info .content-file-wrapper .file-properties {
+  padding: 15px;
+  background-color: #ddd;
+  margin: 15px 0;
+  border: 1px solid #b10909;
+  border-radius: 5px;
+  font-size: 0.9rem;
+}
+
 .main-wrapper .contain-wrapper .content-wrapper .modal-details {
   display: none;
   position: absolute;
@@ -521,6 +574,16 @@ body {
   color: #272727;
   text-decoration: none;
   cursor: pointer;
+}
+
+.main-wrapper .contain-wrapper .content-wrapper .modal-details .modal-details-content #modal-content-dynamic .modal-message-content {
+  padding: 25px 0;
+}
+
+.main-wrapper .contain-wrapper .content-wrapper .modal-details .modal-details-content #modal-content-dynamic .modal-message-content span:first-child {
+  font-size: 2rem;
+  color: #FFE400;
+  margin-right: 25px;
 }
 
 /* 

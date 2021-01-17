@@ -1,6 +1,7 @@
 <div class="card-deck">
 
-    <?php foreach($search as $row): ?>
+    <?php if(isset($search)) {
+    foreach($search as $row): ?>
         <div class="card-wrapper col-4">
             <div class="card-item">                
                 <img class="w-100" src="<?php echo base_url() . "/" . $row->imagen; ?>"   alt="<?php echo $row->descripcion; ?>">
@@ -12,19 +13,22 @@
                     <?php if( $row->tipo_producto == 'Camisetas' || $row->tipo_producto == 'Sudaderas' ) { ?>
                         <span>Tallas disponibles:</span>
                         <ul class="size-group">
-                        <?php foreach($size_shirt as $row_size): 
+
+                        <?php if(isset($size_shirt)) {
+                        foreach($size_shirt as $row_size): 
                             if($row->codigo_producto == $row_size->codigo_producto) { ?>
 
                                 <li class="size-group-item"><?php echo $row_size->codigo_talla; ?></li>                     
                                 
-                        <?php } endforeach; ?>
+                        <?php } endforeach; } ?>
 
-                        <?php foreach($size_sweetshirt as $row_size): 
+                        <?php if(isset($size_sweetshirt)) {
+                        foreach($size_sweetshirt as $row_size): 
                             if($row->codigo_producto == $row_size->codigo_producto) { ?>
 
                                 <li class="size-group-item"><?php echo $row_size->codigo_talla; ?></li>                     
                                 
-                        <?php } endforeach; ?>
+                        <?php } endforeach; } ?>
 
                         </ul>
                     <?php } else { ?>
@@ -39,6 +43,8 @@
                 </form>
             </div>
         </div>
-    <?php endforeach; ?>
+    <?php endforeach; } else { ?>
+        <div>No hay productos en el almacén en estos momentos.</div>
+    <?php } ?>
     
 </div>

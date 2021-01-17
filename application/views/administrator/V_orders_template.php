@@ -96,7 +96,7 @@
 
     <div class="modal-details-content">
         <span id="modal-close" class="close">&times;</span>
-        <div id="modal-content-dynamic">Modal</div>
+        <div id="modal-content-dynamic"></div>
     </div>
 
 </div>
