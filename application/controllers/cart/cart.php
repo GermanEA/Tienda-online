@@ -47,4 +47,20 @@ class Cart extends CI_Controller {
     public function showCartProduct() {
         $this->load->view('/cart/v_cart_modal');
     }
+
+    public function checkOut() {
+        $page_data['page_content'] = 'cart/v_cart_checkout';
+        
+        if( isset($this->cart) ) {
+            
+            if( $this->cart->total() >= 50 ) {
+                $page_data['gastos_envio'] = 0;
+            } else {
+                $page_data['gastos_envio'] = 10;
+            }
+
+        }
+		
+        $this->load->view('/layouts/main', $page_data);
+    }
 }

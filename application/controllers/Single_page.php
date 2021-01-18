@@ -87,6 +87,10 @@ class Single_page extends CI_Controller {
 				$page_data['error_reg'] = "El apellido es demasiado largo.";
 				$page_data['modal_open'] = true;
 				$this->loadViewsInitError($page_data);
+			} else if( !checkCif($data['cif-reg']) ) {
+				$page_data['error_reg'] = "El DNI/CIF/NIE no es válido.";
+				$page_data['modal_open'] = true;
+				$this->loadViewsInitError($page_data);			
 			} else if( preg_match('/\S+@\S+\.\S+/', $data['email-reg']) !=1 ) {
 				$page_data['error_reg'] = "El correo no es válido.";
 				$page_data['modal_open'] = true;
@@ -169,5 +173,46 @@ class Single_page extends CI_Controller {
 		delete_cookie('pass');		
 		$this->session->logged = false;
 		redirect(base_url(), 'location', 301);
+	}
+
+	public function isValidDni($dni) {
+		$control = 'TRWAGMYFPDXBNJZSQVHLCKET';
+		$number = substr($dni, 0, 8);
+		$letter = substr($dni, -1);
+		$remainder = $number % 23;
+        $letterControl = substr($control, $remainder, 1);
+        
+        if(strtoupper($letter) != $letterControl) {
+            return false;
+        } else {
+            return true;
+        }
+	}
+
+	public function isValidNie($nie) {
+		$control = 'TRWAGMYFPDXBNJZSQVHLCKET';
+		$number = substr($nie, 1, 7);
+        $letter = substr($nie, -1);
+        $letterFirst = substr($nie, 0, 1);
+        $controlCheck = array(
+            'X' => 0,
+            'Y' => 1,
+            'Z' => 2
+        );
+
+        foreach( $controlCheck as $key => $value ) {
+            if( strtoupper($letterFirst) == $key ) {
+                $number = $value . $number; 
+            }
+        }
+
+		$remainder = $number % 23;
+        $letterControl = substr($control, $remainder, 1);
+        
+        if( strtoupper($letter) != $letterControl ) {
+            return false;
+        } else {
+            return true;
+        }
 	}
 }

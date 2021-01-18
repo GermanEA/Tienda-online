@@ -2,6 +2,7 @@
 let form      = document.forms['register-form'];
 let fname     = form['name-reg'];
 let lname     = form['lastname-reg'];
+let cif       = form['cif-reg'];
 let email     = form['email-reg'];
 let pass      = form['pass-reg'];
 let passCheck = form['pass-reg-r'];
@@ -14,6 +15,7 @@ let btnReg    = document.getElementById('btn-reg');
 let allCheck  = {
   'name-reg':     false,
   'lastname-reg': false,
+  'cif-reg':      false,
   'email-reg':    false,
   'pass-reg':     false,
   'pass-reg-r':   false,
@@ -78,6 +80,42 @@ let checkName = (input) =>  {
 
 fname.addEventListener('keyup', function(){checkName(fname)}, false);
 lname.addEventListener('keyup', function(){checkName(lname)}, false);
+
+// Control de un formato de cif válido
+let checkCif = () => {
+  let patternDni = /^\d{8}[a-zA-Z]$/;
+  let patternCif = /^([ABCDEFGHJKLMNPQRSUVW])(\d{7})([0-9A-J])$/;
+  let patternNie = /^[xyzXYZ]\d{7,8}[a-zA-Z]$/;
+  let cifCheck = cif.value;
+  
+
+  if( cifCheck.match(patternDni) ) {
+    if( isValidDni(cifCheck) ) {
+      checked(cif);
+    } else {
+      unchecked(cif, "El DNI debe ser válido.");
+    }
+
+  } else if( cifCheck.match(patternCif) ) {
+    if( isValidCif(cifCheck) ) {
+      checked(cif);
+    } else {
+      unchecked(cif, "El CIF debe ser válido.");
+    }
+
+  } else if( cifCheck.match(patternNie) ) {
+    if( isValidNie(cifCheck) ) {
+      checked(cif);
+    } else {
+      unchecked(cif, "El NIE debe ser válido.");
+    }
+
+  } else {
+      unchecked(cif, "El DNI/CIF/NIE debe ser válido.");
+  }
+}
+
+cif.addEventListener('keyup', checkCif, false);
 
 // Control de un formato de email válido
 let checkEmail = () => {
@@ -168,5 +206,101 @@ let checkPhone = () => {
 
 phone.addEventListener('keyup', checkPhone, false);
 
+// Función para comprobar DNI
+function isValidDni(dni) {
+  let control = 'TRWAGMYFPDXBNJZSQVHLCKET';
+  let number = dni.substr(0, 8);
+  let letter = dni.substr(-1);
+  let remainder = number % 23;
+  let letterControl = control.substr(remainder, 1);
+
+  if( letter.toUpperCase() != letterControl) {
+    return false;
+  } else {
+    return true;
+  }
+}
+
+// Función para comprobar NIE
+function isValidNie(nie) {
+  let control = 'TRWAGMYFPDXBNJZSQVHLCKET';
+  let number = nie.substr(1, 7);
+  let letter = nie.substr(-1);
+  let letterFirst = nie.substr(0, 1);
+  let controlCheck = {
+    'X': 0,
+    'Y': 1,
+    'Z': 2
+  }
+
+  for (const key in controlCheck) {
+    if( letterFirst.toUpperCase() === key) {
+      number = '' + controlCheck[key] + number;
+    }
+  }
+  
+  remainder = number % 23;
+  letterControl = control.substr(remainder, 1);
+
+  if( letter.toUpperCase() != letterControl) {
+    return false;
+  } else {
+    return true;
+  }
+}
+
+/* https://jsfiddle.net/juglan/rexdzh6v/ */
+function isValidCif(cif) {
+	if (!cif || cif.length !== 9) {
+		return false;
+	}
+
+	var letters = ['J', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'];
+	var digits = cif.substr(1, cif.length - 2);
+	var letter = cif.substr(0, 1);
+	var control = cif.substr(cif.length - 1);
+	var sum = 0;
+  var i;
+	var digit;
+
+	if (!letter.match(/[A-Z]/)) {
+		return false;
+	}
+
+	for (i = 0; i < digits.length; ++i) {
+		digit = parseInt(digits[i]);
+
+		if (isNaN(digit)) {
+			return false;
+		}
+
+		if (i % 2 === 0) {
+			digit *= 2;
+			if (digit > 9) {
+				digit = parseInt(digit / 10) + (digit % 10);
+			}
+
+			sum += digit;
+		} else {
+			sum += digit;
+		}
+	}
+
+	sum %= 10;
+	if (sum !== 0) {
+		digit = 10 - sum;
+	} else {
+		digit = sum;
+	}
+
+	if (letter.match(/[ABEH]/)) {
+		return String(digit) === control;
+	}
+	if (letter.match(/[NPQRSW]/)) {
+		return letters[digit] === control;
+	}
+
+	return String(digit) === control || letters[digit] === control;
+}
 
 

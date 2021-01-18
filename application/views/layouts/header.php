@@ -64,7 +64,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <div class="form-group modal-close">
                                     <input type="text" id="name-reg" name="name-reg" class="form-control form-control-sm input-form modal-close" value="" placeholder="Nombre" />
 
-                                    <input type="text" id="lastname-reg" name="lastname-reg" class="form-control form-control-sm input-form modal-close" value="" placeholder="Apellido" /> 
+                                    <input type="text" id="lastname-reg" name="lastname-reg" class="form-control form-control-sm input-form modal-close" value="" placeholder="Apellido" />
+
+                                    <input type="text" id="cif-reg" name="cif-reg" class="form-control form-control-sm input-form modal-close" value="" placeholder="DNI/CIF/NIE" />
 
                                     <input type="email" id="email-reg" name="email-reg" class="form-control form-control-sm input-form modal-close" value="" placeholder="Correo electrónico" />
 
@@ -125,10 +127,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <?php } ?>
 
                 <div id="modal-close-cart" class="cart">
-                    <a id="cart" class="cart-link" href="<?php echo base_url('cart/cart/index')?>">
+                    <div id="cart" class="cart-link">
                         <i class="fas fa-shopping-cart"></i>
                         <div id="total-items"><?= $this->cart->total_items(); ?></div>
-                    </a>
+                    </div>
 
                     <div id="modal-cart-resume" class="modal-cart-resume"></div>
                 </div>

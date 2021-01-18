@@ -10,7 +10,8 @@ $white-color: #fff;
 $grey-light: #ececec;
 $black-color: #121212;
 
-$primary-font-family: 'Roboto', sans-serif;
+// $primary-font-family: 'Roboto', sans-serif;
+$primary-font-family: 'Open Sans', sans-serif;
 $secondary-font-family: 'Arimo', sans-serif;
 
 /* ------ MIXINS ------ */
@@ -246,10 +247,10 @@ body {
                                 &.wrong-pass {
                                     border: 2px solid red;
                                 }
-                            }
-        
-                            .input-form:focus {
-                                border: 1px solid $secondary-color;
+
+                                &:focus {
+                                    box-shadow: none;
+                                }
                             }
             
                             #pass, #phone-reg {
@@ -374,7 +375,7 @@ body {
     
                             .fas {
                                 font-size: 1.8rem;
-                                cursor: pointer;
+                                cursor: default;
                             }
         
                             #total-items {
@@ -395,6 +396,7 @@ body {
     
                         .modal-cart-resume {
                             display: none;
+                            // display: flex;
                             position: absolute;
                             width: 350px;
                             top: 51px;
@@ -402,7 +404,6 @@ body {
                             z-index: 99;
                             background-color: $white-color;
                             padding: 8px 10px;
-                            // display: flex;
                             flex-direction: column;
                             border: 1px solid $grey-light;
                             border-radius: 4px;
@@ -454,13 +455,25 @@ body {
                                 }
                             }
     
-                            .cart-total {
-                                @include flex( 100%, row, flex-end, center);
+                            .cart-total-wrapper {
+                                @include flex( 100%, row, space-between, center);
                                 font-size: 1rem;
                                 margin-top: 5px;
-    
-                                span:first-child{
-                                    margin-right: 10px;
+
+                                a{
+
+                                    .btn-buy-modal {
+                                        padding: 10px 15px;
+                                    }
+                                }
+
+                                .cart-total {
+                                    @include flex( auto, row, flex-end, center);
+
+                                    &span:first-child {
+                                        font-size: 0.8rem;
+                                        margin-right: 5px;
+                                    }
                                 }
                             }
                         }
@@ -974,17 +987,20 @@ body {
             
             h2 {
                 text-align: center;
+                margin: 0;
+                padding: 10px 0;
+                background-color: $red-color;
+                color: $white-color;
+                border-radius: 5px 5px 0 0;
             }
             
             .cart-wrapper{
                 background-color: white;
                 padding: 15px;
-                margin: 15px 0;
-    
-                .cart-title {
-                    font-size: 2rem;
-                    border-bottom: 1px solid $terciary-color;
-                }
+                margin-bottom: 15px;
+                border-radius: 0 0 5px 5px;
+                -webkit-box-shadow: 0px 15px 28px -22px $black-color;
+                box-shadow: 0px 15px 28px -22px $black-color;
     
                 .cart-empty {
                     padding: 10px 0;
@@ -992,6 +1008,10 @@ body {
                 }
     
                 .cart-form {
+
+                    &:first-child {
+                        border-top: 1px solid $terciary-color;
+                    }
                     
                     .cart-row{
                         @include flex( 100%, row, flex-start, flex-start);
@@ -1078,6 +1098,105 @@ body {
         }
         /*
             END OF CART DETAIL PAGE
+        */
+
+        /*
+            CHECKOUT PAGE
+        */
+        .container-checkout {
+            padding: 10px;
+            
+            h2 {
+                text-align: center;
+                margin: 0;
+                padding: 10px 0;
+                background-color: $red-color;
+                color: $white-color;
+                border-radius: 5px 5px 0 0;
+            }
+
+            .checkout-wrapper {
+                @include flex( 100%, row, flex-start, flex-start);                
+                background-color: $white-color;
+                padding: 15px;
+                border-radius: 0 0 5px 5px;
+
+                .checkout-empty {
+                    padding: 10px 0;
+                    border-bottom: 1px solid $terciary-color;
+                }
+
+                .wrapper-left, .wrapper-right {
+                    width: 50%;
+                    margin: 0 15px;
+                }
+
+                .data-wrapper, .cart-wrapper {
+                    padding: 15px 35px;
+                    border-radius: 5px;
+
+                    h3 {
+                        font-weight: 600;
+                        font-size: 1.2rem;
+                    }
+                }
+
+                .data-wrapper {
+                    border: 1px solid $grey-light;
+                }
+                
+                .cart-wrapper {
+                    background-color: $grey-light;
+
+                    .title-wrapper, .product-wrapper, .total-wrapper {
+                        @include flex( 100%, row, space-between, flex-start);
+                        margin-bottom: 15px;
+
+                        a {
+                            text-decoration: underline;
+                            color: $secondary-color;
+
+                            &:hover {
+                                color: $red-color;
+                            }
+                        }
+                    }
+
+                    .product-wrapper {
+                        color: $secondary-color;
+
+                        .details-wrapper {
+                            font-size: 0.9rem;
+                        }
+                    }
+
+                    .total-wrapper {
+                        border-top: 1px solid $terciary-color;
+                        padding-top: 10px;                        
+                        margin-bottom: 0;
+
+                        .title-wrapper {
+                            @include flex( auto, column, flex-start, flex-start);
+                            margin: 0;
+
+                            h3 {
+                                margin: 0;
+                            }
+
+                            span {
+                                font-size: 0.8rem;
+                            }
+                        }
+
+                        .total-num {
+                            font-weight: 600;
+                        }
+                    }
+                }
+            }
+        }
+        /*
+            ENF OF CHECKOUT PAGE
         */
     }
     /*

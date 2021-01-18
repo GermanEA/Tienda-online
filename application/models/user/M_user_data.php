@@ -25,6 +25,7 @@
             $data = array(
                 'nombre'       => $_POST['name-reg'],
                 'apellido'     => $_POST['lastname-reg'],
+                'cif'          => strtoupper($_POST['cif-reg']),
                 'pass'         => $_POST['pass-reg'],
                 'direccion'    => $_POST['address-reg'],
                 'codigo_postal'=> $_POST['postal-reg'],

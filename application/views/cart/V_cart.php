@@ -1,7 +1,6 @@
 <div class="container container-cart">
-    <h2 class="mb-4">TU CARRITO DE LA COMPRA</h2>
+    <h2>TU CARRITO DE LA COMPRA</h2>
     <div class="cart-wrapper">
-        <div class="cart-title">Cesta</div>
 
         <?php if( $this->cart->total_items() === 0) { ?>
             <div class="cart-empty">
@@ -49,9 +48,9 @@
 
             <?php if( $this->cart->total_items() != 0) { ?>
 
-            <div class="btn-buy-wrapper">
-                <button class="btn btn-original btn-buy">Ir a la caja</button>
-            </div>
+            <a href="<?= base_url('cart/cart/checkOut'); ?>" class="btn-buy-wrapper">
+                <button class="btn btn-original btn-buy">Ir a caja</button>
+            </a>
             
             <?php } ?>
 

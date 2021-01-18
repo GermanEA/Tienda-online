@@ -81,7 +81,7 @@ INSERT INTO talla VALUES (6, 'XXXL');
 
 
 INSERT INTO producto VALUES (1, 'DI-EP-DD', 'EP - Dónde dije digo...', NULL, 5, NULL, 0, 'public/assets/img/productos/DI-EP-DD.jpg', 2);
-INSERT INTO producto VALUES (2, 'DI-EP-VD', 'EP - Vayáis, dónde vayáis...', NULL, 5, NULL, 5, 'public/assets/img/productos/DI-EP-VD.jpg', 2);
+INSERT INTO producto VALUES (2, 'DI-EP-VD', 'EP - Vayáis dónde vayáis...', NULL, 5, NULL, 5, 'public/assets/img/productos/DI-EP-VD.jpg', 2);
 INSERT INTO producto VALUES (3, 'DI-LP-VD', 'LP - Se nos fue de las manos', NULL, 8, NULL, 5, 'public/assets/img/productos/DI-LP-SE.jpg', 2);
 
 INSERT INTO producto VALUES (4, 'GO-BL-EN', 'Gorra blanca Enseco', 0, 10.00, 'Azul', 5, 'public/assets/img/productos/GO-BL-EN.jpg', 5);
@@ -147,3 +147,7 @@ UPDATE venta SET total = 30 WHERE codigo_venta = 'AB348';
 ALTER TABLE producto ADD material VARCHAR(50) AFTER descripcion;
 
 UPDATE producto SET material = '100% Algodón' WHERE id_tipo_producto IN (3, 4, 5);
+
+ALTER TABLE usuario ADD cif VARCHAR(9) AFTER apellido;
+
+UPDATE usuario SET cif = '31123743M' WHERE id_usuario IN (1, 2, 3, 4);
