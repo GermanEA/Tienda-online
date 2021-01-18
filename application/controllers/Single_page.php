@@ -72,6 +72,11 @@ class Single_page extends CI_Controller {
 			//COMPROBAR QUE NO EXISTE EL USUARIO EN LA BD
 			$user = $this->M_user_data->getUsers('email-reg');
 			$data = $this->input->post();
+
+			$pattern_dni = '/^\d{8}[a-zA-Z]$/';
+  			$pattern_cif = '/^([ABCDEFGHJKLMNPQRSUVW])(\d{7})([0-9A-J])$/';
+			$pattern_nie = '/^[xyzXYZ]\d{7,8}[a-zA-Z]$/';
+			$cif = $data['cif-reg'];
 			
 			if( !empty($user) ){
 				$page_data['error_reg'] = "Lo sentimos ya existe un usuario asociado a ese correo.";
@@ -87,10 +92,18 @@ class Single_page extends CI_Controller {
 				$page_data['error_reg'] = "El apellido es demasiado largo.";
 				$page_data['modal_open'] = true;
 				$this->loadViewsInitError($page_data);
-			} else if( !checkCif($data['cif-reg']) ) {
-				$page_data['error_reg'] = "El DNI/CIF/NIE no es válido.";
+			} else if( preg_match($pattern_dni, $cif) == 1 && !$this->isValidDni($cif) ) {
+				$page_data['error_reg'] = "El DNI no es válido.";
 				$page_data['modal_open'] = true;
-				$this->loadViewsInitError($page_data);			
+				$this->loadViewsInitError($page_data);
+			} else if( preg_match($pattern_nie, $cif) == 1 && !$this->isValidNie($cif) ) {
+				$page_data['error_reg'] = "El NIE no es válido.";
+				$page_data['modal_open'] = true;
+				$this->loadViewsInitError($page_data);
+			} else if( preg_match($pattern_cif, $cif) == 1 && !$this->isValidCif($cif) ) {
+				$page_data['error_reg'] = "El CIF no es válido.";
+				$page_data['modal_open'] = true;
+				$this->loadViewsInitError($page_data);
 			} else if( preg_match('/\S+@\S+\.\S+/', $data['email-reg']) !=1 ) {
 				$page_data['error_reg'] = "El correo no es válido.";
 				$page_data['modal_open'] = true;
@@ -99,7 +112,7 @@ class Single_page extends CI_Controller {
 				$page_data['error_reg'] = "La contraseña no es válida.";
 				$page_data['modal_open'] = true;
 				$this->loadViewsInitError($page_data);
-			} else if( $data['pass-reg'] =! $data['pass-reg-r'] ) {
+			} else if( $data['pass-reg'] != $data['pass-reg-r'] ) {
 				$page_data['error_reg'] = "Las contraseñas no coinciden.";
 				$page_data['modal_open'] = true;
 				$this->loadViewsInitError($page_data);
@@ -214,5 +227,71 @@ class Single_page extends CI_Controller {
         } else {
             return true;
         }
+	}
+
+	public function isValidCif($cif) {
+		$number = substr($cif, 1, 7);
+        $letter = substr($cif, -1);
+        $letter_first = substr($cif, 0, 1);
+        $control_check = array(
+			0 => 'J',
+			1 => 'A',
+			2 => 'B',
+			3 => 'C',
+			4 => 'D',
+			5 => 'E',
+			6 => 'F',
+			7 => 'G',
+			8 => 'H',
+			9 => 'I'
+		);
+
+        $array = str_split($number);
+        $sum_par = 0;
+        $sum_impar = 0;
+
+        foreach( $array as $key => $value ) {
+            if( ($key % 2) == 0 ) {
+                $array_impar = str_split($value * 2);
+
+                foreach( $array_impar as $num ) {
+                    $sum_impar += $num;
+                }
+            } else {
+                $sum_par += $value;
+            }
+        }
+
+        $sum_total = $sum_par + $sum_impar;
+        $digito_unidades = substr($sum_total, -1);
+        $dato_final = 0;
+        $dato_final_letra = '';
+
+        if( $digito_unidades != 0 ) {
+            $dato_final = 10 - $digito_unidades;
+        }
+
+        foreach( $control_check as $key => $value ) {
+            if( $dato_final == $key ) {
+                $dato_final_letra = $value;
+            }
+        }
+
+        $result = false;
+        if( preg_match('/[ABEH]/', $letter_first) == 1 ) {
+            if( $dato_final == $letter ) {
+                $result = true;
+            }
+        } else if( preg_match('/[NPQRSW]/', $letter_first) == 1 ) {
+            if( $dato_final_letra == $letter ) {
+                $result = true;
+            }
+        } else {
+            if( $dato_final_letra == $letter || $dato_final == $letter ) {
+                $result = true;
+            }
+        }
+
+        return $result;    
 	}
 }
