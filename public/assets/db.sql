@@ -2,16 +2,22 @@ DROP DATABASE IF EXISTS tienda_enseco;
 CREATE DATABASE IF NOT EXISTS tienda_enseco;
 USE tienda_enseco;
 
+CREATE TABLE IF NOT EXISTS tipo_usuario(
+	id_tipo_usuario INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50)
+);
+
 CREATE TABLE IF NOT EXISTS usuario(
 	id_usuario INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(50),
-    apellido VARCHAR(50),    
+    apellido VARCHAR(50),  
     pass VARCHAR(50),
     direccion VARCHAR(100),
     codigo_postal VARCHAR(5),
     telefono INT(9),
     email VARCHAR(100),
-    tipo INT NOT NULL
+    id_tipo_usuario INT NOT NULL,
+    CONSTRAINT fk_tipo_u FOREIGN KEY (id_tipo_usuario) REFERENCES tipo_usuario(id_tipo_usuario) ON DELETE NO ACTION ON UPDATE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS tipo_producto(
@@ -38,15 +44,45 @@ CREATE TABLE IF NOT EXISTS producto(
     CONSTRAINT fk_id_t FOREIGN KEY (id_talla) REFERENCES talla(id_talla) ON DELETE NO ACTION ON UPDATE CASCADE
 );
 
+CREATE TABLE IF NOT EXISTS factura(
+    id_factura INT AUTO_INCREMENT PRIMARY KEY,
+    codigo_factura VARCHAR(15),
+    nombre VARCHAR(50),
+    apellido VARCHAR(50),
+    cif VARCHAR(9),
+    direccion VARCHAR(100),
+    codigo_postal VARCHAR(5),
+    localidad VARCHAR(50),
+    telefono INT(9),
+    email VARCHAR(100)
+);
+
+CREATE TABLE IF NOT EXISTS envio(
+    id_envio INT AUTO_INCREMENT PRIMARY KEY,
+    codigo_envio VARCHAR(15),
+    nombre VARCHAR(50),
+    apellido VARCHAR(50),
+    cif VARCHAR(9),
+    direccion VARCHAR(100),
+    codigo_postal VARCHAR(5),
+    localidad VARCHAR(50),
+    telefono INT(9),
+    email VARCHAR(100),
+    id_factura INT,
+    CONSTRAINT fk_id_factura_f FOREIGN KEY (id_factura) REFERENCES factura(id_factura) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
 CREATE TABLE IF NOT EXISTS venta(
 	id_venta INT AUTO_INCREMENT PRIMARY KEY,
 	codigo_venta VARCHAR(50),
-    id_usuario INT,
     fecha_pedido DATE,
     fecha_confirmacion DATE,
     fecha_entrega DATE,
+    id_usuario INT,
+    id_envio INT,
     enviado VARCHAR(7) CHECK(enviado IN('SI', 'NO', 'ANULADO')),
-    CONSTRAINT fk_id_usuario_v FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario) ON DELETE CASCADE ON UPDATE CASCADE
+    CONSTRAINT fk_id_usuario_v FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT fk_id_envio_v FOREIGN KEY (id_envio) REFERENCES envio(id_envio) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS venta_detalle(
@@ -60,10 +96,14 @@ CREATE TABLE IF NOT EXISTS venta_detalle(
     CONSTRAINT fk_id_producto_v FOREIGN KEY (id_producto) REFERENCES producto(id_producto) ON DELETE NO ACTION ON UPDATE CASCADE
 );
 
-INSERT INTO usuario VALUES(0, 'Selu', 'Rodríguez', '1234', '', '', 0, 'ADMIN@ADMIN.ES', 0),
-	(0, 'Cliente', 'Cliente', '1234', 'Dirección cliente', '11401', 956157489, 'cliente@cliente.com', 1),
-    (0, 'Proveedor', 'Proveedor', '', 'Dirección Proveedor', '11406', 856157489, 'proveedor@proveedor.com', 2),
-    (0, 'Germán', 'Estrade', '1234', 'Diego Fernandez Herrera', '11401', 658851367, 'nox_ger@hotmail.com', 1);
+INSERT INTO tipo_usuario VALUES(1, 'Administrador'),
+    (2, 'Cliente'),
+    (3, 'Anonimo');
+
+INSERT INTO usuario VALUES(0, 'Selu', 'Rodríguez', '1234', '', '', 0, 'ADMIN@ADMIN.ES', 1),
+	(0, 'Cliente', 'Cliente', '1234', 'Dirección cliente', '11401', 956157489, 'cliente@cliente.com', 2),
+    (0, 'Anonimo', 'Anonimo', '', 'Dirección Anonimo', '11406', 856157489, 'anonimo@anonimo.com', 3),
+    (0, 'Germán', 'Estrade', '1234', 'Diego Fernandez Herrera', '11401', 658851367, 'nox_ger@hotmail.com', 2);
 
 INSERT INTO tipo_producto VALUES ('', 'Packs');
 INSERT INTO tipo_producto VALUES ('', 'Discos');
@@ -84,11 +124,11 @@ INSERT INTO producto VALUES (1, 'DI-EP-DD', 'EP - Dónde dije digo...', NULL, 5,
 INSERT INTO producto VALUES (2, 'DI-EP-VD', 'EP - Vayáis dónde vayáis...', NULL, 5, NULL, 5, 'public/assets/img/productos/DI-EP-VD.jpg', 2);
 INSERT INTO producto VALUES (3, 'DI-LP-VD', 'LP - Se nos fue de las manos', NULL, 8, NULL, 5, 'public/assets/img/productos/DI-LP-SE.jpg', 2);
 
-INSERT INTO producto VALUES (4, 'GO-BL-EN', 'Gorra blanca Enseco', 0, 10.00, 'Azul', 5, 'public/assets/img/productos/GO-BL-EN.jpg', 5);
-INSERT INTO producto VALUES (5, 'GO-BL-HE', 'Gorra blanca Héroes', 0, 10.00, 'Azul', 5, 'public/assets/img/productos/GO-BL-HE.jpg', 5);
-INSERT INTO producto VALUES (6, 'GO-NE-BO', 'Gorra negra Bocaseca', 0, 10.00, 'Azul', 5, 'public/assets/img/productos/GO-NE-BO.jpg', 5);
-INSERT INTO producto VALUES (7, 'GO-NE-EN', 'Gorra negra Enseco', 0, 10.00, 'Azul', 5, 'public/assets/img/productos/GO-NE-EN.jpg', 5);
-INSERT INTO producto VALUES (8, 'GO-NE-HE', 'Gorra negra Héroes', 0, 10.00, 'Azul', 5, 'public/assets/img/productos/GO-NE-HE.jpg', 5);
+INSERT INTO producto VALUES (4, 'GO-BL-EN', 'Gorra blanca Enseco', NULL, 10.00, 'Azul', 5, 'public/assets/img/productos/GO-BL-EN.jpg', 5);
+INSERT INTO producto VALUES (5, 'GO-BL-HE', 'Gorra blanca Héroes', NULL, 10.00, 'Azul', 5, 'public/assets/img/productos/GO-BL-HE.jpg', 5);
+INSERT INTO producto VALUES (6, 'GO-NE-BO', 'Gorra negra Bocaseca', NULL, 10.00, 'Azul', 5, 'public/assets/img/productos/GO-NE-BO.jpg', 5);
+INSERT INTO producto VALUES (7, 'GO-NE-EN', 'Gorra negra Enseco', NULL, 10.00, 'Azul', 5, 'public/assets/img/productos/GO-NE-EN.jpg', 5);
+INSERT INTO producto VALUES (8, 'GO-NE-HE', 'Gorra negra Héroes', NULL, 10.00, 'Azul', 5, 'public/assets/img/productos/GO-NE-HE.jpg', 5);
 
 INSERT INTO producto VALUES (9, 'CA-AZ-HE', 'Camiseta azul Héroes', 3, 10.00, 'Azul', 5, 'public/assets/img/productos/CA-AZ-HE.jpg', 3);
 INSERT INTO producto VALUES (10, 'CA-GR-HE', 'Camiseta gris Héroes', 3, 10.00, 'Gris', 5, 'public/assets/img/productos/CA-GR-HE.jpg', 3);
@@ -123,31 +163,17 @@ INSERT INTO producto VALUES ('', 'SU-MO-EN', 'Sudadera morada Enseco', 1, 10.00,
 INSERT INTO producto VALUES ('', 'SU-NE-EN', 'Sudadera negra Enseco', 5, 10.00, 'Negro', 5, 'public/assets/img/productos/SU-NE-EN.jpg', 4);
 INSERT INTO producto VALUES ('', 'SU-RO-HE', 'Sudadera roja Héroes', 4, 10.00, 'Rojo', 5, 'public/assets/img/productos/SU-RO-HE.jpg', 4);
 
-INSERT INTO venta VALUES(1, 'AB345', 4, '2020-06-05', '2020-06-05', '', 'Si');
-INSERT INTO venta VALUES(2, 'AB346', 4, '2020-06-05', '2020-06-05', '2020-06-10', 'No');
-INSERT INTO venta VALUES(3, 'AB347', 4, '2020-07-05', '2020-07-05', '2020-06-10', 'Si');
-INSERT INTO venta VALUES(4, 'AB348', 3, '2020-08-05', '2020-08-05', '', 'No');
-
-INSERT INTO venta_detalle VALUES (1, 1, 9, 1, 10, 10);
-INSERT INTO venta_detalle VALUES (2, 1, 10, 2, 10, 20);
-INSERT INTO venta_detalle VALUES (3, 2, 12, 1, 10, 10);
-INSERT INTO venta_detalle VALUES (4, 2, 14, 2, 10, 20);
-INSERT INTO venta_detalle VALUES (5, 3, 19, 1, 10, 10);
-INSERT INTO venta_detalle VALUES (6, 3, 5, 2, 10, 20);
-INSERT INTO venta_detalle VALUES (7, 4, 18, 1, 10, 10);
-INSERT INTO venta_detalle VALUES (8, 4, 13, 2, 10, 20);
-
 ALTER TABLE venta ADD total DECIMAL(12, 2);
-
-UPDATE venta SET total = 30 WHERE codigo_venta = 'AB345';
-UPDATE venta SET total = 30 WHERE codigo_venta = 'AB346';
-UPDATE venta SET total = 30 WHERE codigo_venta = 'AB347';
-UPDATE venta SET total = 30 WHERE codigo_venta = 'AB348';
 
 ALTER TABLE producto ADD material VARCHAR(50) AFTER descripcion;
 
-UPDATE producto SET material = '100% Algodón' WHERE id_tipo_producto IN (3, 4, 5);
-
 ALTER TABLE usuario ADD cif VARCHAR(9) AFTER apellido;
 
+ALTER TABLE usuario ADD localidad VARCHAR(50) AFTER codigo_postal;
+
+UPDATE producto SET material = '100% Algodón' WHERE id_tipo_producto IN (3, 4, 5);
+
 UPDATE usuario SET cif = '31123743M' WHERE id_usuario IN (1, 2, 3, 4);
+
+UPDATE usuario SET localidad = 'Jerez de la Frontera' WHERE id_usuario IN (1, 2, 3, 4);
+

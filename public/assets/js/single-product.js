@@ -95,7 +95,8 @@ function addCartPost() {
         "price": productPrice,
         "name": productName,
         "size": sizeRadio,
-        "image": productImage
+        "image": productImage,
+        "id-producto": btnAddCart.value
     };
 
     let string = "";

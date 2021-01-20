@@ -44,7 +44,7 @@
                         <div id="minus">-</div>
                         <input type="number" id="quantity" name="qty" value="1" min="1" pattern=[0-9]*>
                         <div id="plus">+</div>
-                        <button id="btn-cart-single" type="button" class="btn btn-original" >Añadir al carrito</button>
+                        <button id="btn-cart-single" type="button" class="btn btn-original" value="<?= $product[0]->id_producto; ?>" name="id-producto">Añadir al carrito</button>
                     </div>
                 </div>
             </div>

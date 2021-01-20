@@ -21,20 +21,22 @@
         }
 
         public function insertUser() {
+            $data = $this->input->post();
 
-            $data = array(
-                'nombre'       => $_POST['name-reg'],
-                'apellido'     => $_POST['lastname-reg'],
-                'cif'          => strtoupper($_POST['cif-reg']),
-                'pass'         => $_POST['pass-reg'],
-                'direccion'    => $_POST['address-reg'],
-                'codigo_postal'=> $_POST['postal-reg'],
-                'telefono'     => $_POST['phone-reg'],
-                'email'        => $_POST['email-reg'],
+            $data_insert = array(
+                'nombre'       => $data['name-reg'],
+                'apellido'     => $data['lastname-reg'],
+                'cif'          => strtoupper($data['cif-reg']),
+                'pass'         => $data['pass-reg'],
+                'direccion'    => $data['address-reg'],
+                'codigo_postal'=> $data['postal-reg'],
+                'localidad'    => $data['city-reg'],
+                'telefono'     => $data['phone-reg'],
+                'email'        => $data['email-reg'],
                 'tipo'         => 1
             );
             
-            $this->db->insert('usuario', $data);
+            $this->db->insert('usuario', $data_insert);
         }
 
         public function updateUser($data, $id_usuario) {

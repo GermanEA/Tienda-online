@@ -46,7 +46,7 @@
                 </div>
                 <div class="btn-change-wrapper card-body">
                     <button type="submit" class="btn btn-original">Confirmar</button>
-                    <button type="button" class="btn btn-original" onclick="javascript:window.history.go(-1);">Regresar</button>
+                    <button type="button" class="btn btn-original" onclick="location.href = '<?= base_url('user/user_data'); ?>';">Regresar</button>
                 </div>
             </div>
         </form>

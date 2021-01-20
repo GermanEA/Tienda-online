@@ -116,16 +116,20 @@ class Single_page extends CI_Controller {
 				$page_data['error_reg'] = "Las contraseñas no coinciden.";
 				$page_data['modal_open'] = true;
 				$this->loadViewsInitError($page_data);
-			} else if( strlen($data['address-reg']) > 50 ) {
-				$page_data['error_reg'] = "La dirección es demasiado larga.";
+			} else if( strlen($data['address-reg']) < 1 || strlen($data['address-reg']) > 50 ) {
+				$page_data['error_reg'] = "La dirección no es válida.";
 				$page_data['modal_open'] = true;
 				$this->loadViewsInitError($page_data);
 			} else if( preg_match('/^[0-9]{5}$/', $data['postal-reg']) !=1 ) {
 				$page_data['error_reg'] = "El código postal no es válido.";
 				$page_data['modal_open'] = true;
 				$this->loadViewsInitError($page_data);
+			}  else if( strlen($data['city-reg']) < 1 || strlen($data['city-reg']) > 50 ) {
+				$page_data['error_reg'] = "La localidad no es válida.";
+				$page_data['modal_open'] = true;
+				$this->loadViewsInitError($page_data);
 			} else if( preg_match('/^[0-9]{9}$/', $data['phone-reg']) !=1 ) {
-				$page_data['error_reg'] = "El código postal no es válido.";
+				$page_data['error_reg'] = "El teléfono no es válido.";
 				$page_data['modal_open'] = true;
 				$this->loadViewsInitError($page_data);
 			} else {

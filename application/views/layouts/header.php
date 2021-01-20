@@ -78,6 +78,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                                     <input type="text" id="postal-reg" name="postal-reg" class="form-control form-control-sm input-form modal-close" value="" placeholder="Código postal" />
 
+                                    <input type="text" id="city-reg" name="city-reg" class="form-control form-control-sm input-form modal-close" value="" placeholder="Localidad" />
+
                                     <input type="text" id="phone-reg" name="phone-reg" class="form-control form-control-sm input-form modal-close" value="" placeholder="Teléfono" />
 
                                     <input type="submit" id="btn-reg" value="REGISTRARSE" name="btn-reg" class="submit-button modal-close btn-original mb-1" disabled />

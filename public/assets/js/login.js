@@ -8,6 +8,7 @@ let pass      = form['pass-reg'];
 let passCheck = form['pass-reg-r'];
 let address   = form['address-reg'];
 let postal    = form['postal-reg'];
+let city      = form['city-reg'];
 let phone     = form['phone-reg'];
 let passOneOk = false;
 let alertForm = document.getElementById('alert-form');
@@ -21,6 +22,7 @@ let allCheck  = {
   'pass-reg-r':   false,
   'address-reg':  false,
   'postal-reg':   false,
+  'city-reg':     false,
   'phone-reg':    false
 };
 
@@ -192,6 +194,19 @@ let checkPostal = () => {
 }
 
 postal.addEventListener('keyup', checkPostal, false);
+
+// Comprobar que la localidad es correcta
+let checkCity = () => {
+  let pattern = /^[a-zA-Z0-9!"#$%&'()*+,-.\/:;<=>?\\@[\]^_`{|}~ºª\s]{1,50}$/;
+
+  if( city.value.match(pattern) ){
+    checked(city);
+  } else {
+    unchecked(city, "La localidad no puede contener más de 50 caracteres.");
+  }
+}
+
+city.addEventListener('keyup', checkCity, false);
 
 // Comprobar el formato del teléfono
 let checkPhone = () => {

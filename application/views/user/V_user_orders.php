@@ -40,7 +40,7 @@
         
         <h2>No has realizado ningún pedido.</h2>
 
-        <button type="button" class="btn btn-original" onclick="javascript:window.history.go(-1);">Regresar</button>
+        <button type="button" class="btn btn-original" onclick="location.href = '<?= base_url('user/user_data'); ?>';">Regresar</button>
 
     <?php }; ?>
 </div>

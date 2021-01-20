@@ -28,7 +28,12 @@
                 <button class="btn btn-original btn-buy-modal">Ir al carrito</button>
             </a>
             <div class="cart-total">
-                <span>Total (<?= $this->cart->total_items(); ?> productos): </span>                    
+                <span>Total (<?php if( $this->cart->total_items() <= 1 ) {
+                        echo $this->cart->total_items() . ' producto';
+                    } else {
+                        echo $this->cart->total_items() . ' productos'; 
+                    } ?>):
+                </span>                    
                 <span>
                     <strong><?= number_format($this->cart->total(), 2, ',', '.'); ?>€</strong>
                 </span>
