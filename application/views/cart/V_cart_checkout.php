@@ -1,6 +1,6 @@
 <div class="container container-checkout">
     <h2>CAJA</h2>
-    <form action="<?= base_url('/cart/cart/buyNow'); ?>" method="post" onsubmit="return validateForm()" name="formShop">
+    <form action="<?= base_url('/cart/cart/buyNow'); ?>" method="post" name="formShop">
         <div class="checkout-wrapper">
             
             <?php if( $this->cart->total_items() === 0) { ?>
@@ -34,15 +34,15 @@
 
                                     <?php } else { ?>
 
-                                        <input type="text" class="form-control" name="cif" placeholder="Empresa - NIF / CIF (opcional)">
+                                        <input type="text" class="form-control" name="cif" placeholder="DNI / NIF / CIF" required>
                                         <div>
-                                            <input type="text" class="form-control" name="name" placeholder="Nombre">
-                                            <input type="text" class="form-control" name="lname" placeholder="Apellidos">
+                                            <input type="text" class="form-control" name="name" placeholder="Nombre" required>
+                                            <input type="text" class="form-control" name="lname" placeholder="Apellidos" required>
                                         </div>
-                                        <input type="text" class="form-control" name="address" placeholder="Calle y Nº">
+                                        <input type="text" class="form-control" name="address" placeholder="Calle y Nº" required>
                                         <div>
-                                            <input type="text" class="form-control" name="postal" placeholder="Código postal">
-                                            <input type="text" class="form-control" name="city" placeholder="Localidad">
+                                            <input type="text" class="form-control" name="postal" placeholder="Código postal" required>
+                                            <input type="text" class="form-control" name="city" placeholder="Localidad" required>
                                         </div>     
 
                                     <?php } ?>
@@ -63,7 +63,7 @@
                                     <h3>Dirección de envío</h3>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="cif-other" placeholder="Empresa - NIF / CIF (opcional)">
+                                    <input type="text" class="form-control" name="cif-other" placeholder="DNI / NIF / CIF">
                                     <div>
                                         <input type="text" class="form-control" name="name-other" placeholder="Nombre">
                                         <input type="text" class="form-control" name="lname-other" placeholder="Apellidos">
@@ -90,7 +90,7 @@
 
                                 <?php } else { ?>
                                     
-                                    <input type="email" class="form-control" name="email" placeholder="Dirección e-mail">
+                                    <input type="email" class="form-control" name="email" placeholder="Dirección e-mail" required>
                                     <input type="text" class="form-control" name="phone" placeholder="Número de teléfono (opcional)">
 
                                 <?php } ?>
@@ -158,6 +158,13 @@
                                 </div>
                             </div>
                         </div>
+                        <?php if( isset( $error_checkout ) ) { ?>
+                        <div class="data-wrapper">
+                            <div class="inside-wrapper">
+                                <span id="error-checkout" class="text-danger"><?php echo $error_checkout ?></span>
+                            </div>
+                        </div>                            
+                        <?php } ?>
                     </div>                
                 </div>
 

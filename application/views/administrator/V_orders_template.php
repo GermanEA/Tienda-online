@@ -14,20 +14,23 @@
     <?php if( isset($search) ) { ?>
         <div class="search-wrapper">
             <label for="search">Buscar:</label>
-            <input id="search-bar" type="text" class="form-control form-search" name="search">
+            <input id="search-bar" type="text" class="form-control form-search" name="search" placeholder="Inserta una factura">
         </div>
     <?php } ?>
 
     <?php if( isset($search_date) ) { ?>
         <div class="search-wrapper">
-            <label for="search-date-start">Fecha inicio:</label>
-            <input id="search-date-start" type="date" class="form-control form-search" name="search-date-start">
-            <label for="search-date-end">Fecha final:</label>
-            <input id="search-date-end" type="date" class="form-control form-search" name="search-date-end">
+            <form action="<?= base_url('administrator/dashboard/searchAjaxDate'); ?>" method="post">
+                <label for="search-date-start">Fecha inicio:</label>
+                <input id="search-date-start" type="date" class="form-control form-search" name="search-date-start" required>
+                <label for="search-date-end">Fecha final:</label>
+                <input id="search-date-end" type="date" class="form-control form-search" name="search-date-end" required>
+                <button type="submit" class="btn btn-original">Buscar</button>
+            </form>
         </div>
     <?php } ?>
 
-    <div class="content-table">
+    <div id="content-body" class="content-table">
         <?php if(!isset($orders) || $orders === NULL ) { ?>
             <div>No hay pedidos para mostrar.</div>
         <?php } else { ?>
@@ -88,7 +91,9 @@
             </table>
         </form>
         <?php } ?>
-
+        <?php if( isset($links) ) { ?>
+            <?= $links; ?>
+        <?php } ?>
     </div>
 </div>
 

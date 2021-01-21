@@ -59,7 +59,7 @@
             }
         }
 
-        public function getOrderAjaxWords($words, $limit) {
+        public function getProductAjaxWords($words, $limit, $start) {
 
             $select = 'p.id_producto AS ID, p.codigo_producto AS Código producto, p.descripcion AS Descripción, p.material as Material, t.codigo_talla AS Talla, p.precio AS Precio, p.color AS color, p.stock AS Stock, p.imagen AS Imagen, tp.tipo_producto';
 
@@ -69,7 +69,7 @@
                      ->join('talla AS t', 'p.id_talla = t.id_talla', 'left')
                      ->like('p.descripcion', $words['words'])
                      ->order_by('p.id_producto', 'ASC')
-                     ->limit($limit)
+                     ->limit($limit, $start)
                      ->get();
 
             if ( $query->num_rows() > 0 ) {

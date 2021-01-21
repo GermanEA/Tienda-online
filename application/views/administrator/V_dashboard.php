@@ -90,8 +90,8 @@
                         <i class="fas fa-euro-sign"></i>
                         </span>
                     </li>
-                    <li class="sub-item <?= ($this->uri->segment(3)=='')?'is-active':''?>">
-                        <a href="<?= base_url('/administrator/dashboard'); ?>">
+                    <li class="sub-item <?= ($this->uri->segment(3)=='' || $this->uri->segment(3)=='showAllOrders')?'is-active':''?>">
+                        <a href="<?= base_url('/administrator/dashboard/'); ?>">
                             <span class="icon">
                                 <i class="fas fa-pencil-alt"></i>
                             </span>

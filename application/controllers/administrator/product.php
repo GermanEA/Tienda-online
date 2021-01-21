@@ -8,7 +8,7 @@ class Product extends CI_Controller {
     
 		$this->load->model('dashboard/M_dashboard_product');
         $this->load->library('pagination');
-        $this->load->helper('form');
+        // $this->load->helper('form');
 	}
 
 	public function index()	{
@@ -51,11 +51,31 @@ class Product extends CI_Controller {
     }
 
     public function searchAjax() {
-        $postData = $this->input->post();
+        if( !empty( $_POST ) ) {
+			$postData = $this->input->post();
+			$this->session->postDataProduct = $postData;
+		} else {
+			$postData = $this->session->postDataProduct;
+		}
 
-        $limit_result = 15;
+        /* CONFIGURANDO LA PAGINACIÓN */
+        $limit_per_page = 15;
+        $page = ($this->uri->segment(4)) ? ($this->uri->segment(4) - 1) : 0;
+		$total_rows = $this->M_dashboard_product->countAllProducts();
 
-		$page_data['products'] = $this->M_dashboard_product->getOrderAjaxWords($postData, $limit_result);
+        if( $total_rows > 0 ) {
+            $config = array(
+                'base_url' => base_url('administrator/product/searchAjax'),
+                'total_rows' => $total_rows,
+                'per_page' => $limit_per_page,
+            );
+
+            $this->pagination->initialize($config);
+            // $page_data['links'] = $this->pagination->create_links();
+        }
+		/* FIN PAGINACIÓN */
+
+		$page_data['products'] = $this->M_dashboard_product->getProductAjaxWords($postData, $limit_per_page, $page*$limit_per_page);
 		$page_data['modify'] = 'Modificar';
 		$page_data['cancel'] = 'Eliminar';
 		$page_data['custom_js'] = array(

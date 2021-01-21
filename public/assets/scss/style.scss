@@ -736,7 +736,7 @@ body {
         */
         .container-product-single {
             @include flex( 100%, row, flex-start, flex-start);
-            padding-top: 25px;
+            padding: 25px 0;
     
             .image-wrapper {
                 margin-right: 25px;
@@ -1236,6 +1236,10 @@ body {
                                     margin-bottom: none;
                                 }
                             }
+                        }
+
+                        &.error-checkout {
+                            text-align: center;
                         }
                     }
                     

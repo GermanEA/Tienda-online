@@ -957,7 +957,7 @@ body {
       -ms-flex-align: start;
           align-items: flex-start;
   width: 100%;
-  padding-top: 25px;
+  padding: 25px 0;
 }
 
 .main-wrapper .content-wrapper .container-product-single .image-wrapper {
@@ -1594,6 +1594,10 @@ body {
 
 .main-wrapper .content-wrapper .container-checkout .checkout-wrapper .order-wrapper .data-wrapper .form-group .form-control:last-child {
   margin-bottom: none;
+}
+
+.main-wrapper .content-wrapper .container-checkout .checkout-wrapper .order-wrapper .data-wrapper.error-checkout {
+  text-align: center;
 }
 
 .main-wrapper .content-wrapper .container-checkout .checkout-wrapper .order-wrapper .cart-wrapper {

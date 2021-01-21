@@ -1,5 +1,5 @@
 let searchTable = document.getElementById('search-bar');
-let tableBody = document.getElementById('table-body');
+let tableBody = document.getElementById('content-body');
 
 searchTable.addEventListener('keyup', searchPostAjax, false);
 

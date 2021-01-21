@@ -51,11 +51,31 @@ class Users extends CI_Controller {
     }
 
     public function searchAjax() {
-        $postData = $this->input->post();
+        if( !empty( $_POST ) ) {
+			$postData = $this->input->post();
+			$this->session->postDataUser = $postData;
+		} else {
+			$postData = $this->session->postDataUser;
+        }
+        
+        /* CONFIGURANDO LA PAGINACIÓN */
+        $limit_per_page = 15;
+        $page = ($this->uri->segment(4)) ? ($this->uri->segment(4) - 1) : 0;
+		$total_rows = $this->M_dashboard_users->countAllUsers();
 
-        $limit_result = 15;
+        if( $total_rows > 0 ) {
+            $config = array(
+                'base_url' => base_url('administrator/users/searchAjax'),
+                'total_rows' => $total_rows,
+                'per_page' => $limit_per_page,
+            );
 
-		$page_data['users'] = $this->M_dashboard_users->getUsersAjaxWords($postData, $limit_result);
+            $this->pagination->initialize($config);
+            // $page_data['links'] = $this->pagination->create_links();
+        }
+		/* FIN PAGINACIÓN */
+
+		$page_data['users'] = $this->M_dashboard_users->getUsersAjaxWords($postData, $limit_per_page, $page*$limit_per_page);
 		$page_data['modify'] = 'Modificar';
 		$page_data['cancel'] = 'Eliminar';
 		$page_data['custom_js'] = array(

@@ -23,7 +23,7 @@
             }
         }
 
-        public function getUsersAjaxWords($words, $limit) {
+        public function getUsersAjaxWords($words, $limit, $start) {
 
             $select = 'u.id_usuario AS ID, u.nombre AS Nombre, u.apellido AS Apellido, u.cif AS DNI/NIE/CIF, u.pass AS Password, u.direccion AS Dirección, u.codigo_postal AS Código postal, u.localidad AS Localidad, u.telefono AS Teléfono, u.email AS Email, t.nombre AS Tipo usuario';
 
@@ -32,7 +32,7 @@
                      ->join('tipo_usuario AS t', 'u.id_tipo_usuario = t.id_tipo_usuario')
                      ->like('u.email', $words['words'])
                      ->order_by('u.id_usuario', 'ASC')
-                     ->limit($limit)
+                     ->limit($limit, $start)
                      ->get();
 
             if ( $query->num_rows() > 0 ) {

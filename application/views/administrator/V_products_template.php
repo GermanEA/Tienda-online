@@ -14,11 +14,11 @@
     <?php if( isset($search) ) { ?>
         <div class="search-wrapper">
             <label for="search">Buscar:</label>
-            <input id="search-bar" type="text" class="form-control form-search" name="search">
+            <input id="search-bar" type="text" class="form-control form-search" name="search" placeholder="Inserta una descripción">
         </div>
     <?php } ?>
 
-    <div class="content-table">
+    <div id="content-body" class="content-table">
         <?php if(!isset($products) || $products === NULL ) { ?>
             <div>No hay productos para mostrar.</div>
         <?php } else { ?>
