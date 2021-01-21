@@ -22,6 +22,12 @@ class Cart extends CI_Controller {
     public function addCartProduct() {
         $data = $this->input->post();
 
+        if( empty($data['size']) ) {
+            $id_producto['id_producto'] = $data['id-producto'];
+        } else {
+            $id_producto = $this->M_cart->getIdTipoProductoSize($data['product-code'], $data['size']);
+        }        
+
         $data_cart = array(
             'id'    => $data['id'],
             'qty'   => $data['qty'],
@@ -29,7 +35,7 @@ class Cart extends CI_Controller {
             'name'  => $data['name'],
             'size'  => $data['size'],
             'image' => $data['image'],
-            'id_producto' => $data['id-producto']
+            'id_producto' => $id_producto['id_producto']
         );
 
         $this->cart->insert($data_cart);
@@ -76,6 +82,7 @@ class Cart extends CI_Controller {
 
     public function buyNow() {
         $data = $this->input->post();
+        $response = array();
         
         $data_insert = array(
             'name'    => $data['name'], 
@@ -112,7 +119,8 @@ class Cart extends CI_Controller {
             }
 
             if( !isset( $this->session->logged ) || $this->session->logged == false ) {
-                $this->M_cart->insertUserAnonimous($data_insert);
+                // CONTROLAR QUE NO EXISTA YA UN EMAIL ASOCIADO
+                $response['insert-user'] = $this->M_cart->insertUserAnonimous($data_insert);
             }
 
             //Insertar el total de la venta
@@ -121,13 +129,30 @@ class Cart extends CI_Controller {
 
             //Insertar los detalles de la venta por línea
             foreach( $this->cart->contents() as $row ){
-                $this->M_cart->insertVentaDetalle($row, $id_venta);
+                $response['insert-venta'] = $this->M_cart->insertVentaDetalle($row, $id_venta);
             }
 
+            //Bajar el stock de los productos
+            // foreach( $this->cart->contents() as $row ){
+            //     $stock = $this->M_cart->getStock($row['id_producto']);
+            //     $new_stock = $stock['stock'] - $row['qty'];
+            //     $response['insert-stock'] = $this->M_cart->decreaseStock($row['id_producto'], $new_stock);
+            // }
 
+            //Vaciar el carrito
+            $this->cart->destroy();
 
+            $response['success'] = true;
+            
         } else {
-            echo 'Error carrito vacio';
+            $response['success'] = false;
         }
+
+        $this->cartMessage($response);
+    }
+
+    public function cartMessage($response) {
+        var_dump($response);
+        var_dump($this->cart->total_items());
     }
 }

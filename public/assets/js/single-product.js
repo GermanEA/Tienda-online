@@ -52,7 +52,7 @@ minusDiv.addEventListener('click', () => {
 });
 
 plusDiv.addEventListener('click', () => {    
-    if(quantityInput.value > 0) {
+    if(quantityInput.value > 0 ) {
         quantityInput.value ++;
     } else {
         quantityInput.value = 1;
@@ -96,7 +96,8 @@ function addCartPost() {
         "name": productName,
         "size": sizeRadio,
         "image": productImage,
-        "id-producto": btnAddCart.value
+        "id-producto": btnAddCart.value,
+        "product-code": productCode
     };
 
     let string = "";

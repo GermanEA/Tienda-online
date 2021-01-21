@@ -84,7 +84,6 @@
     }
 
     public function insertVentaDetalle($item, $id_venta) {
-        var_dump($item);
 
         $data_insert = array(
             'id_venta' => $id_venta,
@@ -95,6 +94,19 @@
         );
 
         $this->db->insert('venta_detalle', $data_insert);
+
+        return true;
+    }
+
+    public function decreaseStock($id_producto, $new_stock) {
+        $data_update = array(
+            'stock' => $new_stock
+        );
+        
+        $this->db->where('id_producto', $id_producto)
+        ->update('producto', $data_update);
+
+        return true;
     }
 
     public function getIdEnvio() {
@@ -133,6 +145,19 @@
         }
     }
 
+    public function getStock($id_producto) {
+        $query = $this->db->select('stock')
+                 ->from('producto')
+                 ->where('id_producto', $id_producto)
+                 ->get();
+                
+        if ( $query->num_rows() > 0 ) {
+            return $query->row_array();                
+        } else {
+            return NULL;
+        }
+    }
+
     public function insertUserAnonimous() {
         $data = $this->input->post();
 
@@ -149,12 +174,31 @@
         );
         
         $this->db->insert('usuario', $data_insert);
+
+        return true;
     }
 
     public function getIdUser($email) {
         $query = $this->db->select('id_usuario')
                      ->from('usuario')
                      ->where("email", $email)
+                     ->get();
+
+        if ( $query->num_rows() > 0 ) {
+            return $query->row_array();                
+        } else {
+            return NULL;
+        }
+    }
+
+    public function getIdTipoProductoSize($codigo_producto, $talla) {
+        $select = 'p.id_producto';
+
+        $query = $this->db->select($select)
+                     ->from('producto AS p')
+                     ->join('talla AS t', 'p.id_talla = t.id_talla', 'left')
+                     ->where('p.codigo_producto', $codigo_producto)
+                     ->where('t.codigo_talla', $talla)
                      ->get();
 
         if ( $query->num_rows() > 0 ) {

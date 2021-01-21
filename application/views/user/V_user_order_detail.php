@@ -18,7 +18,7 @@
         </thead>
         
         <tbody>
-    <?php foreach($order_details as $key => $value): ?>
+            <?php foreach($order_details as $key => $value): ?>
             <tr>
                 <td scope="row">
                     <img class="img-fluid order-img" src="<?= base_url()  . "/" . $value->imagen; ?>" alt="<?= $value->imagen ?>">
@@ -29,7 +29,18 @@
                 <td><?= number_format($value->precio, 2, ',', '.') . '€' ?></td>
                 <td><?= number_format($value->total, 2, ',', '.') . '€' ?></td>
             </tr>
-    <?php endforeach; ?>
+            <?php endforeach; ?>
+            
+            <tr>
+                <td><i class="fas fa-dolly"></i></td>
+                <td>Gastos de envío:</td>
+                <td colspan="3"></td>
+            <?php if( $total_sin_gastos < 50 ) { ?>
+                <td>10,00€</td>    
+            <?php } else { ?>
+                <td>Gratuitos</td>
+            <?php } ?>
+            </tr>
             <tr class="bg-total table-dark" scope="row">
                 <td class="bg-total" colspan="3"></td>
                 <td class="bg-total" colspan="2">TOTAL PEDIDO</td>

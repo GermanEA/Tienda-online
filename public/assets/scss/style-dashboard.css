@@ -96,9 +96,9 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
@@ -132,6 +132,7 @@ body {
 
 .main-wrapper .contain-wrapper .sidebar-content .sidebar-title .alias-wrapper {
   padding-top: 13px;
+  margin-left: 10px;
 }
 
 .main-wrapper .contain-wrapper .sidebar-content .sidebar-title .alias-wrapper .name-wrapper {
@@ -410,7 +411,7 @@ body {
 }
 
 .main-wrapper .contain-wrapper .content-wrapper .content-info .content-table .table tbody td .form-text-user {
-  width: 300px;
+  width: 230px;
 }
 
 .main-wrapper .contain-wrapper .content-wrapper .content-info .content-table .table tbody td img {
@@ -540,6 +541,23 @@ body {
   border: 1px solid #b10909;
   border-radius: 5px;
   font-size: 0.9rem;
+}
+
+.main-wrapper .contain-wrapper .content-wrapper #error-message {
+  width: 100%;
+  text-align: center;
+}
+
+.main-wrapper .contain-wrapper .content-wrapper #error-message div {
+  background-color: white;
+  padding: 15px 35px;
+  margin: 0 30px;
+}
+
+.main-wrapper .contain-wrapper .content-wrapper #error-message div .fas {
+  font-size: 2rem;
+  color: #FFE400;
+  margin-right: 25px;
 }
 
 .main-wrapper .contain-wrapper .content-wrapper .modal-details {

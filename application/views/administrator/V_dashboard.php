@@ -1,4 +1,4 @@
-<?php if( $this->session->logged == false || $this->session->tipo != 0 ) {
+<?php if( $this->session->logged == false || $this->session->id_tipo_usuario != 1 ) {
     redirect(base_url(), 'location', 301);
 }
 ?>

@@ -27,7 +27,7 @@
                     <tr>
                         <td class="aling-middle"><?= $category['ID'] + 1; ?></td>
 
-                        <td class="aling-middle"><input type="text" class="form-control form-date mx-auto" id="tipo-producto" name="tipo-producto"></td>
+                        <td class="aling-middle"><input type="text" class="form-control form-date mx-auto" id="tipo-producto" name="tipo-producto" required></td>
                         
                     </tr>
                 </tbody>            

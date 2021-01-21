@@ -93,7 +93,7 @@ body {
             left: 0;
     
             .sidebar-title {
-                @include flex( 100%, row, space-between, flex-start);
+                @include flex( 100%, row, flex-start, flex-start);
                 border-bottom: 1px solid $secondary-color;
                 color: $text-primary-color;
                 padding: 15px 10px;
@@ -121,6 +121,7 @@ body {
     
                 .alias-wrapper {
                     padding-top: 13px;
+                    margin-left: 10px;
     
                     .name-wrapper {
                         @include flex( auto, row, flex-start, flex-start);
@@ -344,7 +345,7 @@ body {
                                 }
 
                                 .form-text-user {
-                                    width: 300px;
+                                    width: 230px;
                                 }
 
                                 img {
@@ -471,6 +472,24 @@ body {
                     END OF ERROR FILE PAGE
                 */
             }
+
+            #error-message {
+                width: 100%;
+                text-align: center;
+
+                div {
+                    background-color: white;
+                    padding: 15px 35px;
+                    margin: 0 30px;
+                    
+                    .fas {
+                        font-size: 2rem;
+                        color: $yellow-color;
+                        margin-right: 25px;
+                    }
+                }
+            }
+
             /*
                 MODAL DETAILS
             */

@@ -27,15 +27,21 @@
                     <tr>
                         <td class="aling-middle"><?= $users['ID']; ?></td>
 
-                        <td class="aling-middle"><input type="text" value="<?= $users['Nombre']; ?>" class="form-control form-text-user mx-auto" name="nombre"></td>
+                        <td class="aling-middle"><input type="text" value="<?= $users['Nombre']; ?>" class="form-control form-text-user mx-auto" name="nombre" required></td>
 
-                        <td class="aling-middle"><input type="text" value="<?= $users['Apellido']; ?>" class="form-control form-text-user mx-auto" name="apellido"></td>
+                        <td class="aling-middle"><input type="text" value="<?= $users['Apellido']; ?>" class="form-control form-text-user mx-auto" name="apellido" required></td>
 
-                        <td class="aling-middle"><input type="text" value="<?= $users['Dirección']; ?>" class="form-control form-text-user mx-auto" name="direccion"></td>
+                        <td class="aling-middle"><input type="text" value="<?= $users['DNI/NIE/CIF']; ?>" class="form-control form-text-user mx-auto" name="cif" required></td>
+
+                        <td class="aling-middle"><?= $users['Password']; ?></td>
+
+                        <td class="aling-middle"><input type="text" value="<?= $users['Dirección']; ?>" class="form-control form-text-user mx-auto" name="direccion" required></td>
                         
-                        <td class="aling-middle"><input type="number" value="<?= $users['Código postal']; ?>" class="form-control form-number-user mx-auto" name="codigo-postal" min="1"></td>
+                        <td class="aling-middle"><input type="number" value="<?= $users['Código postal']; ?>" class="form-control form-number-user mx-auto" name="codigo-postal" min="0" required></td>
 
-                        <td class="aling-middle"><input type="number" value="<?= $users['Teléfono']; ?>" class="form-control form-number-user mx-auto" name="telefono" min="1"></td>
+                        <td class="aling-middle"><input type="text" value="<?= $users['Localidad']; ?>" class="form-control form-text-user mx-auto" name="localidad" required></td>
+
+                        <td class="aling-middle"><input type="number" value="<?= $users['Teléfono']; ?>" class="form-control form-number-user mx-auto" name="telefono" min="0" required></td>
 
                         <td class="aling-middle"><?= $users['Email']; ?></td>
 

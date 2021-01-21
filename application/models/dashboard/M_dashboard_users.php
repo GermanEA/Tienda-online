@@ -7,11 +7,12 @@
 
         public function getUsersPages($limit, $start) {
 
-            $select = 'id_usuario AS ID, nombre AS Nombre, apellido AS Apellido, direccion AS Dirección, codigo_postal AS Código postal, telefono AS Teléfono, email AS Email, tipo AS Tipo usuario';
+            $select = 'u.id_usuario AS ID, u.nombre AS Nombre, u.apellido AS Apellido, u.cif AS DNI/NIE/CIF, u.pass AS Password, u.direccion AS Dirección, u.codigo_postal AS Código postal, u.localidad AS Localidad, u.telefono AS Teléfono, u.email AS Email, t.nombre AS Tipo usuario';
 
             $query = $this->db->select($select)
-                     ->from('usuario')
-                     ->order_by('id_usuario', 'ASC')
+                     ->from('usuario AS u')
+                     ->join('tipo_usuario AS t', 'u.id_tipo_usuario = t.id_tipo_usuario')
+                     ->order_by('u.id_usuario', 'ASC')
                      ->limit($limit, $start)
                      ->get();
 
@@ -24,12 +25,13 @@
 
         public function getUsersAjaxWords($words, $limit) {
 
-            $select = 'id_usuario AS ID, nombre AS Nombre, apellido AS Apellido, direccion AS Dirección, codigo_postal AS Código postal, telefono AS Teléfono, email AS Email, tipo AS Tipo usuario';
+            $select = 'u.id_usuario AS ID, u.nombre AS Nombre, u.apellido AS Apellido, u.cif AS DNI/NIE/CIF, u.pass AS Password, u.direccion AS Dirección, u.codigo_postal AS Código postal, u.localidad AS Localidad, u.telefono AS Teléfono, u.email AS Email, t.nombre AS Tipo usuario';
 
             $query = $this->db->select($select)
-                     ->from('usuario')
-                     ->like('email', $words['words'])
-                     ->order_by('id_usuario', 'ASC')
+                     ->from('usuario AS u')
+                     ->join('tipo_usuario AS t', 'u.id_tipo_usuario = t.id_tipo_usuario')
+                     ->like('u.email', $words['words'])
+                     ->order_by('u.id_usuario', 'ASC')
                      ->limit($limit)
                      ->get();
 
@@ -42,11 +44,29 @@
 
         public function getUserSingle($id) {
 
-            $select = 'id_usuario AS ID, nombre AS Nombre, apellido AS Apellido, direccion AS Dirección, codigo_postal AS Código postal, telefono AS Teléfono, email AS Email, tipo AS Tipo usuario';
+            $select = 'u.id_usuario AS ID, u.nombre AS Nombre, u.apellido AS Apellido, u.cif AS DNI/NIE/CIF, u.pass AS Password, u.direccion AS Dirección, u.codigo_postal AS Código postal, u.localidad AS Localidad, u.telefono AS Teléfono, u.email AS Email, t.nombre AS Tipo usuario';
 
             $query = $this->db->select($select)
-                     ->from('usuario')
-                     ->where('id_usuario', $id)
+                     ->from('usuario AS u')
+                     ->join('tipo_usuario AS t', 'u.id_tipo_usuario = t.id_tipo_usuario')
+                     ->where('u.id_usuario', $id)
+                     ->get();
+
+            if ( $query->num_rows() > 0 ) {
+                return $query->row_array();                
+            } else {
+                return NULL;
+            }
+        }
+
+        public function getUserEmail($email) {
+
+            $select = 'u.id_usuario AS ID, u.nombre AS Nombre, u.apellido AS Apellido, u.cif AS DNI/NIE/CIF, u.pass AS Password, u.direccion AS Dirección, u.codigo_postal AS Código postal, u.localidad AS Localidad, u.telefono AS Teléfono, u.email AS Email, t.nombre AS Tipo usuario';
+
+            $query = $this->db->select($select)
+                     ->from('usuario AS u')
+                     ->join('tipo_usuario AS t', 'u.id_tipo_usuario = t.id_tipo_usuario')
+                     ->where('u.email', $email)
                      ->get();
 
             if ( $query->num_rows() > 0 ) {
@@ -60,8 +80,10 @@
             $data_update = array(
                 'nombre' => $data['nombre'],
                 'apellido' => $data['apellido'],
+                'cif' => strtoupper($data['cif']),
                 'direccion' => $data['direccion'],
                 'codigo_postal' => $data['codigo-postal'],
+                'localidad' => $data['localidad'],
                 'telefono' => $data['telefono']
             );
             
@@ -75,11 +97,12 @@
         }
             
         public function getUserLastOne() {
-            $select = 'id_usuario AS ID, nombre AS Nombre, apellido AS Apellido, pass AS Password, direccion AS Dirección, codigo_postal AS Código postal, telefono AS Teléfono, email AS Email, tipo AS Tipo usuario';
+            $select = 'u.id_usuario AS ID, u.nombre AS Nombre, u.apellido AS Apellido, u.cif AS DNI/NIE/CIF, u.pass AS Password, u.direccion AS Dirección, u.codigo_postal AS Código postal, u.localidad AS Localidad, u.telefono AS Teléfono, u.email AS Email, t.nombre AS Tipo usuario';
 
             $query = $this->db->select($select)
-                     ->from('usuario')
-                     ->order_by('id_usuario', 'ASC')
+                     ->from('usuario AS u')
+                     ->join('tipo_usuario AS t', 'u.id_tipo_usuario = t.id_tipo_usuario')
+                     ->order_by('u.id_usuario', 'ASC')
                      ->get();
 
             if ( $query->num_rows() > 0 ) {
@@ -94,15 +117,29 @@
                 'id_usuario' => $data['id'],
                 'nombre' => $data['nombre'],
                 'apellido' => $data['apellido'],
+                'cif' => strtoupper($data['cif']),
                 'pass' => $data['pass'],
                 'direccion' => $data['direccion'],
                 'codigo_postal' => $data['codigo-postal'],
+                'localidad' => $data['localidad'],
                 'telefono' => $data['telefono'],
-                'email' => $data['email'],
-                'tipo' => $data['tipo']
+                'email' => strtolower($data['email']),
+                'id_tipo_usuario' => $data['tipo']
             );
 
             $this->db->insert('usuario', $data_insert);
+        }
+
+        public function showTypeUsers() {
+            $query = $this->db->select('*')
+                     ->from('tipo_usuario')
+                     ->get();
+
+            if ( $query->num_rows() > 0 ) {
+                return $query->result_array();                
+            } else {
+                return NULL;
+            }
         }
   
     }

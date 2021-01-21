@@ -27,7 +27,7 @@
                     <tr>
                         <td class="aling-middle"><?= $sizes['ID'] + 1; ?></td>
 
-                        <td class="aling-middle"><input type="text" class="form-control form-date mx-auto" id="codigo-talla" name="codigo-talla"></td>
+                        <td class="aling-middle"><input type="text" class="form-control form-date mx-auto" id="codigo-talla" name="codigo-talla" required></td>
                         
                     </tr>
                 </tbody>            

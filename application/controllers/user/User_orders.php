@@ -29,6 +29,11 @@ class User_orders extends CI_Controller {
 			$id_venta = $_POST['id_venta'];
 			$page_data['order_details'] = $this->M_user_orders->getOrderDetails($id_venta);
 			$page_data['page_content'] = 'user/v_user_order_detail';
+			$page_data['total_sin_gastos'] = 0;
+
+			foreach( $page_data['order_details'] as $key) {
+				$page_data['total_sin_gastos'] += $key->total;
+			}
 	
 			$this->load->view('/layouts/main', $page_data);
 		}

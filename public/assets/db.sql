@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS venta(
     id_usuario INT,
     id_envio INT,
     enviado VARCHAR(7) CHECK(enviado IN('SI', 'NO', 'ANULADO')),
-    CONSTRAINT fk_id_usuario_v FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT fk_id_usuario_v FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario) ON DELETE NO ACTION ON UPDATE CASCADE,
     CONSTRAINT fk_id_envio_v FOREIGN KEY (id_envio) REFERENCES envio(id_envio) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -92,15 +92,15 @@ CREATE TABLE IF NOT EXISTS venta_detalle(
     cantidad INT,
     precio DECIMAL,
     total DECIMAL,
-    CONSTRAINT fk_id_venta_v FOREIGN KEY (id_venta) REFERENCES venta(id_venta) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT fk_id_venta_v FOREIGN KEY (id_venta) REFERENCES venta(id_venta) ON DELETE NO ACTION ON UPDATE CASCADE,
     CONSTRAINT fk_id_producto_v FOREIGN KEY (id_producto) REFERENCES producto(id_producto) ON DELETE NO ACTION ON UPDATE CASCADE
 );
 
 INSERT INTO tipo_usuario VALUES(1, 'Administrador'),
     (2, 'Cliente'),
-    (3, 'Anonimo');
+    (3, 'Anónimo');
 
-INSERT INTO usuario VALUES(0, 'Selu', 'Rodríguez', '1234', '', '', 0, 'ADMIN@ADMIN.ES', 1),
+INSERT INTO usuario VALUES(0, 'Selu', 'Rodríguez', '1234', '', '', 0, 'admin@admin.ES', 1),
 	(0, 'Cliente', 'Cliente', '1234', 'Dirección cliente', '11401', 956157489, 'cliente@cliente.com', 2),
     (0, 'Anonimo', 'Anonimo', '', 'Dirección Anonimo', '11406', 856157489, 'anonimo@anonimo.com', 3),
     (0, 'Germán', 'Estrade', '1234', 'Diego Fernandez Herrera', '11401', 658851367, 'nox_ger@hotmail.com', 2);

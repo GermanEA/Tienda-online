@@ -10,7 +10,7 @@
 
             $query = $this->db->select('*')
                      ->from('usuario')
-                     ->where("email", $email)
+                     ->where('email', $email)
                      ->get();
 
             if ( $query->num_rows() > 0 ) {
@@ -20,20 +20,35 @@
             }
         }
 
+        public function getUserShowData() {
+            $select = 'nombre as Nombre, apellido as Apellido, cif as DNI/NIE/CIF, direccion AS Dirección, codigo_postal AS Código postal, localidad AS Localidad, telefono AS Teléfono';
+
+            $query = $this->db->select($select)
+                     ->from('usuario')
+                     ->where('id_usuario', $this->session->id_usuario)
+                     ->get();
+
+            if ( $query->num_rows() > 0 ) {
+                return $query->row_array();                
+            } else {
+                return NULL;
+            }
+        }
+
         public function insertUser() {
             $data = $this->input->post();
 
             $data_insert = array(
-                'nombre'       => $data['name-reg'],
-                'apellido'     => $data['lastname-reg'],
-                'cif'          => strtoupper($data['cif-reg']),
-                'pass'         => $data['pass-reg'],
-                'direccion'    => $data['address-reg'],
-                'codigo_postal'=> $data['postal-reg'],
-                'localidad'    => $data['city-reg'],
-                'telefono'     => $data['phone-reg'],
-                'email'        => $data['email-reg'],
-                'tipo'         => 1
+                'nombre'          => $data['name-reg'],
+                'apellido'        => $data['lastname-reg'],
+                'cif'             => strtoupper($data['cif-reg']),
+                'pass'            => $data['pass-reg'],
+                'direccion'       => $data['address-reg'],
+                'codigo_postal'   => $data['postal-reg'],
+                'localidad'       => $data['city-reg'],
+                'telefono'        => $data['phone-reg'],
+                'email'           => strtolower($data['email-reg']),
+                'id_tipo_usuario' => 2
             );
             
             $this->db->insert('usuario', $data_insert);
@@ -42,11 +57,13 @@
         public function updateUser($data, $id_usuario) {
 
             $data_query = [
-                'nombre' => $data['name-change'],
-                'apellido' => $data['lname-change'],
-                'direccion' => $data['address-change'],
-                'codigo_postal' => $data['postal-change'],
-                'telefono' => $data['phone-change']
+                'nombre' => $data['Nombre'],
+                'apellido' => $data['Apellido'],
+                'cif' => strtoupper($data['DNI/NIE/CIF']),
+                'direccion' => $data['Dirección'],
+                'codigo_postal' => $data['Código_postal'],
+                'localidad' => $data['Localidad'],
+                'telefono' => $data['Teléfono']
             ];
 
             $this->db->where('id_usuario', $id_usuario)

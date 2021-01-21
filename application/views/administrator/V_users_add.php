@@ -27,24 +27,29 @@
                     <tr>
                         <td class="aling-middle"><?= $users['ID'] + 1; ?></td>
 
-                        <td class="aling-middle"><input type="text" class="form-control form-text-user mx-auto" name="nombre"></td>
+                        <td class="aling-middle"><input type="text" class="form-control form-text-user mx-auto" name="nombre" required></td>
 
-                        <td class="aling-middle"><input type="text" class="form-control form-text-user mx-auto" name="apellido"></td>
+                        <td class="aling-middle"><input type="text" class="form-control form-text-user mx-auto" name="apellido" required></td>
 
-                        <td class="aling-middle"><input type="password" class="form-control form-text-user mx-auto" name="pass"></td>
+                        <td class="aling-middle"><input type="text" class="form-control form-text-user mx-auto" name="cif" required></td>
 
-                        <td class="aling-middle"><input type="text" class="form-control form-text-user mx-auto" name="direccion"></td>
+                        <td class="aling-middle"><input type="password" class="form-control form-text-user mx-auto" name="pass" required></td>
+
+                        <td class="aling-middle"><input type="text" class="form-control form-text-user mx-auto" name="direccion" required></td>
                         
-                        <td class="aling-middle"><input type="number" class="form-control form-number-user mx-auto" name="codigo-postal" min="1"></td>
+                        <td class="aling-middle"><input type="number" class="form-control form-number-user mx-auto" name="codigo-postal" min="1" required></td>
 
-                        <td class="aling-middle"><input type="number" class="form-control form-number-user mx-auto" name="telefono" min="1"></td>
+                        <td class="aling-middle"><input type="text" class="form-control form-text-user mx-auto" name="localidad" required></td>
 
-                        <td class="aling-middle"><input type="email" class="form-control form-text-user mx-auto" name="email"></td>
+                        <td class="aling-middle"><input type="number" class="form-control form-number-user mx-auto" name="telefono" min="1" required></td>
+
+                        <td class="aling-middle"><input type="email" class="form-control form-text-user mx-auto" name="email" required></td>
 
                         <td class="aling-middle">
                             <select class="form-control mx-auto" name="tipo" id="tipo">
-                                <option value="0">Administrador</option>                                
-                                <option value="1">Cliente</option>
+                                <?php foreach( $type_users as $row ) : ?>
+                                <option value="<?= $row['id_tipo_usuario']; ?>"><?= $row['nombre']; ?></option>
+                                <?php endforeach; ?>
                             </select>
                         </td>
                                   
@@ -58,5 +63,14 @@
         </form>
     </div>
 </div>
+
+<?php if( isset( $error_message ) ) { ?>
+    <div id="error-message" class="text-danger">
+        <div>
+            <i class="fas fa-exclamation-triangle"></i>
+            <span><?php echo $error_message ?></span>
+        </div>
+    </div>
+<?php } ?>
 
     

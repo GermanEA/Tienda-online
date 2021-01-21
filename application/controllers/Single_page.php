@@ -48,7 +48,7 @@ class Single_page extends CI_Controller {
 					set_cookie('pass', $passForm, 259200);
 				}
 
-				if( $user[0]->tipo == 0) {				
+				if( $user[0]->id_tipo_usuario == 1) {				
 					redirect(base_url('/administrator/dashboard'), 'location', 301);
 				} else {
 					$this->loadViewsInit();
@@ -167,7 +167,7 @@ class Single_page extends CI_Controller {
 					$this->session->$key = $value;
 				}
 				
-				if( $this->session->tipo == 0) {			
+				if( $this->session->id_tipo_usuario == 1 ) {			
 					redirect(base_url('/administrator/dashboard'), 'location', 301);
 				} else {
 					$this->loadViewsInit();

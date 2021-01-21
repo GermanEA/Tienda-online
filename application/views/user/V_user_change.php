@@ -10,38 +10,25 @@
             <div class="card">
                 <div class="card-wrapper">
                     <div class="card-left">
+                        <?php foreach( $user as $key => $value ): ?>
                         <div class="card-body border-bottom border-light">
-                            <span class="label-form-change">Nombre:</span>
+                            <span class="label-form-change"><?= $key; ?>:</span>
                         </div>
-                        <div class="card-body border-bottom border-light">
-                            <span class="label-form-change">Apellidos:</span>
-                        </div>
-                        <div class="card-body border-bottom border-light">
-                            <span class="label-form-change">Dirección:</span>
-                        </div>
-                        <div class="card-body border-bottom border-light">
-                            <span class="label-form-change">Código postal:</span>
-                        </div>
-                        <div class="card-body border-bottom border-light">
-                            <span class="label-form-change">Teléfono:</span>
-                        </div>
+                        <?php endforeach; ?>
                     </div>
-                    <div class="card-right">                
-                        <div class="card-body border-bottom border-light">
-                            <input type="text" name="name-change" class="form-control form-control-sm input-form modal-close" value="<?php echo $this->session->nombre ?>" />
-                        </div>
-                        <div class="card-body border-bottom border-light">
-                            <input type="text" name="lname-change" class="form-control form-control-sm input-form modal-close" value="<?php echo $this->session->apellido ?>" />
-                        </div>
-                        <div class="card-body border-bottom border-light">
-                            <input type="text" name="address-change" class="form-control form-control-sm input-form modal-close" value="<?php echo $this->session->direccion ?>" />
-                        </div>
-                        <div class="card-body border-bottom border-light">
-                            <input type="number" name="postal-change" class="form-control form-control-sm input-form modal-close" value="<?php echo $this->session->codigo_postal ?>" />
-                        </div>
-                        <div class="card-body border-bottom border-light">
-                            <input type="number" name="phone-change" class="form-control form-control-sm input-form modal-close" value="<?php echo $this->session->telefono ?>" />
-                        </div>
+                    <div class="card-right"> 
+                        
+                        <?php foreach( $user as $key => $value): ?>
+                            <?php if( !is_numeric($value) ) { ?>
+                                <div class="card-body border-bottom border-light">
+                                    <input type="text" name="<?= $key ?>" class="form-control form-control-sm input-form modal-close" value="<?= $value ?>" />
+                                </div>
+                            <?php } else { ?>
+                                <div class="card-body border-bottom border-light">
+                                    <input type="number" name="<?= $key ?>" class="form-control form-control-sm input-form modal-close" value="<?= $value ?>" />
+                                </div>
+                            <?php } ?>
+                        <?php endforeach; ?>
                     </div>
                 </div>
                 <div class="btn-change-wrapper card-body">

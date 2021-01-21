@@ -86,7 +86,7 @@
                                 <?php if( isset($this->session->logged) && $this->session->logged == true ) { ?>
 
                                     <input type="email" class="form-control" name="email" value="<?= $this->session->email; ?>" readonly>
-                                    <input type="text" class="form-control" name="phone" value="<?= $this->session->telefono; ?>" readonly>
+                                    <input type="text" class="form-control" name="phone" value="<?= $this->session->telefono; ?>">
 
                                 <?php } else { ?>
                                     

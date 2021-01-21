@@ -9,48 +9,22 @@
         <div class="card">
             <div class="card-wrapper">
                 <div class="card-left">
+                    <?php foreach( $user as $key => $value ): ?>
                     <div class="card-body border-bottom border-light">
-                        <span>Nombre:</span>
+                        <span><?= $key; ?>:</span>
                     </div>
-                    <div class="card-body border-bottom border-light">
-                        <span>Apellidos:</span>
-                    </div>
-                    <div class="card-body border-bottom border-light">
-                        <span>Correo:</span>
-                    </div>
-                    <div class="card-body border-bottom border-light">
-                        <span>Dirección:</span>
-                    </div>
-                    <div class="card-body border-bottom border-light">
-                        <span>Código postal:</span>
-                    </div>
-                    <div class="card-body border-bottom border-light">
-                        <span>Teléfono:</span>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
                 <div class="card-right">
+                    <?php foreach( $user as $key ): ?>
                     <div class="card-body border-bottom border-light">
-                        <div class="card-text"><?php echo $this->session->nombre ?></div>
+                        <div class="card-text"><?= $key ?></div>
                     </div>
-                    <div class="card-body border-bottom border-light">
-                        <div class="card-text"><?php echo $this->session->apellido ?></div>
-                    </div>
-                    <div class="card-body border-bottom border-light">
-                        <div class="card-text"><?php echo $this->session->email ?></div>
-                    </div>
-                    <div class="card-body border-bottom border-light">
-                        <div class="card-text"><?php echo $this->session->direccion ?></div>
-                    </div>
-                    <div class="card-body border-bottom border-light">
-                        <div class="card-text"><?php echo $this->session->codigo_postal ?></div>
-                    </div>
-                    <div class="card-body border-bottom border-light">
-                        <div class="card-text"><?php echo $this->session->telefono ?></div>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
             <div class="btn-data-wrapper card-body">
-                <form name="form" action="<?php echo base_url()?>user/user_data/changeView" method="post">
+                <form name="form" action="<?= base_url()?>user/user_data/changeView" method="post">
                     <button type="submit" class="btn btn-original">Cambiar tus datos</button>
                 </form>
             </div>

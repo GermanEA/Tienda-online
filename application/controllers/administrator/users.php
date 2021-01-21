@@ -109,16 +109,34 @@ class Users extends CI_Controller {
 		$page_data['title_page'] = 'Añadir usuario';
         $page_data['title_category'] = 'Gestión de usuarios';
         $page_data['users'] = $this->M_dashboard_users->getUserLastOne();
+        $page_data['type_users'] = $this->M_dashboard_users->showTypeUsers();
         
         $this->load->view('/administrator/v_dashboard', $page_data);
-    }
+    }    
+
+    public function addUserError($page_data) {
+		$page_data['page_content'] = '/administrator/v_users_add';
+		$page_data['title_page'] = 'Añadir usuario';
+        $page_data['title_category'] = 'Gestión de usuarios';
+        $page_data['users'] = $this->M_dashboard_users->getUserLastOne();
+        $page_data['type_users'] = $this->M_dashboard_users->showTypeUsers();
+        
+        $this->load->view('/administrator/v_dashboard', $page_data);
+	}
 
     public function addUserConfirm() {
         $data = $this->input->post();
+        $user_in_db = $this->M_dashboard_users->getUserEmail(strtolower($data['email']));
 
-        $this->M_dashboard_users->addUser($data);
+        if( $user_in_db == NULL ) {
+            $this->M_dashboard_users->addUser($data);
+    
+            redirect(base_url('administrator/users/showAllUsers'));
+        } else {
+            $page_data['error_message'] = "El correo ya está asociado a un usuario.";
+            $this->addUserError($page_data);
+        }
 
-        redirect(base_url('administrator/users/showAllUsers'));
     }
 
     public function getL2Keys($array) {
