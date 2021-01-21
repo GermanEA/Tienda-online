@@ -507,6 +507,11 @@ body {
   border-radius: 5px;
 }
 
+.main-wrapper .contain-wrapper .content-wrapper .content-info .container-order-details .table tbody tr td .fas {
+  color: #b10909;
+  font-size: 2rem;
+}
+
 .main-wrapper .contain-wrapper .content-wrapper .content-info .container-order-details .table tbody tr .bg-total {
   background-color: #373737;
 }

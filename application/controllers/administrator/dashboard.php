@@ -113,6 +113,11 @@ class Dashboard extends CI_Controller {
 		$page_data['title_page'] = 'Detalles del pedido';
 		$page_data['title_category'] = 'Gestión de pedidos';
 		$page_data['order_details'] = $this->M_dashboard_order->getOrderDetails($id);
+		$page_data['total_sin_gastos'] = 0;
+
+		foreach( $page_data['order_details'] as $key) {
+			$page_data['total_sin_gastos'] += $key->total;
+		}
 
 		$this->load->view('/administrator/v_order_details', $page_data);
 	}
