@@ -3,50 +3,52 @@
 } ?>
 
 <div class="container container-order-details text-center">
-    <h2 class="mb-4">DETALLE DEL PEDIDO <?= $order_details[0]->codigo_venta ?></h2>
-    <table class="table table-striped">
-        <thead class="thead-dark">
-            <tr>
-                <th scope="col">Imagen</th>
-                <th scope="col">Descripción</th>
-                <th scope="col">Talla</th>
-                <th scope="col">Cantidad</th>
-                <th scope="col">Precio</th>
-                <th scope="col">Total</th>
+    <h2>DETALLE DEL PEDIDO <?= $order_details[0]->codigo_venta ?></h2>
+    <div class="order-wrapper">
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Imagen</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Talla</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Total</th>
 
-            </tr>
-        </thead>
-        
-        <tbody>
-            <?php foreach($order_details as $key => $value): ?>
-            <tr>
-                <td scope="row">
-                    <img class="img-fluid order-img" src="<?= base_url()  . "/" . $value->imagen; ?>" alt="<?= $value->imagen ?>">
-                </td>
-                <td><?= $value->descripcion ?></td>
-                <td><?= $value->codigo_talla ?></td>
-                <td><?= $value->cantidad ?></td>
-                <td><?= number_format($value->precio, 2, ',', '.') . '€' ?></td>
-                <td><?= number_format($value->total, 2, ',', '.') . '€' ?></td>
-            </tr>
-            <?php endforeach; ?>
+                </tr>
+            </thead>
             
-            <tr>
-                <td><i class="fas fa-dolly"></i></td>
-                <td>Gastos de envío:</td>
-                <td colspan="3"></td>
-            <?php if( $total_sin_gastos < 50 ) { ?>
-                <td>10,00€</td>    
-            <?php } else { ?>
-                <td>Gratuitos</td>
-            <?php } ?>
-            </tr>
-            <tr class="bg-total table-dark" scope="row">
-                <td class="bg-total" colspan="3"></td>
-                <td class="bg-total" colspan="2">TOTAL PEDIDO</td>
-                <td class="bg-total"><?= number_format($order_details[0]->total_venta, 2, ',', '.') . '€' ?></td>
-            </tr>
-        </tbody>
-    </table>
-    <button type="button" class="btn btn-original" onclick="javascript:window.history.go(-1);">Regresar</button>
+            <tbody>
+                <?php foreach($order_details as $key => $value): ?>
+                <tr>
+                    <td scope="row">
+                        <img class="img-fluid order-img" src="<?= base_url()  . "/" . $value->imagen; ?>" alt="<?= $value->imagen ?>">
+                    </td>
+                    <td><?= $value->descripcion ?></td>
+                    <td><?= $value->codigo_talla ?></td>
+                    <td><?= $value->cantidad ?></td>
+                    <td><?= number_format($value->precio, 2, ',', '.') . '€' ?></td>
+                    <td><?= number_format($value->total, 2, ',', '.') . '€' ?></td>
+                </tr>
+                <?php endforeach; ?>
+                
+                <tr>
+                    <td><i class="fas fa-dolly"></i></td>
+                    <td>Gastos de envío:</td>
+                    <td colspan="3"></td>
+                <?php if( $total_sin_gastos < 50 ) { ?>
+                    <td>10,00€</td>    
+                <?php } else { ?>
+                    <td>Gratuitos</td>
+                <?php } ?>
+                </tr>
+                <tr class="bg-total table-dark" scope="row">
+                    <td class="bg-total" colspan="3"></td>
+                    <td class="bg-total" colspan="2">TOTAL PEDIDO</td>
+                    <td class="bg-total"><?= number_format($order_details[0]->total_venta, 2, ',', '.') . '€' ?></td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="button" class="btn btn-original" onclick="javascript:window.history.go(-1);">Regresar</button>
+    </div>
 </div>

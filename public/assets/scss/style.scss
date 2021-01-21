@@ -913,30 +913,45 @@ body {
         .container-order-details {
             padding: 10px;
             box-sizing: border-box;
-    
-            .table {
-    
-                tbody {
-    
-                    tr{
-    
-                        td {
-                            width: 100px;
-    
-                            .order-img {
-                                width: 60px;
-                                height: auto;
-                                border-radius: 5px;
-                            }
-                            
-                            .fas {
-                                color: $red-color;
-                                font-size: 2rem;
-                            }
-                        }
 
-                        .bg-total {
-                            background-color: $secondary-color;
+            h2 {
+                text-align: center;
+                margin: 0;
+                padding: 10px 0;
+                background-color: $red-color;
+                color: $white-color;
+                border-radius: 5px 5px 0 0;
+            }
+
+            .order-wrapper {
+                background-color: $white-color;
+                padding: 15px;
+                border-radius: 0 0 5px 5px;
+    
+                .table {
+        
+                    tbody {
+        
+                        tr{
+        
+                            td {
+                                width: 100px;
+        
+                                .order-img {
+                                    width: 60px;
+                                    height: auto;
+                                    border-radius: 5px;
+                                }
+                                
+                                .fas {
+                                    color: $red-color;
+                                    font-size: 2rem;
+                                }
+                            }
+
+                            .bg-total {
+                                background-color: $secondary-color;
+                            }
                         }
                     }
                 }
@@ -953,28 +968,46 @@ body {
             padding: 10px;
             box-sizing: border-box;
 
-            .row {
-                margin-bottom: 20px;
+            h2 {
+                text-align: center;
+                margin: 0;
+                padding: 10px 0;
+                background-color: $red-color;
+                color: $white-color;
+                border-radius: 5px 5px 0 0;
+            }
 
-                .card {
-                    -webkit-box-shadow: 0px 15px 28px -22px $black-color;
-                    -moz-box-shadow: 0px 15px 28px -22px $black-color;
-                    box-shadow: 0px 15px 28px -22px $black-color;
+            .order-wrapper {
+                background-color: $white-color;
+                padding: 15px;
+                border-radius: 0 0 5px 5px;
 
-                    .card-wrapper {
-                        @include flex( 100%, row, center, flex-start);
+                .row {
+                    margin-bottom: 20px;
 
-                        .card-left, .card-right {
-                            @include flex( auto, column, center, flex-start);
+                    .card {
+                        -webkit-box-shadow: 0px 15px 28px -22px $black-color;
+                        -moz-box-shadow: 0px 15px 28px -22px $black-color;
+                        box-shadow: 0px 15px 28px -22px $black-color;
+                        background-color: linen;
+
+                        .card-wrapper {
+                            @include flex( 100%, row, center, flex-start);
+
+                            .card-left, .card-right {
+                                @include flex( auto, column, center, flex-start);
+                                text-align: left;
+                            }
+
+                            .card-body {
+                                height: 75px;
+                                width: 100%;
+                            }
                         }
 
-                        .card-body {
-                            height: 75px;
+                        .btn-change-wrapper {
+                            @include flex( auto, row, space-between, center);
                         }
-                    }
-
-                    .btn-change-wrapper {
-                        @include flex( auto, row, space-between, center);
                     }
                 }
             }
@@ -1270,6 +1303,41 @@ body {
         }
         /*
             ENF OF CHECKOUT PAGE
+        */
+        /* 
+            CART SUCCESS MESSAGE PAGE
+        */
+        .container-cart-response {
+            padding: 10px;
+            text-align: center;
+            
+            h2 {
+                text-align: center;
+                margin: 0;
+                padding: 10px 0;
+                background-color: $red-color;
+                color: $white-color;
+                border-radius: 5px 5px 0 0;
+            }
+
+            .content-cart-wrapper {
+                background-color: $white-color;
+                padding: 15px;
+                border-radius: 0 0 5px 5px;
+
+                .principal-message {
+                    font-size: 2rem;
+                    font-weight: 800;
+                    text-align: center;
+                }
+
+                .btn-wrapper {
+                    margin-top: 10px
+                }
+            }
+        }
+        /* 
+            END OF CART SUCCESS MESSAGE PAGE
         */
     }
     /*

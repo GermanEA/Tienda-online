@@ -727,6 +727,12 @@ body {
   /*
             ENF OF CHECKOUT PAGE
         */
+  /* 
+            CART SUCCESS MESSAGE PAGE
+        */
+  /* 
+            END OF CART SUCCESS MESSAGE PAGE
+        */
 }
 
 .main-wrapper .content-wrapper #carouselBanner .carousel-inner .carousel-item .carousel-caption {
@@ -1158,22 +1164,37 @@ body {
           box-sizing: border-box;
 }
 
-.main-wrapper .content-wrapper .container-order-details .table tbody tr td {
+.main-wrapper .content-wrapper .container-order-details h2 {
+  text-align: center;
+  margin: 0;
+  padding: 10px 0;
+  background-color: #b10909;
+  color: #fff;
+  border-radius: 5px 5px 0 0;
+}
+
+.main-wrapper .content-wrapper .container-order-details .order-wrapper {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 0 0 5px 5px;
+}
+
+.main-wrapper .content-wrapper .container-order-details .order-wrapper .table tbody tr td {
   width: 100px;
 }
 
-.main-wrapper .content-wrapper .container-order-details .table tbody tr td .order-img {
+.main-wrapper .content-wrapper .container-order-details .order-wrapper .table tbody tr td .order-img {
   width: 60px;
   height: auto;
   border-radius: 5px;
 }
 
-.main-wrapper .content-wrapper .container-order-details .table tbody tr td .fas {
+.main-wrapper .content-wrapper .container-order-details .order-wrapper .table tbody tr td .fas {
   color: #b10909;
   font-size: 2rem;
 }
 
-.main-wrapper .content-wrapper .container-order-details .table tbody tr .bg-total {
+.main-wrapper .content-wrapper .container-order-details .order-wrapper .table tbody tr .bg-total {
   background-color: #717171;
 }
 
@@ -1183,16 +1204,32 @@ body {
           box-sizing: border-box;
 }
 
-.main-wrapper .content-wrapper .container-orders .row {
+.main-wrapper .content-wrapper .container-orders h2 {
+  text-align: center;
+  margin: 0;
+  padding: 10px 0;
+  background-color: #b10909;
+  color: #fff;
+  border-radius: 5px 5px 0 0;
+}
+
+.main-wrapper .content-wrapper .container-orders .order-wrapper {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 0 0 5px 5px;
+}
+
+.main-wrapper .content-wrapper .container-orders .order-wrapper .row {
   margin-bottom: 20px;
 }
 
-.main-wrapper .content-wrapper .container-orders .row .card {
+.main-wrapper .content-wrapper .container-orders .order-wrapper .row .card {
   -webkit-box-shadow: 0px 15px 28px -22px #121212;
   box-shadow: 0px 15px 28px -22px #121212;
+  background-color: linen;
 }
 
-.main-wrapper .content-wrapper .container-orders .row .card .card-wrapper {
+.main-wrapper .content-wrapper .container-orders .order-wrapper .row .card .card-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1209,7 +1246,7 @@ body {
   width: 100%;
 }
 
-.main-wrapper .content-wrapper .container-orders .row .card .card-wrapper .card-left, .main-wrapper .content-wrapper .container-orders .row .card .card-wrapper .card-right {
+.main-wrapper .content-wrapper .container-orders .order-wrapper .row .card .card-wrapper .card-left, .main-wrapper .content-wrapper .container-orders .order-wrapper .row .card .card-wrapper .card-right {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1224,13 +1261,15 @@ body {
       -ms-flex-align: start;
           align-items: flex-start;
   width: auto;
+  text-align: left;
 }
 
-.main-wrapper .content-wrapper .container-orders .row .card .card-wrapper .card-body {
+.main-wrapper .content-wrapper .container-orders .order-wrapper .row .card .card-wrapper .card-body {
   height: 75px;
+  width: 100%;
 }
 
-.main-wrapper .content-wrapper .container-orders .row .card .btn-change-wrapper {
+.main-wrapper .content-wrapper .container-orders .order-wrapper .row .card .btn-change-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1641,6 +1680,36 @@ body {
 .main-wrapper .content-wrapper .container-checkout .checkout-wrapper .btn-order-wrapper .btn-order {
   font-size: 2rem;
   text-transform: initial;
+}
+
+.main-wrapper .content-wrapper .container-cart-response {
+  padding: 10px;
+  text-align: center;
+}
+
+.main-wrapper .content-wrapper .container-cart-response h2 {
+  text-align: center;
+  margin: 0;
+  padding: 10px 0;
+  background-color: #b10909;
+  color: #fff;
+  border-radius: 5px 5px 0 0;
+}
+
+.main-wrapper .content-wrapper .container-cart-response .content-cart-wrapper {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 0 0 5px 5px;
+}
+
+.main-wrapper .content-wrapper .container-cart-response .content-cart-wrapper .principal-message {
+  font-size: 2rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.main-wrapper .content-wrapper .container-cart-response .content-cart-wrapper .btn-wrapper {
+  margin-top: 10px;
 }
 
 .main-wrapper .footer {

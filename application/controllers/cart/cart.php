@@ -120,11 +120,14 @@ class Cart extends CI_Controller {
 
             if( !isset( $this->session->logged ) || $this->session->logged == false ) {
                 // CONTROLAR QUE NO EXISTA YA UN EMAIL ASOCIADO
-                $response['insert-user'] = $this->M_cart->insertUserAnonimous($data_insert);
+                $user_check = $this->M_cart->getIdUser($data_insert['email']);
+                if( $user_check == NULL) {
+                    $response['insert-user'] = $this->M_cart->insertUserAnonimous($data_insert);
+                }
             }
 
-            //Insertar el total de la venta
             $user = $this->M_cart->getIdUser($data_insert['email']);
+            //Insertar el total de la venta
             $id_venta = $this->M_cart->insertVenta($data, $user['id_usuario'], $id_envio, $ship_cost);
 
             //Insertar los detalles de la venta por línea
@@ -152,7 +155,17 @@ class Cart extends CI_Controller {
     }
 
     public function cartMessage($response) {
-        var_dump($response);
-        var_dump($this->cart->total_items());
+        $page_data['page_content'] = 'cart/v_cart_response';
+        $page_data['success'] = $response['success'];
+
+        if( $response['success'] != true) {
+            $page_data['message'] = 'Ha ocurrido algún error, inténtelo de nuevo.';
+        } else if( $response['insert-venta'] != true ) {
+            $page_data['message'] = 'No se ha podido completar la venta.';
+        } else {
+            $page_data['message'] = 'Su compra se ha realizado con éxito';
+        }
+		
+        $this->load->view('/layouts/main', $page_data);
     }
 }
