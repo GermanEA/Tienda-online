@@ -1,7 +1,9 @@
 <div class="card-deck">
 
     <?php if(isset($search)) {
-    foreach($search as $row): ?>
+        foreach($search as $row): 
+            $stock_check = false;    
+        ?>
         <div class="card-wrapper col-4">
             <div class="card-item">                
                 <img class="w-100" src="<?php echo base_url() . "/" . $row->imagen; ?>"   alt="<?php echo $row->descripcion; ?>">
@@ -34,13 +36,27 @@
                     <?php } else { ?>
                         <ul class="size-group"></ul>
                     <?php } ?>
-
                 </div>
-                <form method="post" action="<?= base_url('products/product_single'); ?>">
-                    <input type="hidden" name="codigo" value="<?= $row->codigo_producto?>">
-                    <input type="hidden" name="tipo" value="<?= $row->id_tipo_producto?>">
-                    <button type="submit" class="btn btn-card">COMPRAR</button>
-                </form>
+                
+                    <?php foreach( $stock as $key => $value ):
+                        if($row->codigo_producto == $key) {  
+                            $stock_check = true;
+                        } ?>
+                    <?php endforeach; ?>
+
+                    <?php if( $stock_check != true ) { ?>
+
+                        <span type="button" class="btn btn-stock">FUERA DE STOCK</span>
+
+                    <?php } else { ?>
+
+                    <form method="post" action="<?= base_url('products/product_single'); ?>">
+                        <input type="hidden" name="codigo" value="<?= $row->codigo_producto?>">
+                        <input type="hidden" name="tipo" value="<?= $row->id_tipo_producto?>">
+                        <button type="submit" class="btn btn-card">COMPRAR</button>
+                    </form>
+
+                    <?php } ?>
             </div>
         </div>
     <?php endforeach; } else { ?>

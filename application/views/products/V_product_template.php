@@ -1,9 +1,10 @@
 <div id="search" class="container container-product">
         <div class="card-deck">
 
-        <?php if(isset($product)) {            
+        <?php if(isset($product)) {
+        foreach($product as $row): 
             $stock_check = false;
-        foreach($product as $row): ?>
+        ?>
             <div class="card-wrapper col-4">
                 <div class="card-item">
                     <img class="w-100" src="<?php echo base_url() . "/" . $row->imagen; ?>"   alt="<?php echo $row->descripcion; ?>">
@@ -27,16 +28,14 @@
 
                     </div>
 
-                    <?php foreach( $stock as $key => $value ):
-                        if($row->codigo_producto == $key) {  
+                    <?php foreach( $stock as $key => $value ):                        
+                        if($row->codigo_producto === $key) {  
                             $stock_check = true;
                         } ?>
                     <?php endforeach; ?>
 
                     <?php if( $stock_check != true ) { ?>
-
                         <span type="button" class="btn btn-stock">FUERA DE STOCK</span>
-
                     <?php } else { ?>
 
                     <form method="post" action="<?= base_url('products/product_single'); ?>">
@@ -47,14 +46,10 @@
 
                     <?php } ?>
 
-
-
-
-
-
                 </div>
             </div>
-        <?php endforeach; } else { ?>
+        <?php endforeach; 
+        } else { ?>
             <div>No hay productos en el almacén en estos momentos.</div>
         <?php } ?>
             

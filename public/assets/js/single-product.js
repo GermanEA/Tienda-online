@@ -1,14 +1,28 @@
 /* DISABLE QUANTITY INPUT */
-window.onload = () => {
-    document.getElementById('quantity').readOnly = true;
-};
-
 let btnAddCart = document.getElementById('btn-cart-single');
 let quantityInput = document.getElementById('quantity');
 let radioBtn = document.querySelectorAll('input[type="radio"]');
+let sizeRadio;
 let radioBtnChanged = [];
-let firstTime = true;
 let maxStore;
+let storageProduct = [];
+let productSession;
+let numberStockDiv = document.getElementById('number-stock');
+
+window.onload = () => {
+    document.getElementById('quantity').readOnly = true;
+
+    if( sessionStorage ) {        
+        let item = JSON.parse(sessionStorage.getItem(productCode));
+
+        console.log(item);
+
+        // if( item ) {
+        //     numberStockDiv.innerText = item;
+        //     quantityInput.max = item;
+        // }
+    }
+};
 
 /* CHEKCHING RADIO SIZE SINGLE PRODUCT */
 btnAddCart.addEventListener('click', () => {
@@ -101,7 +115,7 @@ function notificationError(message) {
 /* ADD CART AJAX */
 function addCartPost() {
     let radioBtn = document.querySelectorAll('input[type="radio"]');
-    let sizeRadio = '';
+    sizeRadio = '';
 
     if( quantityInput.max <= 0) {
         notificationError('Lo sentimos el producto se acaba de quedar sin stock.');
@@ -149,8 +163,8 @@ function addCartPost() {
 }
 
 function filterResponseAjax(peticionAjax) {  
-    let totalItemsDiv = document.getElementById('total-items');    
-    let numberStockDiv = document.getElementById('number-stock');
+    let totalItemsDiv = document.getElementById('total-items');
+    numberStockDiv = document.getElementById('number-stock');
 
     if( peticionAjax.status == 200 ) {
         let response = peticionAjax.responseText;
@@ -165,6 +179,55 @@ function filterResponseAjax(peticionAjax) {
                 radioBtnChanged[element.id] = maxStore;
             };
         });
+
+        // localStorage con JSON
+        
+        if(sizeRadio == '') {
+            storageProduct = {
+                stock: maxStore
+            };
+            // sessionStorage.setItem(productCode, maxStore);
+            sessionStorage.setItem(productCode, JSON.stringify(storageProduct));
+        } else {
+            storageProduct = {
+                [sizeRadio]: maxStore
+            };
+
+            if( sessionStorage.getItem(productCode) ) {
+                let result = [];
+                let previousStorage = sessionStorage.getItem(productCode);
+
+                // result = JSON.stringify(storageProduct).concat(previousStorage);
+
+                // result.push(storageProduct);
+                // result.push(JSON.parse(previousStorage));
+
+                console.log(storageProduct);
+                console.log(previousStorage);
+
+                console.log(result);
+
+                result.forEach((element, index) => {
+                    for (const key in element) {
+                        console.log(key + ':' + element[key]);
+                    }
+                });
+
+                // console.log(JSON.parse(previousStorage));
+
+                // result.push(JSON.stringify(storageProduct));
+
+                
+                // result.push(previousStorage);
+
+                // storageProduct = result;
+
+                // sessionStorage.setItem(productCode, storageProduct);
+            } else {
+                
+                // sessionStorage.setItem(productCode, JSON.stringify(storageProduct));
+            }
+        }
     }
 }
 
@@ -174,8 +237,7 @@ radioBtn.forEach(element => {
 });
 
 function changeSize() {
-    let sizeRadio = '';        
-    let numberStockDiv = document.getElementById('number-stock');
+    let sizeRadio = '';
     quantityInput.value = 1;
     
     radioBtn.forEach(element => {
@@ -211,24 +273,20 @@ function filterResponseAjaxChange(peticionAjax) {
             articulo = 'artículos';
         }
 
+        stockDiv.innerHTML = '<span>Quedan en stock: </span><span id="number-stock">' + response + '</span><span> ' + articulo + '</span>';
+        quantityInput.max = response;
+
         radioBtn.forEach(element => {
-            // debugger;
-            if(firstTime != true){
+            for( let key in radioBtnChanged ){
                 if(element.checked) {
-                    for( let key in radioBtnChanged ){
-                        if (typeof radioBtnChanged[key] !== 'function') {
-                            if(element.id == key) {
-                                stockDiv.innerHTML = '<span>Quedan en stock: </span><span id="number-stock">' + radioBtnChanged[key] + '</span><span> ' + articulo + '</span>'
-                                quantityInput.max = radioBtnChanged[key];
-                            }
+                    if (typeof radioBtnChanged[key] !== 'function') {
+                        if(element.id == key) {
+                            stockDiv.innerHTML = '<span>Quedan en stock: </span><span id="number-stock">' + radioBtnChanged[key] + '</span><span> ' + articulo + '</span>'
+                            quantityInput.max = radioBtnChanged[key];
                         }
-                    }                
-                    
-                }
-            } else {
-                stockDiv.innerHTML = '<span>Quedan en stock: </span><span id="number-stock">' + response + '</span><span> ' + articulo + '</span>';
-                quantityInput.max = response;                
+                    }
+                }                   
             }
-        });
+        }); 
     }
 }

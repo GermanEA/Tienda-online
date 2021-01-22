@@ -33,6 +33,7 @@
     <!-- START @GLOBAL JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0" defer></script>
     <script src="<?php echo base_url('/public/assets/js/dashboard.js');?>" defer></script>
     <script> const baseURL = '<?= base_url();?>'; </script>
     <!-- / END GLOBAL JS -->
@@ -224,8 +225,8 @@
                             <i class="fas fa-chart-line"></i>
                         </span>
                     </li>
-                    <li class="sub-item">
-                        <a href="">
+                    <li class="sub-item <?= ($this->uri->segment(3)==='general')?'is-active':''?>">
+                        <a href="<?= base_url('/administrator/statistics/general'); ?>">
                             <span class="icon">
                                 <i class="fas fa-pencil-alt"></i>
                             </span>
