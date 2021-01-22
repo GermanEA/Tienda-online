@@ -65,7 +65,6 @@
             $this->db->join('tipo_producto', 'producto.id_tipo_producto = tipo_producto.id_tipo_producto', 'inner');
             
             $filtersTrue = array();
-            $names = array('Frank', 'Todd', 'James');
 
             foreach( $listFilters as $filter => $value) {
                 
@@ -103,6 +102,34 @@
 
             if ( $query->num_rows() > 0 ) {
                 return $query->result();                
+            } else {
+                return NULL;
+            }
+        }
+
+        public function getStockByProduct($id_producto) {
+            $query = $this->db->select('stock')
+                     ->from('producto')
+                     ->where('id_producto', $id_producto)
+                     ->get();
+
+            if ( $query->num_rows() > 0 ) {
+                return $query->row();                
+            } else {
+                return NULL;
+            }
+        } 
+
+        public function getStockByProductAndSize($codigo_producto, $codigo_talla) {
+            $query = $this->db->select('p.stock, t.id_talla')
+                     ->from('producto AS p')
+                     ->join('talla AS t', 'p.id_talla = t.id_talla')
+                     ->where('p.codigo_producto', $codigo_producto)
+                     ->where('t.codigo_talla', $codigo_talla)
+                     ->get();
+            
+            if ( $query->num_rows() > 0 ) {
+                return $query->row();                
             } else {
                 return NULL;
             }

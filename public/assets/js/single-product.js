@@ -5,10 +5,10 @@ window.onload = () => {
 
 let btnAddCart = document.getElementById('btn-cart-single');
 let quantityInput = document.getElementById('quantity');
+let radioBtn = document.querySelectorAll('input[type="radio"]');
 
 /* CHEKCHING RADIO SIZE SINGLE PRODUCT */
-btnAddCart.addEventListener('click', () => {  
-    let radioBtn = document.querySelectorAll('input[type="radio"]');
+btnAddCart.addEventListener('click', () => {
     let message = document.getElementById('size-message');
     let check = [];
     let canBuy = false; 
@@ -51,10 +51,15 @@ minusDiv.addEventListener('click', () => {
     }
 });
 
-plusDiv.addEventListener('click', () => {    
-    if(quantityInput.value > 0 ) {
-        quantityInput.value ++;
-    } else {
+plusDiv.addEventListener('click', () => {
+    let value = parseInt(quantityInput.value);
+    let max = parseInt(quantityInput.max);
+    
+    if(value > 0) { 
+        if(value < max) {
+            quantityInput.value ++;
+        }
+    } else { 
         quantityInput.value = 1;
     }
 });
@@ -129,5 +134,54 @@ function filterResponseAjax(peticionAjax) {
     if( peticionAjax.status == 200 ) {
         let response = peticionAjax.responseText;
         totalItemsDiv.innerHTML = response;
+    }
+}
+
+/* CHANGE STOCK WHEN CHANGE SIZE */
+radioBtn.forEach(element => {
+    element.addEventListener('click', changeSize, false);
+});
+
+function changeSize() {
+    let sizeRadio = '';
+    quantityInput.value = 1;
+    
+    radioBtn.forEach(element => {
+        if(element.checked) {
+          sizeRadio = element.value;
+        };
+    });
+
+    let string = "cp=" + productCode + "&ct=" + sizeRadio;
+
+    let peticionAjax = new XMLHttpRequest();
+    peticionAjax.open("POST", baseURL + "products/product_single/getStock",true);
+    peticionAjax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    peticionAjax.onreadystatechange = function() {
+        if(peticionAjax.readyState == 4) {
+            filterResponseAjaxChange(peticionAjax);
+        }
+    }   
+
+    peticionAjax.send(string);
+}
+
+function filterResponseAjaxChange(peticionAjax) {  
+    let articulo;
+    let stockDiv = document.getElementById('stock-wrapper');
+
+    if( peticionAjax.status == 200 ) {
+        let response = peticionAjax.responseText;
+        if( response == 1) {
+            articulo = 'artículo';
+        } else {
+            articulo = 'artículos';
+        }
+
+        console.log(response);
+
+        stockDiv.innerHTML = '<div>Quedan en stock: ' + response + ' ' + articulo;
+        quantityInput.max = response;
     }
 }

@@ -42,17 +42,32 @@
                     <label for="quantity">Cantidad:</label>
                     <div class="quantity-number">
                         <div id="minus">-</div>
-                        <input type="number" id="quantity" name="qty" value="1" min="1" pattern=[0-9]*>
+                        <input type="number" id="quantity" name="qty" value="1" min="1" max="<?= $stock; ?>" pattern=[0-9]*>
                         <div id="plus">+</div>
-                        <button id="btn-cart-single" type="button" class="btn btn-original" value="<?= $product[0]->id_producto; ?>" name="id-producto">Añadir al carrito</button>
+                        <button id="btn-cart-single" type="button" class="btn btn-original" name="id-producto" value="<?= $product[0]->id_producto; ?>">Añadir al carrito</button>
                     </div>
                 </div>
+            </div>
+            <div id="stock-wrapper" class="stock-wrapper">
+                <?php if( is_numeric($stock) ) { ?>
+                <span>Quedan en stock: </span>
+                <span><?= $stock; ?></span>
+                <span>
+                    <?php if( $stock == 1) { ?>
+                        artículo
+                    <?php } else { ?>
+                        artículos
+                    <?php } ?>
+                </span>
+                <?php } else { ?>
+                    <span>Elige una talla para saber el stock</span>
+                <?php } ?>
             </div>
         <div class="description">
             <h3>DESCRIPCIÓN DEL PRODUCTO</h3>
 
             <?php if( isset($product[0]->material) ) { ?>
-                <span>Material: <?= $product[0]->material; ?> </span>
+                <span><?= $product[0]->material; ?> </span>
             <?php } ?>
         </div>
     </div>

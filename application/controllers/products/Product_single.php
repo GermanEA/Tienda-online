@@ -23,6 +23,23 @@ class Product_single extends CI_Controller {
 		$page_data['product'] = $this->M_product->getProductSingle($data['codigo']);
 		$page_data['size'] = $this->M_product->getProductSize($data['tipo']);
 
-        $this->load->view('/layouts/main', $page_data);
+		if( $page_data['size'] == NULL) {
+			$page_data['stock'] = $this->M_product->getStockByProduct($page_data['product'][0]->id_producto)->stock;
+		} else {
+			$page_data['stock'] = NULL;
+		}
+
+		// if($page_data['stock'] != 0 || $page_data['stock'] != NULL || !isset($page_data['stock'])) {
+			$this->load->view('/layouts/main', $page_data);
+		// } else {
+		// 	redirect(base_url(), 'location');
+		// }
+	}
+
+	public function getStock() {
+		$data = $this->input->post();
+		$return = $this->M_product->getStockByProductAndSize($data['cp'], $data['ct'])->stock;
+		
+		echo $return;
 	}
 }

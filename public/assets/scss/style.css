@@ -1058,7 +1058,7 @@ body {
       -ms-flex-align: center;
           align-items: center;
   width: 100%;
-  margin-bottom: 2rem;
+  margin-bottom: 15px;
 }
 
 .main-wrapper .content-wrapper .container-product-single .details-wrapper .cart-wrapper .quantity-wrapper {
@@ -1117,6 +1117,12 @@ body {
 .main-wrapper .content-wrapper .container-product-single .details-wrapper .cart-wrapper .quantity-wrapper .quantity-number .btn:hover {
   color: #fff;
   background-color: #df3e3e;
+}
+
+.main-wrapper .content-wrapper .container-product-single .details-wrapper .stock-wrapper {
+  margin-bottom: 25px;
+  color: #717171;
+  font-size: 0.8rem;
 }
 
 .main-wrapper .content-wrapper .container-product-single .details-wrapper .description h3 {

@@ -22,12 +22,12 @@ class Cart extends CI_Controller {
     
     public function addCartProduct() {
         $data = $this->input->post();
-
+        
         if( empty($data['size']) ) {
             $id_producto['id_producto'] = $data['id-producto'];
         } else {
             $id_producto = $this->M_cart->getIdTipoProductoSize($data['product-code'], $data['size']);
-        }        
+        }
 
         $data_cart = array(
             'id'    => $data['id'],
@@ -114,77 +114,93 @@ class Cart extends CI_Controller {
                 'email'   => $data['email']
             );
 
+            // COMPROBAMOS QUE EXISTE EL CARRITO Y NO ESTA VACIO
             if( isset( $this->cart) || $this->cart->total_items() != 0 ){
-                $id_factura = $this->M_cart->insertFactura($data_insert);
-                $id_envio = '';
-                $ship_cost = $this->calcShipCost();
+                // COMPROBAMOS QUE EXISTE STOCK EN TODOS LOS PRODUCTOS
+                $check_stock = true;
 
-                if( isset($data['check-address'])) {
-                    $data_insert = array(
-                        'name'    => $data['name-other'], 
-                        'lname'   => $data['lname-other'], 
-                        'cif'     => $data['cif-other'], 
-                        'address' => $data['address-other'], 
-                        'postal'  => $data['postal-other'],
-                        'city'    => $data['city-other'],   
-                        'phone'   => $data['phone'], 
-                        'email'   => $data['email']
-                    );
+                foreach( $this->cart->contents() as $row ){
+                    $stock = $this->M_cart->getStock($row['id_producto']);
 
-                    $id_envio = $this->M_cart->insertEnvio($data_insert, $id_factura);
-
-                } else {
-                    $id_envio = $this->M_cart->insertEnvio($data_insert, $id_factura);
-                }
-
-                if( !isset( $this->session->logged ) || $this->session->logged == false ) {
-                    // CONTROLAR QUE NO EXISTA YA UN EMAIL ASOCIADO
-                    $user_check = $this->M_cart->getIdUser($data_insert['email']);
-                    if( $user_check == NULL) {
-                        $response['insert-user'] = $this->M_cart->insertUserAnonimous($data_insert);
+                    if( $stock['stock'] < $row['qty'] ){
+                        $response['success'] = false;
+                        $response['message'] = 'El producto "' . $row['name'] . '" se ha quedado sin stock';
+                        $check_stock = false;
+                        break;
                     }
                 }
 
-                $user = $this->M_cart->getIdUser($data_insert['email']);
-                //Insertar el total de la venta
-                $id_venta = $this->M_cart->insertVenta($data, $user['id_usuario'], $id_envio, $ship_cost);
+                if ( $check_stock != true ) {
+                    $response['success'] = false;
+                } else {
+                    // INSERTAMOS LA FACTURA
+                    $id_factura = $this->M_cart->insertFactura($data_insert);
+                    $id_envio = '';
 
-                //Insertar los detalles de la venta por línea
-                foreach( $this->cart->contents() as $row ){
-                    $response['insert-venta'] = $this->M_cart->insertVentaDetalle($row, $id_venta);
+                    // INSERTAMOS EL ENVIO SI ES NECESARIO CON OTROS DATOS
+                    if( isset($data['check-address'])) {
+                        $data_insert = array(
+                            'name'    => $data['name-other'], 
+                            'lname'   => $data['lname-other'], 
+                            'cif'     => $data['cif-other'], 
+                            'address' => $data['address-other'], 
+                            'postal'  => $data['postal-other'],
+                            'city'    => $data['city-other'],   
+                            'phone'   => $data['phone'], 
+                            'email'   => $data['email']
+                        );
+
+                        $id_envio = $this->M_cart->insertEnvio($data_insert, $id_factura);
+
+                    } else {
+                        $id_envio = $this->M_cart->insertEnvio($data_insert, $id_factura);
+                    }
+
+                    if( !isset( $this->session->logged ) || $this->session->logged == false ) {
+                        // CONTROLAR QUE NO EXISTA YA UN EMAIL ASOCIADO
+                        $user_check = $this->M_cart->getIdUser($data_insert['email']);
+                        if( $user_check == NULL) {
+                            $this->M_cart->insertUserAnonimous($data_insert);
+                        }
+                    }
+                    
+                    // INSERTAMOS LA VENTA                    
+                    $ship_cost = $this->calcShipCost();
+                    $user = $this->M_cart->getIdUser($data_insert['email']);
+                    $id_venta = $this->M_cart->insertVenta($data, $user['id_usuario'], $id_envio, $ship_cost);
+
+                    // INSERTAMOS LOS DETALLES DE LA VENTA
+                    foreach( $this->cart->contents() as $row ){
+                        $response['insert-venta'] = $this->M_cart->insertVentaDetalle($row, $id_venta);
+                    }
+                    
+                    // BAJAMOS EL STOCK DE LOS PRODUCTOS
+                    foreach( $this->cart->contents() as $row ){
+                        $new_stock = $stock['stock'] - $row['qty'];
+                        $this->M_cart->decreaseStock($row['id_producto'], $new_stock);
+                    }
+
+                    // VACIAMOS EL CARRITO
+                    $this->cart->destroy();
+
+                    $response['success'] = true;
+                    $response['message'] = 'Su compra se ha realizado con éxito';
                 }
 
-                //Bajar el stock de los productos y asegurarse
-                // foreach( $this->cart->contents() as $row ){
-                //     $stock = $this->M_cart->getStock($row['id_producto']);
-                //     $new_stock = $stock['stock'] - $row['qty'];
-                //     $response['insert-stock'] = $this->M_cart->decreaseStock($row['id_producto'], $new_stock);
-                // }
-
-                //Vaciar el carrito
-                $this->cart->destroy();
-
-                $response['success'] = true;
-                
             } else {
                 $response['success'] = false;
             }
 
             $this->cartMessage($response);
         }
+        
     }
 
     public function cartMessage($response) {
         $page_data['page_content'] = 'cart/v_cart_response';
         $page_data['success'] = $response['success'];
-
-        if( $response['success'] != true) {
-            $page_data['message'] = 'Ha ocurrido algún error, inténtelo de nuevo.';
-        } else if( $response['insert-venta'] != true ) {
-            $page_data['message'] = 'No se ha podido completar la venta.';
-        } else {
-            $page_data['message'] = 'Su compra se ha realizado con éxito';
-        }
+        $page_data['message'] = $response['message'];
+        
 		
         $this->load->view('/layouts/main', $page_data);
     }

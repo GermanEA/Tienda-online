@@ -819,7 +819,7 @@ body {
     
                 .cart-wrapper {
                     @include flex( 100%, row, flex-start, center);
-                    margin-bottom: 2rem;
+                    margin-bottom: 15px;
     
                     .quantity-wrapper {
                         margin-right: 10px;
@@ -871,6 +871,12 @@ body {
                         }
                     }
     
+                }
+
+                .stock-wrapper {
+                    margin-bottom: 25px;
+                    color: $secondary-color;
+                    font-size: 0.8rem;
                 }
     
                 .description {
