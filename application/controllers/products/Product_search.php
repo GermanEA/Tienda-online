@@ -21,6 +21,18 @@ class Product_search extends CI_Controller {
 		$page_data['search'] = $this->M_product->getProductAjax($postData);
 		$page_data['size_shirt'] = $this->M_product->getProductSize(3);
 		$page_data['size_sweetshirt'] = $this->M_product->getProductSize(4);
+
+		$size_array = array();
+
+		foreach( $page_data['product'] as $row ){
+			foreach( $page_data['size'] as $row_size ){
+				if( $row->codigo_producto == $row_size->codigo_producto ){
+					$size_array[$row->codigo_producto] = $row_size->codigo_talla;
+				}
+			}
+		}
+
+		$page_data['stock'] = $size_array;
         
         $this->load->view('/products/v_product_search', $page_data);
 	}

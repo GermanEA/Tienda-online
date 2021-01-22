@@ -28,16 +28,12 @@ class User_data extends CI_Controller {
 
 	public function changeView() {
 		$page_data['page_content'] = 'user/v_user_change';
-		$page_data['user'] = $this->M_user_data->getUserShowData();
+		$page_data['user'] = $this->M_user_data->getUserShowDataNoEmail();
         $this->load->view('/layouts/main', $page_data);
 	}
 
 	public function changeData() {
 		$data = $this->input->post();
-
-		// $pattern_dni = '/^\d{8}[a-zA-Z]$/';
-		// $pattern_cif = '/^([ABCDEFGHJKLMNPQRSUVW])(\d{7})([0-9A-J])$/';
-		// $pattern_nie = '/^[xyzXYZ]\d{7,8}[a-zA-Z]$/';
 
 		if( preg_match('/^[A-z]{2,25}$/', $data['Nombre']) !=1 ) {
 			$page_data['error_change'] = "El nombre no es válido. Debe comprender entre 2 y 25 caracteres.";

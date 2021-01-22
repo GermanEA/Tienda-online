@@ -5,7 +5,7 @@
             $query = $this->db->select('*')
                      ->from('producto')
                      ->where('id_tipo_producto', $id_tipo_producto)
-                     ->where('stock >', 0)
+                    //  ->where('stock >', 0)
                      ->group_by('codigo_producto')
                      ->get();
 
@@ -20,7 +20,7 @@
             $query = $this->db->select('*')
                      ->from('producto')
                      ->where('codigo_producto', $codigo_producto)
-                     ->where('stock >', 0)
+                    //  ->where('stock >', 0)
                      ->get();
 
             if ( $query->num_rows() > 0 ) {
@@ -77,7 +77,7 @@
                 $this->db->where_in('tipo_producto', $filtersTrue);
             }
 
-            $this->db->where('stock >', 0);
+            // $this->db->where('stock >', 0);
             $this->db->group_by('codigo_producto');
             $this->db->order_by('id_tipo_producto');
             $query = $this->db->get();
@@ -98,6 +98,20 @@
                      ->group_by('codigo_producto')
                      ->order_by('id_tipo_producto')
                      ->limit(10)
+                     ->get();
+
+            if ( $query->num_rows() > 0 ) {
+                return $query->result();                
+            } else {
+                return NULL;
+            }
+        }
+
+        public function getStockByType($id_tipo_producto) {
+            $query = $this->db->select('*')
+                     ->from('producto')
+                     ->where('id_tipo_producto', $id_tipo_producto)
+                     ->where('stock >', 0)
                      ->get();
 
             if ( $query->num_rows() > 0 ) {

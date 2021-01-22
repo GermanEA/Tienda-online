@@ -29,11 +29,7 @@ class Product_single extends CI_Controller {
 			$page_data['stock'] = NULL;
 		}
 
-		// if($page_data['stock'] != 0 || $page_data['stock'] != NULL || !isset($page_data['stock'])) {
-			$this->load->view('/layouts/main', $page_data);
-		// } else {
-		// 	redirect(base_url(), 'location');
-		// }
+		$this->load->view('/layouts/main', $page_data);
 	}
 
 	public function getStock() {

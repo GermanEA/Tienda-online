@@ -51,7 +51,7 @@
             <div id="stock-wrapper" class="stock-wrapper">
                 <?php if( is_numeric($stock) ) { ?>
                 <span>Quedan en stock: </span>
-                <span><?= $stock; ?></span>
+                <span id="number-stock"><?= $stock; ?></span>
                 <span>
                     <?php if( $stock == 1) { ?>
                         artículo

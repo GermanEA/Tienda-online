@@ -102,7 +102,6 @@ class Cart extends CI_Controller {
             $page_data['error_checkout'] = $check_form;
             $this->checkOutError($page_data);
         } else {
-            //COMIENZO A INSERTAR EN LA BASE DE DATOS
             $data_insert = array(
                 'name'    => $data['name'], 
                 'lname'   => $data['lname'], 
@@ -123,8 +122,13 @@ class Cart extends CI_Controller {
                     $stock = $this->M_cart->getStock($row['id_producto']);
 
                     if( $stock['stock'] < $row['qty'] ){
+                        if( $stock['stock'] <= 0 ) {
+                            $response['message'] = 'El producto "' . $row['name'] . '" se ha quedado sin stock';
+                        } else {
+                            $response['message'] = 'El producto "' . $row['name'] . '" no tiene suficiente stock en estos momentos';
+                        }
+
                         $response['success'] = false;
-                        $response['message'] = 'El producto "' . $row['name'] . '" se ha quedado sin stock';
                         $check_stock = false;
                         break;
                     }
@@ -133,6 +137,7 @@ class Cart extends CI_Controller {
                 if ( $check_stock != true ) {
                     $response['success'] = false;
                 } else {
+                    //COMIENZO A INSERTAR EN LA BASE DE DATOS
                     // INSERTAMOS LA FACTURA
                     $id_factura = $this->M_cart->insertFactura($data_insert);
                     $id_envio = '';

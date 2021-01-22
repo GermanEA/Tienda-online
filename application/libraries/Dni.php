@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Dni {
 
-    public function typeDni($dni) {
+    public function typeDni($dni) {        
         $pattern_dni = '/^\d{8}[a-zA-Z]$/';
 		$pattern_cif = '/^([ABCDEFGHJKLMNPQRSUVW])(\d{7})([0-9A-J])$/';
         $pattern_nie = '/^[xyzXYZ]\d{7,8}[a-zA-Z]$/';

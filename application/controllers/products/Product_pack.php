@@ -20,6 +20,21 @@ class Product_pack extends CI_Controller {
 		$page_data['custom_js'] = array ('/public/assets/js/ajax-filter.js');
 		$page_data['product_list'] = $this->M_product->getProductListFilter();
 		$page_data['product'] = $this->M_product->getProduct(1);
+		$page_data['stocks'] = $this->M_product->getStockByType(1);
+
+		$stock_array = array();
+
+		if($page_data['stocks'] != NULL) {
+			foreach( $page_data['product'] as $row ){
+				foreach( $page_data['stocks'] as $row_stock ){
+					if( $row->codigo_producto == $row_stock->codigo_producto ){
+						$stock_array[$row->codigo_producto] = $row_stock->stock;
+					}
+				}
+			}
+		}
+
+		$page_data['stock'] = $stock_array;
 
         $this->load->view('/layouts/main', $page_data);
 	}

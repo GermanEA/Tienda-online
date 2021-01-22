@@ -50,7 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 </div>
                             </form>
                             <div class="forgot-pass modal-close mb-3">
-                                <a href="">¿Has olvidado la contraseña?</a>
+                                <a href="<?= base_url(); ?>">¿Has olvidado la contraseña?</a>
                             </div>
 
                         <?php if( isset( $error_log ) ) { ?>

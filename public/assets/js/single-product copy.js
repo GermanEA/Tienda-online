@@ -6,8 +6,7 @@ window.onload = () => {
 let btnAddCart = document.getElementById('btn-cart-single');
 let quantityInput = document.getElementById('quantity');
 let radioBtn = document.querySelectorAll('input[type="radio"]');
-let radioBtnChanged = [];
-let firstTime = true;
+let radioBtnChanged;
 let maxStore;
 
 /* CHEKCHING RADIO SIZE SINGLE PRODUCT */
@@ -162,7 +161,7 @@ function filterResponseAjax(peticionAjax) {
 
         radioBtn.forEach(element => {
             if(element.checked) {
-                radioBtnChanged[element.id] = maxStore;
+                radioBtnChanged = element;
             };
         });
     }
@@ -212,23 +211,15 @@ function filterResponseAjaxChange(peticionAjax) {
         }
 
         radioBtn.forEach(element => {
-            // debugger;
-            if(firstTime != true){
-                if(element.checked) {
-                    for( let key in radioBtnChanged ){
-                        if (typeof radioBtnChanged[key] !== 'function') {
-                            if(element.id == key) {
-                                stockDiv.innerHTML = '<span>Quedan en stock: </span><span id="number-stock">' + radioBtnChanged[key] + '</span><span> ' + articulo + '</span>'
-                                quantityInput.max = radioBtnChanged[key];
-                            }
-                        }
-                    }                
-                    
-                }
-            } else {
+            if(element.checked) {          
+              if(radioBtnChanged != undefined && element.id == radioBtnChanged.id) {
+                stockDiv.innerHTML = '<span>Quedan en stock: </span><span id="number-stock">' + maxStore + '</span><span> ' + articulo + '</span>'
+                quantityInput.max = maxStore;
+              } else {
                 stockDiv.innerHTML = '<span>Quedan en stock: </span><span id="number-stock">' + response + '</span><span> ' + articulo + '</span>';
-                quantityInput.max = response;                
-            }
+                quantityInput.max = response;
+              }
+            };
         });
     }
 }

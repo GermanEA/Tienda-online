@@ -21,6 +21,20 @@ class Product_sweatshirt extends CI_Controller {
 		$page_data['product_list'] = $this->M_product->getProductListFilter();
 		$page_data['product'] = $this->M_product->getProduct(4);		
 		$page_data['size'] = $this->M_product->getProductSize(4);
+
+		$size_array = array();
+
+		if( $page_data['size'] != NULL) {
+			foreach( $page_data['product'] as $row ){
+				foreach( $page_data['size'] as $row_size ){
+					if( $row->codigo_producto == $row_size->codigo_producto ){
+						$size_array[$row->codigo_producto] = $row_size->codigo_talla;
+					}
+				}
+			}
+		}
+
+		$page_data['stock'] = $size_array;
 		
         $this->load->view('/layouts/main', $page_data);
 	}

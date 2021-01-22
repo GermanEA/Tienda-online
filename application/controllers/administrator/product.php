@@ -46,6 +46,8 @@ class Product extends CI_Controller {
 		if($page_data['products'] != NULL ) {
 			$page_data['product_header'] = $this->getL2Keys($page_data['products']);
         }        
+        
+        $this->session->set_userdata('previous_url', current_url());
 
 		$this->load->view('/administrator/v_dashboard', $page_data);
     }
@@ -84,7 +86,7 @@ class Product extends CI_Controller {
 
 		if($page_data['products'] != NULL ) {
 			$page_data['product_header'] = $this->getL2Keys($page_data['products']);
-		}
+        }
 		
 		$this->load->view('/administrator/v_products_ajax', $page_data);
     }
@@ -168,9 +170,9 @@ class Product extends CI_Controller {
             ESTA FUNCIÓN NO ELIMINA EL PRODUCTO DE LA BBDD SINO PONE EL STOCK A CERO
             PARA PODER VOLVER A UTILIZARLO SIN TENER QUE DARLO DE ALTA
         */ 
-        $this->M_dashboard_product->cancelProduct($id);
+        $this->M_dashboard_product->cancelProduct($id);        
 
-        redirect(base_url('administrator/product/showAllProduct'));
+        redirect($this->session->userdata('previous_url'));
     }   
 
     public function getL2Keys($array) {
