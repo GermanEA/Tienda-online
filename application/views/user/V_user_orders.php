@@ -39,11 +39,11 @@
             </table>
             
         <?php } else { ?>
-            
-            <h2>No has realizado ningún pedido.</h2>
 
-            <button type="button" class="btn btn-original" onclick="location.href = '<?= base_url('user/user_data'); ?>';">Regresar</button>
-
+            <div class="order-wrapper">            
+                <div class="row justify-content-md-center">No has realizado ningún pedido.</div>
+                <button type="button" class="btn btn-original" onclick="location.href = '<?= base_url('user/user_data'); ?>';">Regresar</button>
+            </div>
         <?php }; ?>
         </div>
 </div>
