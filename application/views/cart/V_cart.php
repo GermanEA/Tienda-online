@@ -15,14 +15,20 @@
                         <img class="img-fluid" src="<?= base_url($row['image']); ?>" alt="<?= $row['name']; ?>">
                     </div>
                     <div class="center-wrapper">
+                        <span class="cart-product-id">Código de producto: 
+                            <span class="product-code"><?= $row['product_code']; ?></span>
+                        </span>
                         <span class="cart-product-name"><?= $row['name']; ?></span>
                         <div class="options-wrapper">
                             <span>CANTIDAD: <?= $row['qty']; ?></span>
 
                             <?php if( !empty($row['size']) ) { ?>
-                                <span>TALLA: <?= $row['size']; ?></span>
+                                <span>TALLA: 
+                                    <span><?= $row['size']; ?></span>
+                                </span>
                             <?php }; ?>
                         </div>
+    
                         <button type="submit" class="btn btn-original btn-cart-remove" name="rowid" value="<?= $row['rowid']; ?>">Eliminar</button>
                         
                     </div>

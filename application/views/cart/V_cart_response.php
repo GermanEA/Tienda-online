@@ -18,7 +18,7 @@
         <?php } else { ?>
             <div class="secondary-message">Vuelve a intentarlo pasados unos minutos.</div>
             <div class="btn-wrapper">
-                <a href="<?= base_url('/cart/cart/checkout'); ?>">
+                <a href="<?= base_url(); ?>">
                     <button type="button" class="btn btn-original">Volver a intentarlo</button>
                 </a>
             </div>

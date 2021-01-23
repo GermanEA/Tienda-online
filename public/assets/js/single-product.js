@@ -8,20 +8,12 @@ let maxStore;
 let storageProduct = [];
 let productSession;
 let numberStockDiv = document.getElementById('number-stock');
+let item = new Array();
 
 window.onload = () => {
     document.getElementById('quantity').readOnly = true;
 
-    if( sessionStorage ) {        
-        let item = JSON.parse(sessionStorage.getItem(productCode));
-
-        console.log(item);
-
-        // if( item ) {
-        //     numberStockDiv.innerText = item;
-        //     quantityInput.max = item;
-        // }
-    }
+    checkSessionStorage();
 };
 
 /* CHEKCHING RADIO SIZE SINGLE PRODUCT */
@@ -174,59 +166,51 @@ function filterResponseAjax(peticionAjax) {
         numberStockDiv.innerText = quantityInput.max;
         maxStore = quantityInput.max;
 
+        checkSessionStorage();
+
         radioBtn.forEach(element => {
             if(element.checked) {
                 radioBtnChanged[element.id] = maxStore;
             };
-        });
-
-        // localStorage con JSON
+        });        
         
         if(sizeRadio == '') {
-            storageProduct = {
+            storageProduct = [];
+            let element = {
                 stock: maxStore
             };
-            // sessionStorage.setItem(productCode, maxStore);
+            storageProduct.push(element);
             sessionStorage.setItem(productCode, JSON.stringify(storageProduct));
         } else {
-            storageProduct = {
+            let check = false;
+            let element = {
                 [sizeRadio]: maxStore
-            };
+            }            
 
-            if( sessionStorage.getItem(productCode) ) {
-                let result = [];
-                let previousStorage = sessionStorage.getItem(productCode);
-
-                // result = JSON.stringify(storageProduct).concat(previousStorage);
-
-                // result.push(storageProduct);
-                // result.push(JSON.parse(previousStorage));
-
-                console.log(storageProduct);
-                console.log(previousStorage);
-
-                console.log(result);
-
-                result.forEach((element, index) => {
-                    for (const key in element) {
-                        console.log(key + ':' + element[key]);
+            if( item ) {
+                storageProduct = item;
+            }
+            
+            if( storageProduct != null ) {
+                storageProduct.forEach( (e, i) => {
+                    for (let key in e) {
+                        for(let keyE in element) {
+                            if( key === keyE ){
+                                storageProduct[i] = element;
+                                check = true;
+                            }
+                        }
                     }
                 });
-
-                // console.log(JSON.parse(previousStorage));
-
-                // result.push(JSON.stringify(storageProduct));
-
-                
-                // result.push(previousStorage);
-
-                // storageProduct = result;
-
-                // sessionStorage.setItem(productCode, storageProduct);
-            } else {
-                
-                // sessionStorage.setItem(productCode, JSON.stringify(storageProduct));
             }
+
+            console.log(element);
+
+            if( check != true ){
+                storageProduct.push(element);
+            }
+
+            sessionStorage.setItem(productCode, JSON.stringify(storageProduct));
         }
     }
 }
@@ -267,26 +251,67 @@ function filterResponseAjaxChange(peticionAjax) {
 
     if( peticionAjax.status == 200 ) {
         let response = peticionAjax.responseText;
-        if( response == 1) {
-            articulo = 'artículo';
+
+        if( item ) {
+            checkSessionStorage();
+            radioBtn.forEach(element => {
+                if(element.checked) {
+                    for( let key in item ){
+                        for(const keyE in item[key]) {
+                            if(element.id == keyE) {
+                                if( item[key][keyE] == 1 ){
+                                    articulo = 'artículo';
+                                } else {
+                                    articulo = 'artículos';
+                                }
+                                stockDiv.innerHTML = '<span>Quedan en stock: </span><span id="number-stock">' + item[key][keyE] + '</span><span> ' + articulo + '</span>'
+                                quantityInput.max = item[key][keyE];
+                            }
+                        }
+                    }                  
+                }
+            });
+
         } else {
-            articulo = 'artículos';
+            if( response == 1) {
+                articulo = 'artículo';
+            } else {
+                articulo = 'artículos';
+            }
+    
+            stockDiv.innerHTML = '<span>Quedan en stock: </span><span id="number-stock">' + response + '</span><span> ' + articulo + '</span>';
+            quantityInput.max = response;
+    
+            radioBtn.forEach(element => {
+                for( let key in radioBtnChanged ){
+                    if(element.checked) {
+                        if (typeof radioBtnChanged[key] !== 'function') {
+                            if(element.id == key) {
+                                stockDiv.innerHTML = '<span>Quedan en stock: </span><span id="number-stock">' + radioBtnChanged[key] + '</span><span> ' + articulo + '</span>'
+                                quantityInput.max = radioBtnChanged[key];
+                            }
+                        }
+                    }                   
+                }
+            });
         }
 
-        stockDiv.innerHTML = '<span>Quedan en stock: </span><span id="number-stock">' + response + '</span><span> ' + articulo + '</span>';
-        quantityInput.max = response;
+         
+    }
+}
 
-        radioBtn.forEach(element => {
-            for( let key in radioBtnChanged ){
-                if(element.checked) {
-                    if (typeof radioBtnChanged[key] !== 'function') {
-                        if(element.id == key) {
-                            stockDiv.innerHTML = '<span>Quedan en stock: </span><span id="number-stock">' + radioBtnChanged[key] + '</span><span> ' + articulo + '</span>'
-                            quantityInput.max = radioBtnChanged[key];
-                        }
-                    }
-                }                   
+function checkSessionStorage() {
+    item = JSON.parse(sessionStorage.getItem(productCode));
+
+    if( item ) {
+        item.forEach( (e, i) => {
+            if( e.stock) {
+                numberStockDiv.innerText = e.stock;
+                quantityInput.max = e.stock;
+            } else {
+                // numberStockDiv.innerText = e.stock;
+                // quantityInput.max = e.stock;
             }
-        }); 
+        });
     }
 }

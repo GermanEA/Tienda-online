@@ -15,7 +15,8 @@ class Cart extends CI_Controller {
 	}
 
 	public function loadViewsInit() {
-		$page_data['page_content'] = 'cart/v_cart';
+        $page_data['page_content'] = 'cart/v_cart';        
+		$page_data['custom_js'] = array('/public/assets/js/session-storage.js');
 		
         $this->load->view('/layouts/main', $page_data);
     }
@@ -36,7 +37,8 @@ class Cart extends CI_Controller {
             'name'  => $data['name'],
             'size'  => $data['size'],
             'image' => $data['image'],
-            'id_producto' => $id_producto['id_producto']
+            'id_producto' => $id_producto['id_producto'],
+            'product_code' => $data['product-code']
         );
 
         $this->cart->insert($data_cart);
@@ -184,9 +186,7 @@ class Cart extends CI_Controller {
                         $new_stock = $stock['stock'] - $row['qty'];
                         $this->M_cart->decreaseStock($row['id_producto'], $new_stock);
                     }
-
-                    // VACIAMOS EL CARRITO
-                    $this->cart->destroy();
+                    
 
                     $response['success'] = true;
                     $response['message'] = 'Su compra se ha realizado con éxito';
@@ -196,15 +196,27 @@ class Cart extends CI_Controller {
                 $response['success'] = false;
             }
 
+            // VACIAMOS EL CARRITO
+            $this->destroyCart();
             $this->cartMessage($response);
         }
         
+    }
+
+    public function destroyCart() {
+        $this->cart->destroy();
+        setcookie('destroyed', true);
+
+        return true;
     }
 
     public function cartMessage($response) {
         $page_data['page_content'] = 'cart/v_cart_response';
         $page_data['success'] = $response['success'];
         $page_data['message'] = $response['message'];
+        $page_data['custom_js'] = array(
+			'/public/assets/js/session-destroy.js'
+		);
         
 		
         $this->load->view('/layouts/main', $page_data);

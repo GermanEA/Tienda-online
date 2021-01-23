@@ -117,7 +117,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         </a>
                                     </li>
                                 </ul>
-                                <button type="submit" class="submit-button btn-original modal-close">
+                                <button id="btn-close" type="submit" class="submit-button btn-original modal-close">
                                     <i class="fas fa-door-open mr-2"></i>
                                     <span>Cerrar sesión</span>
                                 </button>

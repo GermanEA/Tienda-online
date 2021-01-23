@@ -200,7 +200,7 @@ class Single_page extends CI_Controller {
 	public function logOut() {
 		$this->session->sess_destroy();
 		delete_cookie('email');
-		delete_cookie('pass');		
+		delete_cookie('pass');	
 		$this->session->logged = false;
 		redirect(base_url(), 'location', 301);
 	}

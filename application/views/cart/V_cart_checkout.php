@@ -169,7 +169,7 @@
                 </div>
 
                 <div class="btn-order-wrapper text-center">
-                    <button type="submit" class="btn btn-original btn-order" name="btn-order">Comprar ahora</button>
+                    <button id="btn-checkout" type="submit" class="btn btn-original btn-order" name="btn-order">Comprar ahora</button>
                 </div>
             <?php } ?>
         </div>

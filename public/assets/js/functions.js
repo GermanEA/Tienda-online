@@ -73,3 +73,22 @@ modalCloseCart.addEventListener('mouseenter', showCartModal, false);
 modalCloseCart.addEventListener('mouseleave', function(e) {
     modalCart.style.display = "none";    
 }, false);
+
+/* DESTROY ALL SESSION */
+try {
+    let btnLog = document.getElementById('btn-close');    
+    btnLog.addEventListener('click', destroyAll, false);
+} catch (error) {
+    console.log(error);
+}
+
+
+function destroyAll(){
+    console.log('entrar');
+    let n = sessionStorage.length;
+
+    while(n--) {
+        let key = sessionStorage.key(n);
+        sessionStorage.removeItem(key);
+    }
+}

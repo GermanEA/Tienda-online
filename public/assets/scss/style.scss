@@ -1083,7 +1083,15 @@ body {
                             margin-right: 15px;
                         }
     
-                        .center-wrapper {
+                        .center-wrapper {                            
+                            @include flex( auto, column, center, flex-start);
+
+                            .cart-product-id {
+                                color: $secondary-color;
+                                font-size: 0.7rem;
+                                font-weight: 100;
+                                font-style: italic;
+                            }
                             
                             .cart-product-name{
                                 color: $red-color;
