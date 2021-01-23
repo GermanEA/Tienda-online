@@ -11,9 +11,16 @@
         <span><?= $title_page; ?></span>
     </div>
 
-    <div class="content-table">
-        <div class="chart-container" style="position: relative; height:40vh; width:80vw">
-            <canvas id="myChart"></canvas>
+    <div class="content-table content-statistics">
+        <div class="col-6"> 
+            <div class="chart-container">
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+        <div class="col-6">        
+            <div class="chart-container">
+                <canvas id="myChart2"></canvas>
+            </div>
         </div>
     </div>
 

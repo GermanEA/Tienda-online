@@ -508,6 +508,40 @@ body {
   color: #b10909;
 }
 
+.main-wrapper .contain-wrapper .content-wrapper .content-info .content-table.content-statistics {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+}
+
+.main-wrapper .contain-wrapper .content-wrapper .content-info .content-table.content-statistics .col-6 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+}
+
 .main-wrapper .contain-wrapper .content-wrapper .content-info .container-order-details {
   padding: 10px;
   -webkit-box-sizing: border-box;
@@ -711,4 +745,12 @@ body {
 /*
     END OF SCROLLBAR CSS
 */
+.chart-container {
+  position: relative;
+  height: auto !important;
+}
+
+.chartjs-size-monitor {
+  width: 40%;
+}
 /*# sourceMappingURL=style-dashboard.css.map */

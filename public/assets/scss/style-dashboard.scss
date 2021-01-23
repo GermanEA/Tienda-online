@@ -418,6 +418,14 @@ body {
                         }
 
                     }
+
+                    &.content-statistics {
+                        @include flex( 100%, row, center, center);
+
+                        .col-6{
+                            @include flex( 100%, row, center, center);
+                        }
+                    }
                 }
 
                 /*
@@ -627,3 +635,12 @@ body {
 /*
     END OF SCROLLBAR CSS
 */
+
+.chart-container {
+    position: relative;
+    height: auto !important;
+}
+
+.chartjs-size-monitor {
+    width: 40%;
+}

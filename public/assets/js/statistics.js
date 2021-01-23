@@ -1,28 +1,101 @@
-var ctx = document.getElementById('myChart').getContext('2d');
-var chart = new Chart(ctx, {
-    // The type of chart we want to create
-    type: 'line',
+window.onload = () => {
+    chartMonth();
+    chartProduct();
+};
 
-    // The data for our dataset
-    data: {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-        datasets: [{
-            label: 'My First dataset',
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
-            data: [0, 10, 5, 2, 20, 30, 45]
-        }]
-    },
+function chartMonth() {   
 
-    // Configuration options go here
-    options: {
-        maintainAspectRatio: true,
-        legend: {
-            labels: {
-                // This more specific font property overrides the global property
-                fontColor: 'black',
-                fontSize: '2rem'
-            }
+    let peticionAjax = new XMLHttpRequest();
+    peticionAjax.open('POST', baseURL + 'administrator/statistics/updateChart', true);
+    peticionAjax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    peticionAjax.onreadystatechange = function() {
+
+        if(peticionAjax.readyState == 4) {
+            responseChartMonth(peticionAjax);
         }
+    }   
+
+    peticionAjax.send();
+}
+
+function responseChartMonth(peticionAjax) {
+    if( peticionAjax.status == 200 ) {
+        let response = peticionAjax.responseText;
+        let objJSON = JSON.parse(response);
+        let totalPorMeses = getTotalForDate(objJSON);
+        
+        monthChart(totalPorMeses);
     }
-});
+}
+
+function getTotalForDate(json) {
+    let total = new Array(12);
+    total.fill(0);
+
+    for (const key in json) {
+        let month = parseInt(moment(json[key].fecha_pedido).format('MM'));
+        let totalM = parseFloat(json[key].total);
+
+        
+        total.forEach( (index, mes) => {
+            if( month == mes + 1 ){
+                total[mes] += totalM;
+            }
+        });
+    }
+
+    return total;
+}
+
+function chartProduct() {   
+
+    let peticionAjax = new XMLHttpRequest();
+    peticionAjax.open('POST', baseURL + 'administrator/statistics/productChart', true);
+    peticionAjax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    peticionAjax.onreadystatechange = function() {
+
+        if(peticionAjax.readyState == 4) {
+            responseChartProduct(peticionAjax);
+        }
+    }   
+
+    peticionAjax.send();
+}
+
+function responseChartProduct(peticionAjax) {
+    if( peticionAjax.status == 200 ) {
+        let response = peticionAjax.responseText;
+        let objJSON = JSON.parse(response);
+        let data = getChartProduct(objJSON);
+        let labels = getIndexProduct(objJSON);
+        
+        productChart(data, labels);        
+    }
+}
+
+function getChartProduct(json) {
+    let total = [];
+
+    for (const key in json) {
+        total[key] = parseInt(json[key].total); 
+    }
+
+    console.log(total);
+
+    return total;
+}
+
+function getIndexProduct(json) {
+    let index = [];
+
+    for (const key in json) {
+        index[key] = json[key].tipo_producto; 
+    }
+
+    console.log(index);
+    return index;
+}
+
+
