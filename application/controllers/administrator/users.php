@@ -37,7 +37,7 @@ class Users extends CI_Controller {
 		$page_data['title_page'] = 'Listado de usuarios';
 		$page_data['title_category'] = 'Gestión de usuarios';
 		$page_data['modify'] = 'Modificar';
-		$page_data['cancel'] = 'Eliminar';
+		// $page_data['cancel'] = 'Eliminar';
         $page_data['search'] = true;
         $page_data['custom_js'] = array(
 			'/public/assets/js/ajax-users.js'

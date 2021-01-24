@@ -2,9 +2,11 @@
     class M_dashboard_sizes extends CI_Model {
 
         public function getSizesAll() {
-            $query = $this->db->select('id_talla AS ID, codigo_talla AS Código talla')
-                     ->from('talla')
-                     ->order_by('id_talla', 'ASC')
+            $query = $this->db->select('t.id_talla AS ID, t.codigo_talla AS Código talla, SUM(p.stock) AS Stock')
+                     ->from('talla AS t')
+                     ->join('producto AS p', 't.id_talla = p.id_talla')
+                     ->group_by('t.id_talla')
+                     ->order_by('t.id_talla', 'ASC')
                      ->get();
 
             if ( $query->num_rows() > 0 ) {

@@ -70,7 +70,7 @@
             <!-- START @SIDEBAR-LEFT -->
             <aside class="sidebar-content">
                 <div class="sidebar-title">
-                    <img src="../../../public/assets/img/logo-transp.png" alt="logo enseco">
+                    <img src="<?= base_url('public/assets/img/logo-transp.png'); ?>" alt="logo enseco">
                     <i class="online"></i>
                     <div class="alias-wrapper">
                         <div class="name-wrapper">
@@ -217,6 +217,28 @@
                                 <i class="fas fa-pencil-alt"></i>
                             </span>
                             <span class="text">Añadir usuario</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-category">
+                        <span>Facturas y envíos</span>
+                        <span class="pull-right">
+                            <i class="fas fa-users"></i>
+                        </span>
+                    </li>
+                    <li class="sub-item <?= ($this->uri->segment(3)==='showAllInvoice')?'is-active':''?>">
+                        <a href="<?= base_url('/administrator/invoice/showAllInvoice'); ?>">
+                            <span class="icon">
+                                <i class="fas fa-pencil-alt"></i>
+                            </span>
+                            <span class="text">Listado de facturas</span>
+                        </a>
+                    </li>
+                    <li class="sub-item <?= ($this->uri->segment(3)==='showAllShipping')?'is-active':''?>">
+                        <a href="<?= base_url('/administrator/invoice/showAllShipping'); ?>">
+                            <span class="icon">
+                                <i class="fas fa-pencil-alt"></i>
+                            </span>
+                            <span class="text">Listado de envíos</span>
                         </a>
                     </li>
                     <li class="sidebar-category">

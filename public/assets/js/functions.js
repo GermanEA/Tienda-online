@@ -1,3 +1,7 @@
+window.onload = () => {
+    checkCartLocalStorage();
+}
+
 /* STICKY NAVIGATION */
 let navbar = document.getElementById("navbar");
 let fixed = navbar.offsetTop;
@@ -75,20 +79,27 @@ modalCloseCart.addEventListener('mouseleave', function(e) {
 }, false);
 
 /* DESTROY ALL SESSION */
-try {
-    let btnLog = document.getElementById('btn-close');    
+let btnLog = document.getElementById('btn-close');    
+
+if( btnLog ) {     
     btnLog.addEventListener('click', destroyAll, false);
-} catch (error) {
-    console.log(error);
 }
 
 
-function destroyAll(){
-    console.log('entrar');
-    let n = sessionStorage.length;
+function destroyAll() {
+    let n = localStorage.length;
 
     while(n--) {
-        let key = sessionStorage.key(n);
-        sessionStorage.removeItem(key);
+        let key = localStorage.key(n);
+        localStorage.removeItem(key);
     }
 }
+
+function checkCartLocalStorage() {
+    let numCartDiv = document.getElementById('total-items');
+
+    if( parseInt(numCartDiv.innerText) === 0) {
+        destroyAll();
+    }
+}
+

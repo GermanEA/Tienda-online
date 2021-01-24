@@ -4,10 +4,10 @@ let codigoProducto = document.getElementById('product-code');
 btnArray.forEach( e => {
     e.addEventListener('click', () => {
         let productCode = e.parentElement.firstElementChild.firstElementChild.innerText;
-        let productArray = JSON.parse(sessionStorage.getItem(productCode));
-
+        let productArray = JSON.parse(localStorage.getItem(productCode));
+        
         if( productArray.length <= 1) {
-            sessionStorage.removeItem(productCode);
+            localStorage.removeItem(productCode);
         } else {
             let size = e.previousElementSibling.lastElementChild.firstElementChild.innerText;
             
@@ -19,7 +19,7 @@ btnArray.forEach( e => {
                 }
             });
 
-            sessionStorage.setItem(productCode, JSON.stringify(productArray));
+            localStorage.setItem(productCode, JSON.stringify(productArray));
         }
     })
 });

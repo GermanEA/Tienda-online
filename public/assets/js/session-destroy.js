@@ -6,11 +6,11 @@ function destroy(){
     let cookie = getCookie('destroyed');
 
     if( cookie == 1) {
-        let n = sessionStorage.length;
+        let n = localStorage.length;
 
         while(n--) {
-            let key = sessionStorage.key(n);
-            sessionStorage.removeItem(key);
+            let key = localStorage.key(n);
+            localStorage.removeItem(key);
         }
 
         deleteCookie('destroyed');

@@ -31,6 +31,7 @@ class Single_page extends CI_Controller {
 	public function login() {
 		$email = $_POST['email'];	
 		$passForm = $_POST['pass'];
+		
 
         if( isset($_POST['btn-log']) ){
 			$user = $this->M_user_data->getUsers('email');
@@ -90,12 +91,16 @@ class Single_page extends CI_Controller {
 				}
 			
 				//COMPROBACIONES ANTES DE INSERTAR EN LA BASE DE DATOS
-				if( preg_match('/^[A-z]{2,25}$/', $data['name-reg']) !=1 ) {
+				if( preg_match('/^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/', $data['name-reg']) !=1 ) {
 					$page_data['error_reg'] = "El nombre es demasiado largo.";
 					$page_data['modal_open'] = true;
 					$this->loadViewsInitError($page_data);
-				} else if( preg_match('/^[A-z]{2,25}$/', $data['lastname-reg']) !=1 ) {
+				} else if( preg_match('/^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/', $data['lastname-reg']) !=1 ) {
 					$page_data['error_reg'] = "El apellido es demasiado largo.";
+					$page_data['modal_open'] = true;
+					$this->loadViewsInitError($page_data);
+				} else if( $this->dni->typeDni($cif) === false ) {
+					$page_data['error_reg'] = "El DNI / NIE / CIF no es válido.";
 					$page_data['modal_open'] = true;
 					$this->loadViewsInitError($page_data);
 				} else if( $this->dni->typeDni($cif) == 'dni' && !$this->dni->isValidDni($cif) ) {

@@ -71,7 +71,7 @@ let unchecked = (input, message) => {
 
 // Comprobación del nombre y apellido del usuario
 let checkName = (input) =>  {
-  let pattern = /^[A-z]{2,25}$/; //Solo se admiten letras y números entre 2 y 25
+  let pattern = /^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/; //Solo se admiten letras y números entre 2 y 25
 
   if( input.value.match(pattern) ){
       checked(input);

@@ -334,6 +334,12 @@ body {
   /*
                     END OF ERROR FILE PAGE
                 */
+  /* 
+                    INVOICE PAGE
+                */
+  /* 
+                    END OF INVOICE PAGE
+                */
 }
 
 .main-wrapper .contain-wrapper .content-wrapper .content-info .content-header {
@@ -605,6 +611,158 @@ body {
   font-size: 0.9rem;
 }
 
+.main-wrapper .contain-wrapper .content-wrapper .content-info .content-invoice-wrapper .invoice-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  width: 800px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #121212;
+  font-size: 0.8rem;
+  -webkit-box-shadow: 5px 5px 19px 0px rgba(0, 0, 0, 0.3);
+  box-shadow: 5px 5px 19px 0px rgba(0, 0, 0, 0.3);
+}
+
+.main-wrapper .contain-wrapper .content-wrapper .content-info .content-invoice-wrapper .invoice-wrapper .header-invoice {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+.main-wrapper .contain-wrapper .content-wrapper .content-info .content-invoice-wrapper .invoice-wrapper .header-invoice .logo {
+  width: 100px;
+}
+
+.main-wrapper .contain-wrapper .content-wrapper .content-info .content-invoice-wrapper .invoice-wrapper .header-invoice .logo img {
+  width: 100%;
+  height: auto;
+}
+
+.main-wrapper .contain-wrapper .content-wrapper .content-info .content-invoice-wrapper .invoice-wrapper .header-invoice .data-enseco {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  width: 100%;
+}
+
+.main-wrapper .contain-wrapper .content-wrapper .content-info .content-invoice-wrapper .invoice-wrapper .data-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+.main-wrapper .contain-wrapper .content-wrapper .content-info .content-invoice-wrapper .invoice-wrapper .data-wrapper .data-costumer, .main-wrapper .contain-wrapper .content-wrapper .content-info .content-invoice-wrapper .invoice-wrapper .data-wrapper .data-invoice {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  width: 100%;
+}
+
+.main-wrapper .contain-wrapper .content-wrapper .content-info .content-invoice-wrapper .invoice-wrapper .data-wrapper .data-costumer .data-header {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.main-wrapper .contain-wrapper .content-wrapper .content-info .content-invoice-wrapper .invoice-wrapper .data-wrapper .data-costumer .costumer-name {
+  font-size: 1.1rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  border-bottom: 3px solid #b10909;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.main-wrapper .contain-wrapper .content-wrapper .content-info .content-invoice-wrapper .invoice-wrapper .data-wrapper .data-invoice {
+  margin-left: 340px;
+}
+
+.main-wrapper .contain-wrapper .content-wrapper .content-info .content-invoice-wrapper .invoice-wrapper .data-wrapper .data-invoice .data-header {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #b10909;
+}
+
+.main-wrapper .contain-wrapper .content-wrapper .content-info .content-invoice-wrapper .invoice-wrapper .data-other {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  width: 100%;
+  margin: 20px 0;
+  text-transform: uppercase;
+}
+
+.main-wrapper .contain-wrapper .content-wrapper .content-info .content-invoice-wrapper .invoice-wrapper .data-other .other-title {
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: #b10909;
+  margin-bottom: 5px;
+}
+
 .main-wrapper .contain-wrapper .content-wrapper #error-message {
   width: 100%;
   text-align: center;
@@ -618,7 +776,7 @@ body {
 
 .main-wrapper .contain-wrapper .content-wrapper #error-message div .fas {
   font-size: 2rem;
-  color: #FFE400;
+  color: #ff9100;
   margin-right: 25px;
 }
 
@@ -662,7 +820,7 @@ body {
 
 .main-wrapper .contain-wrapper .content-wrapper .modal-details .modal-details-content #modal-content-dynamic .modal-message-content span:first-child {
   font-size: 2rem;
-  color: #FFE400;
+  color: #ff9100;
   margin-right: 25px;
 }
 
@@ -721,6 +879,38 @@ body {
           box-shadow: none;
 }
 
+.btn-confirm {
+  background-color: #14A76C;
+}
+
+.btn-confirm:hover {
+  background-color: #4fdba3;
+}
+
+.btn-modify {
+  background-color: #1888e4;
+}
+
+.btn-modify:hover {
+  background-color: #6ebcfb;
+}
+
+.btn-cancel {
+  background-color: #e23333;
+}
+
+.btn-cancel:hover {
+  background-color: #fa8989;
+}
+
+.btn-details {
+  background-color: #ff9100;
+}
+
+.btn-details:hover {
+  background-color: #ffbd66;
+}
+
 /* 
     END OF GLOBAL CUSTOMS CSS 
 */
@@ -748,9 +938,6 @@ body {
 .chart-container {
   position: relative;
   height: auto !important;
-}
-
-.chartjs-size-monitor {
-  width: 40%;
+  width: 600px !important;
 }
 /*# sourceMappingURL=style-dashboard.css.map */

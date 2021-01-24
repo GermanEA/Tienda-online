@@ -227,22 +227,28 @@ class Cart extends CI_Controller {
         $cif_other = $data['cif-other'];
         $check = true;
         //COMPROBACIONES ANTES DE INSERTAR EN LA BASE DE DATOS
-        if( preg_match('/^[A-z]{2,25}$/', $data['name']) != 1 ) {
+        if( preg_match('/^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/', $data['name']) != 1 ) {
             $check = "El nombre de factura es demasiado largo.";
 
-        } else if( isset($data['check-address']) && preg_match('/^[A-z]{2,25}$/', $data['name-other']) !=1 ) {
+        } else if( isset($data['check-address']) && preg_match('/^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/', $data['name-other']) !=1 ) {
             $check = "El nombre de envío es demasiado largo.";
 
-        } else if( preg_match('/^[A-z]{2,25}$/', $data['lname']) != 1 ) {
+        } else if( preg_match('/^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/', $data['lname']) != 1 ) {
             $check = "El apellido de factura es demasiado largo.";
 
-        } else if( isset($data['check-address']) && preg_match('/^[A-z]{2,25}$/', $data['lname-other']) !=1 ) {
+        } else if( isset($data['check-address']) && preg_match('/^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/', $data['lname-other']) !=1 ) {
             $check = "El apellido de envío es demasiado largo.";
 
         } else if( empty($cif) ) {
             $check = "El DNI de factura no es válido.";
 
-        } else if( isset($data['check-address']) && empty($cif_other) ) {
+        } else if( $this->dni->typeDni($cif) === false ) {
+            $check = "El DNI / NIE / CIF de factura no es válido.";
+
+        } else if( isset($data['check-address']) && $this->dni->typeDni($cif_other) === false ) {
+            $check = "El DNI / NIE / CIF de envío no es válido.";
+            
+        }else if( isset($data['check-address']) && empty($cif_other) ) {
             $check = "El DNI de envío no es válido.";
 
         }else if( $this->dni->typeDni($cif) == 'dni' && !$this->dni->isValidDni($cif) ) {

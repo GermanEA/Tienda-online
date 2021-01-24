@@ -35,11 +35,14 @@ class User_data extends CI_Controller {
 	public function changeData() {
 		$data = $this->input->post();
 
-		if( preg_match('/^[A-z]{2,25}$/', $data['Nombre']) !=1 ) {
+		if( preg_match('/^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/', $data['Nombre']) !=1 ) {
 			$page_data['error_change'] = "El nombre no es válido. Debe comprender entre 2 y 25 caracteres.";
 			$this->loadViewsInitError($page_data);
-		} else if( preg_match('/^[A-z]{2,25}$/', $data['Apellido']) !=1 ) {
+		} else if( preg_match('/^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/', $data['Apellido']) !=1 ) {
 			$page_data['error_change'] = "El apellido no es válido. Debe comprender entre 2 y 25 caracteres.";
+			$this->loadViewsInitError($page_data);
+		} else if( $this->dni->typeDni($data['DNI/NIE/CIF']) === false ) {
+			$page_data['error_change'] = "El DNI / NIE / CIF no es válido.";
 			$this->loadViewsInitError($page_data);
 		} else if( $this->dni->typeDni($data['DNI/NIE/CIF']) == 'dni' && !$this->dni->isValidDni($data['DNI/NIE/CIF']) ) {
 			$page_data['error_change'] = "El DNI no es válido.";

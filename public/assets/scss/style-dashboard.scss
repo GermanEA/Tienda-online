@@ -9,9 +9,15 @@ $active-bg-color: #3c3c3c;
 $text-primary-color: #bdbdbd;
 $text-secondary-color: #777;
 $red-color: #b10909;
-$red-color-hover: #df3e3e;
-$yellow-color: #FFE400;
+$red-hover: #df3e3e;
+$red-second-color: #e23333;
+$red-second-hover: #fa8989;
+$yellow-color: #ff9100;
+$yellow-hover: #ffbd66;
 $green-color: #14A76C;
+$green-hover: #4fdba3;
+$blue-color:  #1888e4;
+$blue-hover: #6ebcfb;
 $white-color: #fff;
 $grey-light-category: #ddd;
 $grey-text-category: #999;
@@ -408,7 +414,7 @@ body {
                                 color: $primary-color;
                             
                                 &:hover {
-                                    color: $red-color-hover;
+                                    color: $red-hover;
                                 }
                             }
                         }
@@ -493,6 +499,90 @@ body {
                 }
                 /*
                     END OF ERROR FILE PAGE
+                */
+                /* 
+                    INVOICE PAGE
+                */
+                .content-invoice-wrapper {
+
+                    .invoice-wrapper {
+                        @include flex( 800px, column, center, flex-start);
+                        margin: auto;
+                        padding: 20px;
+                        border: 1px solid $black-color;
+                        font-size: 0.8rem;
+                        -webkit-box-shadow: 5px 5px 19px 0px rgba(0,0,0,0.3); 
+                        box-shadow: 5px 5px 19px 0px rgba(0,0,0,0.3);
+
+                        .header-invoice {
+                            @include flex( 100%, row, space-between, flex-start);
+                            margin-bottom: 50px;
+
+                            .logo {
+                                width: 100px;
+
+                                img {
+                                    @include img-responsive();
+                                }
+                            }
+
+                            .data-enseco {
+                                @include flex( 100%, column, center, flex-end);
+                            }
+                        }
+
+                        .data-wrapper {
+                            @include flex( 100%, row, space-between, flex-start);
+                            margin-bottom: 50px;
+
+                            .data-costumer, .data-invoice {
+                                @include flex( 100%, column, center, flex-start);
+                            }
+
+                            .data-costumer {
+
+                                .data-header {
+                                    font-size: 0.8rem;
+                                    text-transform: uppercase;  
+                                }                               
+
+                                .costumer-name {
+                                    font-size: 1.1rem;
+                                    font-weight: 900;
+                                    text-transform: uppercase;
+                                    border-bottom: 3px solid $red-color;
+                                    width: 100%;
+                                    margin-bottom: 5px;  
+                                }
+                            }
+
+                            .data-invoice {
+                                margin-left: 340px;
+
+                                .data-header {
+                                    font-size: 1.5rem;
+                                    font-weight: 900;
+                                    color: $red-color;
+                                }
+                            }
+                        }
+                        .data-other {
+                            @include flex( 100%, column, center, flex-start);
+                            margin: 20px 0;
+                            text-transform: uppercase;
+
+                            .other-title {
+                                font-size: 1.1rem;
+                                font-weight: 900;
+                                color: $red-color;
+                                margin-bottom: 5px;
+                            }
+                        } 
+                    }
+                }
+
+                /* 
+                    END OF INVOICE PAGE
                 */
             }
 
@@ -604,12 +694,44 @@ body {
 }
 
 .btn-original:hover {
-    background-color: $red-color-hover;
+    background-color: $red-hover;
     color: $white-color;
 }
 
 .btn-original:focus {
     box-shadow: none;
+}
+
+.btn-confirm {
+    background-color: $green-color;
+    
+    &:hover {
+    background-color: $green-hover;
+    }
+}
+
+.btn-modify {
+    background-color: $blue-color;
+    
+    &:hover {
+    background-color: $blue-hover;
+    }
+}
+
+.btn-cancel {
+    background-color: $red-second-color;
+    
+    &:hover {
+    background-color: $red-second-hover;
+    }
+}
+
+.btn-details {
+    background-color: $yellow-color;
+    
+    &:hover {
+    background-color: $yellow-hover;
+    }
 }
 /* 
     END OF GLOBAL CUSTOMS CSS 
@@ -639,8 +761,5 @@ body {
 .chart-container {
     position: relative;
     height: auto !important;
-}
-
-.chartjs-size-monitor {
-    width: 40%;
+    width: 600px !important;
 }

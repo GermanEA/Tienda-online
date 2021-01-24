@@ -14,32 +14,20 @@
     <?php if( isset($search) ) { ?>
         <div class="search-wrapper">
             <label for="search">Buscar:</label>
-            <input id="search-bar" type="text" class="form-control form-search" name="search" placeholder="Inserta una factura">
-        </div>
-    <?php } ?>
-
-    <?php if( isset($search_date) ) { ?>
-        <div class="search-wrapper">
-            <form action="<?= base_url('administrator/dashboard/searchAjaxDate'); ?>" method="post">
-                <label for="search-date-start">Fecha inicio:</label>
-                <input id="search-date-start" type="date" class="form-control form-search" name="search-date-start" required>
-                <label for="search-date-end">Fecha final:</label>
-                <input id="search-date-end" type="date" class="form-control form-search" name="search-date-end" required>
-                <button type="submit" class="btn btn-original">Buscar</button>
-            </form>
+            <input id="search-bar" type="text" class="form-control form-search" name="search" placeholder="Inserta un código">
         </div>
     <?php } ?>
 
     <div id="content-body" class="content-table">
-        <?php if(!isset($orders) || $orders === NULL ) { ?>
-            <div>No hay pedidos para mostrar.</div>
+        <?php if(!isset($invoice) || $invoice === NULL ) { ?>
+            <div>No hay elementos para mostrar.</div>
         <?php } else { ?>
 
-        <form action="<?= base_url('administrator/dashboard/chooseBtn'); ?>" method="post">
+        <form action="<?= base_url('administrator/invoice/chooseBtn'); ?>" method="post">
             <table class="table table-striped text-center">
                 <thead class="table-dark">
                     <tr>
-                    <?php foreach($order_header as $header): ?>
+                    <?php foreach($invoice_header as $header): ?>
                         <th><?= $header; ?></th>
                     <?php endforeach; ?>
                     <?php if( isset($confirm) ) { ?>
@@ -58,18 +46,16 @@
                 </thead>                
                 
                 <tbody id="table-body">
-                    <?php foreach($orders as $row): ?>
+                    <?php foreach($invoice as $row): ?>
                     <tr>
-                    <?php foreach($row as $key => $value): ?>   
-                        <td class="align-middle">
-                        <?php if( substr_compare($key, 'Fecha', 0, 5, true) === 0 && $value != '0000-00-00' ) {
-                                echo date("d-m-Y", strtotime($value));
-                            } else if( $value === '0000-00-00') {
-                                echo '';
-                            } else { 
-                                echo $value;
-                            } ?>
-                        </td>
+                    <?php foreach($row as $key => $value): ?>
+                        <?php if( $key == "Imagen" ) { ?>
+                            <td class="align-middle">
+                                <img src="<?= base_url($value); ?>">
+                            </td>
+                        <?php } else { ?>
+                            <td class="align-middle"><?= $value; ?></td>
+                        <?php } ?>
                     <?php endforeach; ?>
                     
                     <?php if( isset($confirm) ) { ?>
@@ -103,13 +89,4 @@
             <?= $links; ?>
         <?php } ?>
     </div>
-</div>
-
-<div id="modal-details" class="modal-details">
-
-    <div class="modal-details-content">
-        <span id="modal-close" class="close">&times;</span>
-        <div id="modal-content-dynamic"></div>
-    </div>
-
 </div>

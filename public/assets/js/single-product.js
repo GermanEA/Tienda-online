@@ -13,7 +13,7 @@ let item = new Array();
 window.onload = () => {
     document.getElementById('quantity').readOnly = true;
 
-    checkSessionStorage();
+    checkStorage();
 };
 
 /* CHEKCHING RADIO SIZE SINGLE PRODUCT */
@@ -166,7 +166,7 @@ function filterResponseAjax(peticionAjax) {
         numberStockDiv.innerText = quantityInput.max;
         maxStore = quantityInput.max;
 
-        checkSessionStorage();
+        // checkStorage();
 
         radioBtn.forEach(element => {
             if(element.checked) {
@@ -180,7 +180,7 @@ function filterResponseAjax(peticionAjax) {
                 stock: maxStore
             };
             storageProduct.push(element);
-            sessionStorage.setItem(productCode, JSON.stringify(storageProduct));
+            localStorage.setItem(productCode, JSON.stringify(storageProduct));
         } else {
             let check = false;
             let element = {
@@ -204,13 +204,11 @@ function filterResponseAjax(peticionAjax) {
                 });
             }
 
-            console.log(element);
-
             if( check != true ){
                 storageProduct.push(element);
             }
 
-            sessionStorage.setItem(productCode, JSON.stringify(storageProduct));
+            localStorage.setItem(productCode, JSON.stringify(storageProduct));
         }
     }
 }
@@ -253,22 +251,40 @@ function filterResponseAjaxChange(peticionAjax) {
         let response = peticionAjax.responseText;
 
         if( item ) {
-            checkSessionStorage();
+            // debugger;
+            console.log(item);
             radioBtn.forEach(element => {
                 if(element.checked) {
-                    for( let key in item ){
-                        for(const keyE in item[key]) {
-                            if(element.id == keyE) {
-                                if( item[key][keyE] == 1 ){
-                                    articulo = 'artículo';
-                                } else {
-                                    articulo = 'artículos';
+                    switch (switchSize(item, element)) {
+                        case true:
+                            console.log('Pinta la sesion');
+                            for( let key in item ){
+                                for(const keyE in item[key]) {
+                                    if(element.id == keyE) {
+                                        if( item[key][keyE] == 1 ){
+                                            articulo = 'artículo';
+                                        } else {
+                                            articulo = 'artículos';
+                                        }
+                                        stockDiv.innerHTML = '<span>Quedan en stock: </span><span id="number-stock">' + item[key][keyE] + '</span><span> ' + articulo + '</span>'
+                                        quantityInput.max = item[key][keyE];
+                                    }
                                 }
-                                stockDiv.innerHTML = '<span>Quedan en stock: </span><span id="number-stock">' + item[key][keyE] + '</span><span> ' + articulo + '</span>'
-                                quantityInput.max = item[key][keyE];
                             }
-                        }
-                    }                  
+                            break;
+                        case false:
+                            if( response == 1) {
+                                articulo = 'artículo';
+                            } else {
+                                articulo = 'artículos';
+                            }
+
+                            console.log('Pinta la db');
+                            stockDiv.innerHTML = '<span>Quedan en stock: </span><span id="number-stock">' + response + '</span><span> ' + articulo + '</span>';
+                            quantityInput.max = response;
+                            break;
+                    }
+                                      
                 }
             });
 
@@ -294,23 +310,32 @@ function filterResponseAjaxChange(peticionAjax) {
                     }                   
                 }
             });
-        }
-
-         
+        }         
     }
 }
 
-function checkSessionStorage() {
-    item = JSON.parse(sessionStorage.getItem(productCode));
+function switchSize(item, element) {
+    let check = false;
+
+    for( let key in item ){
+        for(const keyE in item[key]) {
+            if(element.id == keyE) {
+                check = true;
+            }
+        }
+    }
+
+    return check;
+}
+
+function checkStorage() {
+    item = JSON.parse(localStorage.getItem(productCode));
 
     if( item ) {
         item.forEach( (e, i) => {
             if( e.stock) {
                 numberStockDiv.innerText = e.stock;
                 quantityInput.max = e.stock;
-            } else {
-                // numberStockDiv.innerText = e.stock;
-                // quantityInput.max = e.stock;
             }
         });
     }

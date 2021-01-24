@@ -130,8 +130,8 @@ class Dashboard extends CI_Controller {
 	public function chooseBtn() {
 		$data = $this->input->post();
 
-		if( isset($data['send-id']) ) {
-			$this->sendPending($data['send-id']);
+		if( isset($data['confirm-id']) ) {
+			$this->sendPending($data['confirm-id']);
 		}
 
 		if( isset($data['modify-id']) ) {

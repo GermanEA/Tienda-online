@@ -50,9 +50,8 @@ function productChart(data, labels) {
         labels: labels,
         datasets: [{
             label: 'Ventas por categorías',
-            backgroundColor: ["rgb(255, 99, 132)","rgb(54, 162, 235)",
-            "rgb(255, 205, 86)", "rgb(153, 240, 141)" ],
-            borderColor: '#EEEEEE',
+            backgroundColor: ["#e23333", "#ff9100", "#14A76C", "#1888e4", "#d471bf", "#5de220"],
+            borderColor: '#ffffff',
             borderWidth: 1,
             data: data
         },]

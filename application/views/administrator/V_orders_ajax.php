@@ -28,7 +28,15 @@
             <?php foreach($orders as $row): ?>
             <tr>
             <?php foreach($row as $key => $value): ?>   
-                <td class="align-middle"><?= $value; ?></td>
+                <td class="align-middle">
+                <?php if( substr_compare($key, 'Fecha', 0, 5, true) === 0 && $value != '0000-00-00' ) {
+                        echo date("d-m-Y", strtotime($value));
+                    } else if( $value === '0000-00-00') {
+                        echo '';
+                    } else { 
+                        echo $value;
+                    } ?>
+                </td>
             <?php endforeach; ?>
             
             <?php if( isset($confirm) ) { ?>

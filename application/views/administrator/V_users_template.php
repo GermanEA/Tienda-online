@@ -30,11 +30,17 @@
                     <?php foreach($users_header as $header): ?>
                         <th><?= $header; ?></th>
                     <?php endforeach; ?>
+                    <?php if( isset($confirm) ) { ?>
+                        <th><?= $confirm; ?></th>
+                    <?php } ?>
                     <?php if( isset($modify) ) { ?>
                         <th><?= $modify; ?></th>
                     <?php } ?>
                     <?php if( isset($cancel) ) { ?>
                         <th><?= $cancel; ?></th>
+                    <?php } ?>
+                    <?php if( isset($details) ) { ?>
+                        <th><?= $details; ?></th>
                     <?php } ?>
                     </tr>
                 </thead>                
@@ -52,14 +58,24 @@
                         <?php } ?>
                     <?php endforeach; ?>
                     
+                    <?php if( isset($confirm) ) { ?>
+                        <td class="align-middle">
+                            <button type="submit" class="btn btn-original btn-confirm" name="confirm-id" value="<?= $row['ID']; ?>"><?= $confirm; ?></button>
+                        </td>
+                    <?php } ?>
                     <?php if( isset($modify) ) { ?>
                         <td class="align-middle">
-                            <button type="submit" class="btn btn-original" name="modify-id" value="<?= $row['ID']; ?>"><?= $modify; ?></button>
+                            <button type="submit" class="btn btn-original btn-modify" name="modify-id" value="<?= $row['ID']; ?>"><?= $modify; ?></button>
                         </td>
                     <?php } ?>
                     <?php if( isset($cancel) ) { ?>
                         <td class="align-middle">
-                            <button type="submit" class="btn btn-original" name="cancel-id" value="<?= $row['ID']; ?>"><?= $cancel; ?></button>
+                            <button type="submit" class="btn btn-original btn-cancel" name="cancel-id" value="<?= $row['ID']; ?>"><?= $cancel; ?></button>
+                        </td>
+                    <?php } ?>
+                    <?php if( isset($details) ) { ?>
+                        <td class="align-middle">
+                            <button id="<?= $row['ID']; ?>" type="button" class="btn btn-original btn-details" name="details-id" value="<?= $row['ID']; ?>"><?= $details; ?></button>
                         </td>
                     <?php } ?>
                     </tr>
