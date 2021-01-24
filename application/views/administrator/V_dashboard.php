@@ -255,7 +255,7 @@
                             <span class="text">Generales</span>
                         </a>
                     </li>
-                    <li class="sub-item">
+                    <!-- <li class="sub-item">
                         <a href="">
                             <span class="icon">
                                 <i class="fas fa-pencil-alt"></i>
@@ -278,7 +278,7 @@
                             </span>
                             <span class="text">Por cliente</span>
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
             </aside>
             <!--/ END SIDEBAR-LEFT -->

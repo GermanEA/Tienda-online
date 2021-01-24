@@ -101,6 +101,10 @@
                 <span class="other-data">Pagado con tarjeta bancaria</span>
             </div>
         </div>
+
+        <div class="btn-wrapper text-center">
+            <button type="button" class="btn btn-original" onclick="window.location.href = '<?= base_url('/administrator/invoice/showAllInvoice'); ?>';">Volver</button>
+        </div>
     </div>
 
 </div>

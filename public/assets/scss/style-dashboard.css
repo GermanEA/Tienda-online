@@ -879,20 +879,12 @@ body {
           box-shadow: none;
 }
 
-.btn-confirm {
+.btn-confirm, .btn-modify {
   background-color: #14A76C;
 }
 
-.btn-confirm:hover {
+.btn-confirm:hover, .btn-modify:hover {
   background-color: #4fdba3;
-}
-
-.btn-modify {
-  background-color: #1888e4;
-}
-
-.btn-modify:hover {
-  background-color: #6ebcfb;
 }
 
 .btn-cancel {
@@ -904,11 +896,11 @@ body {
 }
 
 .btn-details {
-  background-color: #ff9100;
+  background-color: #1888e4;
 }
 
 .btn-details:hover {
-  background-color: #ffbd66;
+  background-color: #6ebcfb;
 }
 
 /* 

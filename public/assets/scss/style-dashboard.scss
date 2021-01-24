@@ -702,19 +702,11 @@ body {
     box-shadow: none;
 }
 
-.btn-confirm {
+.btn-confirm, .btn-modify {
     background-color: $green-color;
     
     &:hover {
     background-color: $green-hover;
-    }
-}
-
-.btn-modify {
-    background-color: $blue-color;
-    
-    &:hover {
-    background-color: $blue-hover;
     }
 }
 
@@ -727,10 +719,10 @@ body {
 }
 
 .btn-details {
-    background-color: $yellow-color;
+    background-color: $blue-color;
     
     &:hover {
-    background-color: $yellow-hover;
+    background-color: $blue-hover;
     }
 }
 /* 
