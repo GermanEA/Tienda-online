@@ -1,4 +1,4 @@
-<?php if( $this->session->logged == false || $this->session->id_tipo_usuario != 1 ) {
+<?php if( $this->session->logged == false || $this->session->id_tipo_usuario > 1 ) {
     redirect(base_url(), 'location', 301);
 }
 ?>
@@ -153,6 +153,7 @@
                             <span class="text">Añadir producto</span>
                         </a>
                     </li>
+                    <?php if($this->session->id_tipo_usuario == 1) { ?>
                     <li class="sidebar-category">
                         <span>Categorías productos</span>
                         <span class="pull-right">
@@ -219,6 +220,7 @@
                             <span class="text">Añadir usuario</span>
                         </a>
                     </li>
+                    <?php } ?>
                     <li class="sidebar-category">
                         <span>Facturas y envíos</span>
                         <span class="pull-right">

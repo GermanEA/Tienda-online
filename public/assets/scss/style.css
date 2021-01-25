@@ -735,6 +735,10 @@ body {
         */
 }
 
+.main-wrapper .content-wrapper #carouselBanner {
+  display: none;
+}
+
 .main-wrapper .content-wrapper #carouselBanner .carousel-inner .carousel-item .carousel-caption {
   top: 0;
 }
@@ -784,6 +788,33 @@ body {
   margin-left: 420px;
 }
 
+@media (min-width: 768px) {
+  .main-wrapper .content-wrapper #carouselBanner {
+    display: block;
+  }
+}
+
+@media (min-width: 1400px) {
+  .main-wrapper .content-wrapper #carouselBanner .banner-btn {
+    margin-left: 420px;
+  }
+  .main-wrapper .content-wrapper #carouselBanner .banner-subheader {
+    font-size: 1.7rem;
+  }
+  .main-wrapper .content-wrapper #carouselBanner .banner-header {
+    font-size: 2.5rem;
+  }
+}
+
+@media (min-width: 1780px) {
+  .main-wrapper .content-wrapper #carouselBanner .banner-subheader {
+    font-size: 2rem;
+  }
+  .main-wrapper .content-wrapper #carouselBanner .banner-header {
+    font-size: 3rem;
+  }
+}
+
 .main-wrapper .content-wrapper .main-container-home .features .list-features {
   margin: 0;
   padding: 0;
@@ -811,6 +842,15 @@ body {
 
 .main-wrapper .content-wrapper .main-container-home .features .list-features .items a .feature-bottom:hover {
   opacity: 0;
+}
+
+@media (min-width: 1400px) {
+  .main-wrapper .content-wrapper .main-container-home .features .col-xxl-4 {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 33.333333%;
+            flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+  }
 }
 
 .main-wrapper .content-wrapper .sidebar-left .filter-text {

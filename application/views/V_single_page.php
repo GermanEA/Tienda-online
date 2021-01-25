@@ -52,19 +52,19 @@
 <main class="main-container-home">
     <div class="features">
         <ul class="list-features row align-items-start">
-            <li class="items col-4">
+            <li class="items col-l-12 col-xl-12 col-xxl-4">
                 <a href="<?= base_url("products/product_shirt");?>">
                     <img class="feature-top" src="<?= base_url();?>/public/assets/img/feature-1.png" alt="Camisetas">
                     <img class="feature-bottom" src="<?= base_url();?>/public/assets/img/feature-model-1.png" alt="Camisetas">
                 </a>
             </li>
-            <li class="items col-4">
+            <li class="items col-l-12 col-xl-12 col-xxl-4">
                 <a href="<?= base_url("products/product_cap");?>">
                     <img class="feature-top" src="<?= base_url();?>/public/assets/img/feature-2.png" alt="Gorras">
                     <img class="feature-bottom" src="<?= base_url();?>/public/assets/img/feature-model-2.png" alt="Camisetas">
                 </a>
             </li>
-            <li class="items col-4">
+            <li class="items col-l-12 col-xl-12 col-xxl-4">
                 <a href="<?= base_url("products/product_discs");?>">
                     <img class="feature-top" src="<?= base_url();?>/public/assets/img/feature-3.png" alt="Mochilas">
                     <img class="feature-bottom" src="<?= base_url();?>/public/assets/img/feature-model-3.png" alt="Camisetas">

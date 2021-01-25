@@ -1,3 +1,8 @@
+<?php if( $this->session->logged == false || $this->session->id_tipo_usuario != 1 ) {
+    redirect(base_url('/administrator/dashboard'), 'location', 301);
+}
+?>
+
 <?php if(!isset($users) || $users === NULL ) { ?>
     <div>No hay pedidos para mostrar.</div>
 <?php } else { ?>

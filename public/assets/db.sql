@@ -97,6 +97,7 @@ CREATE TABLE IF NOT EXISTS venta_detalle(
 );
 
 INSERT INTO tipo_usuario VALUES(1, 'Administrador'),
+    (0, 'Gestor pedidos');
     (2, 'Cliente'),
     (3, 'Anónimo');
 
