@@ -7,7 +7,7 @@
 
         public function getProductAll() {
 
-            $select = 'p.id_producto AS ID, p.codigo_producto AS Código producto, p.descripcion AS Descripción, p.material as Material, t.codigo_talla AS Talla, p.precio AS Precio, p.color AS color, p.stock AS Stock, p.imagen AS Imagen, tp.tipo_producto';
+            $select = 'p.id_producto AS ID, p.codigo_producto AS Código producto, p.descripcion AS Descripción, p.material as Material, t.codigo_talla AS Talla, p.precio AS Precio, p.color AS Color, p.stock AS Stock, p.imagen AS Imagen, tp.tipo_producto AS Tipo producto';
 
             $query = $this->db->select($select)
                      ->from('producto AS p')
@@ -25,7 +25,7 @@
 
         public function getProductLastOne() {
 
-            $select = 'p.id_producto AS ID, p.codigo_producto AS Código producto, p.descripcion AS Descripción, p.material as Material, t.codigo_talla AS Talla, p.precio AS Precio, p.color AS color, p.stock AS Stock, p.imagen AS Imagen, tp.tipo_producto';
+            $select = 'p.id_producto AS ID, p.codigo_producto AS Código producto, p.descripcion AS Descripción, p.material as Material, t.codigo_talla AS Talla, p.precio AS Precio, p.color AS Color, p.stock AS Stock, p.imagen AS Imagen, tp.tipo_producto AS Tipo producto';
 
             $query = $this->db->select($select)
                      ->from('producto AS p')
@@ -42,7 +42,7 @@
 
         public function getProductPages($limit, $start) {
 
-            $select = 'p.id_producto AS ID, p.codigo_producto AS Código producto, p.descripcion AS Descripción, p.material as Material, t.codigo_talla AS Talla, p.precio AS Precio, p.color AS color, p.stock AS Stock, p.imagen AS Imagen, tp.tipo_producto';
+            $select = 'p.id_producto AS ID, p.codigo_producto AS Código producto, p.descripcion AS Descripción, p.material as Material, t.codigo_talla AS Talla, p.precio AS Precio, p.color AS Color, p.stock AS Stock, p.imagen AS Imagen, tp.tipo_producto AS Tipo producto';
 
             $query = $this->db->select($select)
                      ->from('producto AS p')
@@ -61,7 +61,7 @@
 
         public function getProductAjaxWords($words, $limit, $start) {
 
-            $select = 'p.id_producto AS ID, p.codigo_producto AS Código producto, p.descripcion AS Descripción, p.material as Material, t.codigo_talla AS Talla, p.precio AS Precio, p.color AS color, p.stock AS Stock, p.imagen AS Imagen, tp.tipo_producto';
+            $select = 'p.id_producto AS ID, p.codigo_producto AS Código producto, p.descripcion AS Descripción, p.material as Material, t.codigo_talla AS Talla, p.precio AS Precio, p.color AS Color, p.stock AS Stock, p.imagen AS Imagen, tp.tipo_producto AS Tipo producto';
 
             $query = $this->db->select($select)
                      ->from('producto AS p')

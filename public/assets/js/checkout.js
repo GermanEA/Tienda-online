@@ -15,7 +15,8 @@ let showAddress = () => {
 
 checkboxAddress.addEventListener('click', showAddress, false);
 
-// FORMULARIO
+/* Función para poner todos los inputs obligatorios
+ si el usuario elige la opción de enviar a otra dirección */
 let formSendActive = () => {
     let form = document.forms['formShop'];
     let formArray = [];
@@ -27,7 +28,6 @@ let formSendActive = () => {
         form['postal-other'],
         form['city-other']
     );
-    console.log(formArray);
 
     if( checkboxAddress.checked == true ) {
         formArray.forEach(element => {
