@@ -37,7 +37,7 @@ class Single_page extends CI_Controller {
 			$user = $this->M_user_data->getUsers('email');
 		}
 		
-		if( isset($user) && $user[0]->id_tipo_usuario !=3 ) {
+		if( isset($user) && $user[0]->id_tipo_usuario != 4 ) {
 			if( $passForm != $user[0]->pass) {			
 				$page_data['error_log'] = "La contraseña no es correcta.";
 				$page_data['modal_open'] = true;
@@ -81,7 +81,7 @@ class Single_page extends CI_Controller {
 			$cif = $data['cif-reg'];
 			$user_anonimous = false;
 			
-			if( !empty($user) && $user[0]->id_tipo_usuario != 3 ) {
+			if( !empty($user) && $user[0]->id_tipo_usuario != 4 ) {
 				$page_data['error_reg'] = "Lo sentimos ya existe un usuario asociado a ese correo.";
 				$page_data['modal_open'] = true;
 				$this->loadViewsInitError($page_data);

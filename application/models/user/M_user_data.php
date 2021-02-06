@@ -63,7 +63,7 @@
                 'localidad'       => $data['city-reg'],
                 'telefono'        => $data['phone-reg'],
                 'email'           => strtolower($data['email-reg']),
-                'id_tipo_usuario' => 2
+                'id_tipo_usuario' => 3
             );
             
             $this->db->insert('usuario', $data_insert);
@@ -97,7 +97,7 @@
                 'localidad'       => $data['city-reg'],
                 'telefono'        => $data['phone-reg'],
                 'email'           => strtolower($data['email-reg']),
-                'id_tipo_usuario' => 2
+                'id_tipo_usuario' => 3
             ];
 
             $this->db->where('id_usuario', $id_usuario)

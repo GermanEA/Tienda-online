@@ -36,6 +36,7 @@
                      ->join('talla', 'producto.id_talla = talla.id_talla', 'inner')
                      ->where('producto.id_tipo_producto', $id_tipo_producto)
                      ->where('stock >', 0)
+                     ->order_by('talla.id_talla')
                      ->get();
 
             if ( $query->num_rows() > 0 ) {

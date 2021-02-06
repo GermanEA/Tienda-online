@@ -768,12 +768,12 @@ body {
 
 .main-wrapper .content-wrapper #carouselBanner .carousel-inner .carousel-item .carousel-caption .banner-text .banner-subheader {
   color: #b10909;
-  font-size: 2rem;
+  font-size: 1rem;
 }
 
 .main-wrapper .content-wrapper #carouselBanner .carousel-inner .carousel-item .carousel-caption .banner-text .banner-header {
   color: #fff;
-  font-size: 3rem;
+  font-size: 1rem;
   margin-bottom: 15px;
 }
 
@@ -785,33 +785,44 @@ body {
           box-sizing: border-box;
   background-color: #b10909;
   color: #fff;
-  margin-left: 420px;
 }
 
-@media (min-width: 768px) {
-  .main-wrapper .content-wrapper #carouselBanner {
-    display: block;
-  }
-}
-
-@media (min-width: 1400px) {
-  .main-wrapper .content-wrapper #carouselBanner .banner-btn {
+@media only screen and (min-width: 1400px) {
+  .main-wrapper .content-wrapper #carouselBanner .carousel-inner .carousel-item .carousel-caption .banner-text .banner-btn {
     margin-left: 420px;
   }
-  .main-wrapper .content-wrapper #carouselBanner .banner-subheader {
+  .main-wrapper .content-wrapper #carouselBanner .carousel-inner .carousel-item .carousel-caption .banner-text .banner-subheader {
     font-size: 1.7rem;
   }
-  .main-wrapper .content-wrapper #carouselBanner .banner-header {
+  .main-wrapper .content-wrapper #carouselBanner .carousel-inner .carousel-item .carousel-caption .banner-text .banner-header {
     font-size: 2.5rem;
   }
 }
 
-@media (min-width: 1780px) {
-  .main-wrapper .content-wrapper #carouselBanner .banner-subheader {
+@media only screen and (min-width: 1650px) {
+  .main-wrapper .content-wrapper #carouselBanner .carousel-inner .carousel-item .carousel-caption .banner-text .banner-subheader {
+    font-size: 1.7rem;
+  }
+  .main-wrapper .content-wrapper #carouselBanner .carousel-inner .carousel-item .carousel-caption .banner-text .banner-header {
+    font-size: 2.5rem;
+  }
+}
+
+@media only screen and (min-width: 1780px) {
+  .main-wrapper .content-wrapper #carouselBanner .carousel-inner .carousel-item .carousel-caption .banner-text .banner-btn {
+    margin-left: 520px;
+  }
+  .main-wrapper .content-wrapper #carouselBanner .carousel-inner .carousel-item .carousel-caption .banner-text .banner-subheader {
     font-size: 2rem;
   }
-  .main-wrapper .content-wrapper #carouselBanner .banner-header {
+  .main-wrapper .content-wrapper #carouselBanner .carousel-inner .carousel-item .carousel-caption .banner-text .banner-header {
     font-size: 3rem;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .main-wrapper .content-wrapper #carouselBanner {
+    display: block;
   }
 }
 
@@ -844,7 +855,7 @@ body {
   opacity: 0;
 }
 
-@media (min-width: 1400px) {
+@media only screen and (min-width: 1400px) {
   .main-wrapper .content-wrapper .main-container-home .features .col-xxl-4 {
     -webkit-box-flex: 0;
         -ms-flex: 0 0 33.333333%;
