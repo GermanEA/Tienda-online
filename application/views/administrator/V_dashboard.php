@@ -1,4 +1,4 @@
-<?php if( $this->session->logged == false || $this->session->id_tipo_usuario > 1 ) {
+<?php if( $this->session->logged == false || $this->session->id_tipo_usuario > 2 ) {
     redirect(base_url(), 'location', 301);
 }
 ?>
@@ -46,7 +46,7 @@
     } ?>
     <!-- / END PAGE JS -->
 
-    <title>Backoffice - Tienda oficial de Enseco</title>
+    <title>Back office - Tienda oficial de Enseco</title>
 
 </head>
 <!--/ END HEAD -->
@@ -153,7 +153,9 @@
                             <span class="text">Añadir producto</span>
                         </a>
                     </li>
+
                     <?php if($this->session->id_tipo_usuario == 1) { ?>
+
                     <li class="sidebar-category">
                         <span>Categorías productos</span>
                         <span class="pull-right">
@@ -220,7 +222,9 @@
                             <span class="text">Añadir usuario</span>
                         </a>
                     </li>
+
                     <?php } ?>
+                    
                     <li class="sidebar-category">
                         <span>Facturas y envíos</span>
                         <span class="pull-right">

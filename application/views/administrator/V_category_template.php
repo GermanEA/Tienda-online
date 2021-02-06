@@ -1,5 +1,5 @@
-<?php if( $this->session->logged == false || $this->session->id_tipo_usuario != 1 ) {
-    redirect(base_url('/administrator/dashboard'), 'location', 301);
+<?php if( $this->session->logged == false || $this->session->id_tipo_usuario > 2 ) {
+    redirect(base_url(), 'location', 301);
 }
 ?>
 

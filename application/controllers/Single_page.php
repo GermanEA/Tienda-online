@@ -185,7 +185,7 @@ class Single_page extends CI_Controller {
 					$this->session->$key = $value;
 				}
 				
-				if( $this->session->id_tipo_usuario == 1 ) {			
+				if( $this->session->id_tipo_usuario < 3 ) {			
 					redirect(base_url('/administrator/dashboard'), 'location', 301);
 				} else {
 					$this->loadViewsInit();

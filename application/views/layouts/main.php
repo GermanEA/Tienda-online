@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-if( isset($this->session->id_tipo_usuario) && $this->session->id_tipo_usuario == 1 ) {
+if( isset($this->session->id_tipo_usuario) && $this->session->id_tipo_usuario < 3 ) {
     redirect(base_url('/administrator/dashboard'), 'refresh');
 }
 ?>
